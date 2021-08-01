@@ -1,24 +1,22 @@
-import logo from './logo.svg';
 import './App.css';
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
+import MainForm from './features/form/MainForm';
+import Spdt from './features/form/types/Spdt';
+import Optic from './features/form/types/Optic';
+import Photonic from './features/form/types/Photonic';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Switch>
+        <Route exact path='/'>
+          <MainForm />
+        </Route>
+        <Route path='/spdt/:id' component={Spdt}/>
+        <Route path='/optic/:id' component={Optic}/>
+        <Route path='/photonic/:id' component={Photonic}/>
+      </Switch>
+    </Router>
   );
 }
 

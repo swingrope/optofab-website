@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function Integrated() {
+export default function SpdtCustom() {
     return (
         <div>
-            INTEGRATED
+            custom
         </div>
     )
 }

@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function Integrated() {
+export default function SpdtStandard({partNum}) {
     return (
         <div>
-            INTEGRATED
+            standard
         </div>
     )
 }
