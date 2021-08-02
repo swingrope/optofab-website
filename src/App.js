@@ -6,15 +6,16 @@ import Optic from './features/form/types/Optic';
 import Photonic from './features/form/types/Photonic';
 
 function App() {
+
   return (
     <Router>
       <Switch>
         <Route exact path='/'>
           <MainForm />
         </Route>
-        <Route path='/spdt/:id' component={Spdt}/>
-        <Route path='/optic/:id' component={Optic}/>
-        <Route path='/photonic/:id' component={Photonic}/>
+        <Route path='/spdt' component={Spdt}/>
+        <Route path='/optic' component={Optic}/>
+        <Route path='/photonic' component={Photonic}/>
       </Switch>
     </Router>
   );

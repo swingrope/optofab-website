@@ -3,6 +3,7 @@ import { makeAutoObservable } from "mobx";
 export class FormStore {
 
     serviceType = ""
+    componentCount = 0
 
     constructor() {
         makeAutoObservable(this)
@@ -10,5 +11,10 @@ export class FormStore {
 
     setServiceType(serviceType) {
         this.serviceType = serviceType
+        this.componentCount = 1
+    }
+
+    addNewPart() {
+        this.componentCount++
     }
 }
