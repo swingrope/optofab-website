@@ -1,21 +1,82 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
-import Integrated from './types/Integrated';
-import Spdt from './types/Spdt';
+import { Formik, Form, Field, FieldArray } from 'formik'
+import React, { Fragment } from 'react'
+import SpdtStandard, { SpdtStandardInitialValues } from './components/SpdtStandard';
 
 export default function MainForm() {
-
     return (
-        <div>
+        <Fragment>
             <h1>Request Form</h1>
-            <h2>Please Select A Service Type: </h2>
-            <div>
-                <Link to="/spdt">SPDT Optic </Link>
-                <Link to="/integrated">Integrated Optic Chip, Assembly and Others </Link>
-                <Link to="/optic">Optic Coating </Link>
-                <Link to="/photonic">Photonic Coating </Link>
-            </div>
-        </div>
+            <Formik
+                initialValues={{
+                    serviceType: '',
+                    componentType: '',
+                    spdtStandardSides: [{SpdtStandardInitialValues}]
+                }}
+                onSubmit={async (values) => {
+                    await new Promise((r) => setTimeout(r, 500));
+                    alert(JSON.stringify(values, null, 2));
+                }}
+                >
+                {({values, handleChange, handleSubmit}) => (
+                    <Form>
+                        <h1 id="service-type">Service Type: </h1>
+                        <div role="group" aria-labelledby="service-type">
+                            <label>
+                            <Field type="radio" name="serviceType" value="SPDT Optic" />
+                            SPDT Optic
+                            </label>
+                            <label>
+                            <Field type="radio" name="serviceType" value="Integrated Optic Chip, Assembly and Others" />
+                            Integrated Optic Chip, Assembly and Others
+                            </label>
+                            <label>
+                            <Field type="radio" name="serviceType" value="Optic Coating" />
+                            Optic Coating
+                            </label>
+                            <label>
+                            <Field type="radio" name="serviceType" value="Photonic Coating" />
+                            Photonic Coating
+                            </label>
+                        </div>
+                        <div>Picked: {values.serviceType}</div>
+                            {
+                                values.serviceType === "SPDT Optic" && (
+                                    <Fragment>
+                                        <h2 id="component-type">Component Type: </h2>
+                                        <div role="group" aria-labelledby="component-type">
+                                            <label>
+                                            <Field type="radio" name="componentType" value="Standard Optical Component" />
+                                            Standard Optical Component
+                                            </label>
+                                            <label>
+                                            <Field type="radio" name="componentType" value="Full Custom" />
+                                            Full Custom
+                                            </label>
+                                        </div>
+                                        {
+                                            values.componentType === "Standard Optical Component" && 
+                                                <FieldArray 
+                                                    name="spdtStandardSides"
+                                                >
+                                                {
+                                                    (arrayHelpers) => (
+                                                        <div>
+                                                            {values.spdtStandardSides.map((side, index) => (
+                                                                <SpdtStandard key={index} index={index} handleChange={handleChange} values={values}/>
+                                                            )) }
+                                                        </div>
+                                                    )
+                                                }
 
+                                                </FieldArray>
+                                        }
+                                    </Fragment>
+                                )
+                            }
+                            <button type="submit">Submit</button>
+                    </Form>
+                )}
+            </Formik>
+        </Fragment>
     )
 }
