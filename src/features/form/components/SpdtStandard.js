@@ -13,7 +13,7 @@ export default function SpdtStandard({index, handleChange, values}) {
         <div>
             <h3>Side {sideNumber}</h3>
             <MyTextArea 
-                name='DescriptionOfFace'
+                name={`spdtStandardSides.${index}.DescriptionOfFace`}
                 label='Description Of Face: '
                 onChange={handleChange}
                 rows={3}
@@ -21,29 +21,30 @@ export default function SpdtStandard({index, handleChange, values}) {
             <div id="curvature">Curvature: </div>
                 <div role="group" aria-labelledby="curvature">
                 <label>
-                    <Field type="radio" name="Curvature" value="Flat" />
+                    <Field type="radio" name={`spdtStandardSides.${index}.Curvature`} value="Flat" />
                     Flat
                 </label>
                 <label>
-                    <Field type="radio" name="Curvature" value="Toric" />
+                    <Field type="radio" name={`spdtStandardSides.${index}.Curvature`} value="Toric" />
                     Toric
                 </label>
                 <label>
-                    <Field type="radio" name="Curvature" value="Parabolic" />
+                    <Field type="radio" name={`spdtStandardSides.${index}.Curvature`} value="Parabolic" />
                     Parabolic
                 </label>
                 <label>
-                    <Field type="radio" name="Curvature" value="Spherical" />
+                    <Field type="radio" name={`spdtStandardSides.${index}.Curvature`} value="Spherical" />
                     Spherical
                 </label>
                 <label>
-                    <Field type="radio" name="Curvature" value="Aspheric" />
+                    <Field type="radio" name={`spdtStandardSides.${index}.Curvature`} value="Aspheric" />
                     Aspheric
                 </label>
                 <label>
-                    <Field type="radio" name="Curvature" value="Other" />
+                    <Field type="radio" name={`spdtStandardSides.${index}.Curvature`} value="Other" />
                     Other
                 </label>
+                <div>Picked: {values.spdtStandardSides[0].Curvature}</div>
             </div>
         </div>
     )
