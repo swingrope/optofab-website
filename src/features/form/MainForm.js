@@ -1,17 +1,20 @@
 import { Formik, Form, Field, FieldArray } from 'formik'
 import React, { Fragment } from 'react'
 import SpdtStandard, { SpdtStandardInitialValues } from './components/SpdtStandard';
+import Substrate from './components/Substrate';
+
+export const formInitialValues = {
+    serviceType: '',
+    componentType: '',
+    spdtStandardSides: [{...SpdtStandardInitialValues}],
+}
 
 export default function MainForm() {
     return (
         <Fragment>
             <h1>Request Form</h1>
             <Formik
-                initialValues={{
-                    serviceType: '',
-                    componentType: '',
-                    spdtStandardSides: [{SpdtStandardInitialValues}]
-                }}
+                initialValues={formInitialValues}
                 onSubmit={async (values) => {
                     await new Promise((r) => setTimeout(r, 500));
                     alert(JSON.stringify(values, null, 2));
@@ -62,7 +65,10 @@ export default function MainForm() {
                                                     (arrayHelpers) => (
                                                         <div>
                                                             {values.spdtStandardSides.map((side, index) => (
-                                                                <SpdtStandard key={index} index={index} handleChange={handleChange} values={values}/>
+                                                                <Fragment key={index}>
+                                                                    <SpdtStandard index={index} handleChange={handleChange} values={values}/>
+                                                                    <Substrate namespace="spdtStandardSides" index={index} handleChange={handleChange} values={values} />
+                                                                </Fragment>
                                                             )) }
                                                         </div>
                                                     )

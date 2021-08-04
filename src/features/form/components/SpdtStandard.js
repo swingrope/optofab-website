@@ -1,10 +1,12 @@
 import React from 'react'
 import { MyTextArea } from '../fields/MyTextArea'
 import { Field } from 'formik'
+import { substrateInitialValues } from './Substrate'
 
 export const SpdtStandardInitialValues = {
     DescriptionOfFace: '',
-    Curvature: ''
+    Curvature: '',
+    substrate: {...substrateInitialValues}
 }
 
 export default function SpdtStandard({index, handleChange, values}) {
