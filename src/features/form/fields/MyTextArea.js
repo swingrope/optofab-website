@@ -10,6 +10,7 @@ export const MyTextArea = ({ label, ...props }) => {
         <br />
         <br />
         <textarea {...field} {...props} />
+        <br />
       </label>
       {meta.touched && meta.error ? (
         <div className="error">{meta.error}</div>

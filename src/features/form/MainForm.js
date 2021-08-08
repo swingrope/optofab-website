@@ -1,12 +1,12 @@
 import { Formik, Form, Field, FieldArray } from 'formik'
 import React, { Fragment } from 'react'
-import SpdtStandard, { SpdtStandardInitialValues } from './components/SpdtStandard';
-import Substrate from './components/Substrate';
+import Material, { materialInitialValues } from './components/Material'
+import Surface, { surfaceInitialValues } from './components/Surface'
 
 export const formInitialValues = {
-    serviceType: '',
-    componentType: '',
-    spdtStandardSides: [{...SpdtStandardInitialValues}],
+    blankSource: '',
+    material: materialInitialValues,
+    surface: [surfaceInitialValues]
 }
 
 export default function MainForm() {
@@ -45,37 +45,33 @@ export default function MainForm() {
                             {
                                 values.serviceType === "SPDT Optic" && (
                                     <Fragment>
-                                        <h2 id="component-type">Component Type: </h2>
-                                        <div role="group" aria-labelledby="component-type">
-                                            <label>
-                                            <Field type="radio" name="componentType" value="Standard Optical Component" />
-                                            Standard Optical Component
-                                            </label>
-                                            <label>
-                                            <Field type="radio" name="componentType" value="Full Custom" />
-                                            Full Custom
-                                            </label>
-                                        </div>
-                                        {
-                                            values.componentType === "Standard Optical Component" && 
-                                                <FieldArray 
-                                                    name="spdtStandardSides"
-                                                >
-                                                {
-                                                    (arrayHelpers) => (
-                                                        <div>
-                                                            {values.spdtStandardSides.map((side, index) => (
-                                                                <Fragment key={index}>
-                                                                    <SpdtStandard index={index} handleChange={handleChange} values={values}/>
-                                                                    <Substrate namespace="spdtStandardSides" index={index} handleChange={handleChange} values={values} />
-                                                                </Fragment>
-                                                            )) }
-                                                        </div>
-                                                    )
-                                                }
-
-                                                </FieldArray>
-                                        }
+                                        <label>
+                                            Blank source:
+                                            <Field name='blankSource' as='select'>
+                                                <option value='ANFF supplied'>ANFF supplied</option>
+                                                <option value='Custom supplied'>Custom supplied</option>
+                                            </Field>
+                                            <Material 
+                                            serviceType='spdt' 
+                                            handleChange={handleChange} 
+                                            materialValues={values.material}
+                                            />
+                                            <FieldArray
+                                                name='surface'
+                                            >
+                                                {({push}) => (
+                                                    <div>
+                                                        {values.surface.map((side, index) => (
+                                                            <Surface 
+                                                                index={index} 
+                                                                handleChange={handleChange}
+                                                                surfaceValues={values.surface[index]}
+                                                            />
+                                                        ))}
+                                                    </div>
+                                                )}
+                                            </FieldArray>
+                                        </label>
                                     </Fragment>
                                 )
                             }

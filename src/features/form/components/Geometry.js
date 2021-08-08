@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Geometry({namespace, index, values, handleChange, geometryType}) {
+export default function Geometry() {
     return (
         <div>
             
