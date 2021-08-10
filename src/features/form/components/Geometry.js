@@ -30,6 +30,7 @@ export default function Geometry({geometryValues, handleChange, blankSource}) {
                     <option value='other'>Other</option>
                 </Field>
             </label>
+            <br />
             {geometryValues.geometryType === 'oval' && (
                 <Fragment>
                     <MyTextInput label='Major Diameter (mm):' name='geometry.majorDiameter' onChange={handleChange} />

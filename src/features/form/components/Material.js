@@ -25,7 +25,12 @@ export default function Material({serviceType, handleChange, materialValues}) {
                         <Fragment>
                             <option value='N/A'>Please select</option>
                         </Fragment>
-                    )} 
+                    )}
+                    {serviceType === 'optical' && (
+                        <Fragment>
+                            <option value='N/A'>Please select</option>
+                        </Fragment>
+                    )}
                 </Field>            
             </label>
             {(true || materialValues.materialType === 'other') && (
