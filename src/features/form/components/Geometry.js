@@ -9,7 +9,10 @@ export const geometryInitialValues = {
     thickness: '',
     wedge: '',
     chamferx: '',
-    chamfery: ''
+    chamfery: '',
+    width: '',
+    height: '',
+    sideLength: ''
 }
 
 export default function Geometry({geometryValues, handleChange, blankSource}) {
@@ -33,6 +36,33 @@ export default function Geometry({geometryValues, handleChange, blankSource}) {
                     <MyTextInput label='Wedge (arcsecond):' name='geometry.wedge' onChange={handleChange} />
                     <MyTextInput label='Chamfer x:' name='geometry.chamferx' onChange={handleChange} />
                     <MyTextInput label='Chamfer y:' name='geometry.chamfery' onChange={handleChange} />
+                </Fragment>
+            )}
+            {geometryValues.geometryType === 'rectangle' && (
+                <Fragment>
+                    <MyTextInput label='Width (mm):' name='geometry.width' onChange={handleChange} />
+                    <MyTextInput label='Height (mm):' name='geometry.height' onChange={handleChange} />
+                    <MyTextInput label='Thickness (mm):' name='geometry.thickness' onChange={handleChange} />
+                    <MyTextInput label='Wedge (arcsecond):' name='geometry.wedge' onChange={handleChange} />
+                    <MyTextInput label='Chamfer x:' name='geometry.chamferx' onChange={handleChange} />
+                    <MyTextInput label='Chamfer y:' name='geometry.chamfery' onChange={handleChange} />
+                </Fragment>
+            )}
+            {geometryValues.geometryType === 'regular polygon' && (
+                <Fragment>
+                    <MyTextInput label='Side Length (mm):' name='geometry.sideLength' onChange={handleChange} />
+                    <MyTextInput label='Thickness (mm):' name='geometry.thickness' onChange={handleChange} />
+                    <MyTextInput label='Wedge (arcsecond):' name='geometry.wedge' onChange={handleChange} />
+                    <MyTextInput label='Chamfer x:' name='geometry.chamferx' onChange={handleChange} />
+                    <MyTextInput label='Chamfer y:' name='geometry.chamfery' onChange={handleChange} />
+                </Fragment>
+            )}
+            {geometryValues.geometryType === 'other' && (
+                <Fragment>
+                    <label>
+                        <button>Upload file</button>
+                        Max 5M PDF / PNG only
+                    </label>
                 </Fragment>
             )}
         </div>
