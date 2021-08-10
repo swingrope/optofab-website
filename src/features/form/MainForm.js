@@ -3,11 +3,13 @@ import React, { Fragment } from 'react'
 import Geometry, { geometryInitialValues } from './components/Geometry'
 import Material, { materialInitialValues } from './components/Material'
 import Surface, { surfaceInitialValues } from './components/Surface'
+import {MyTextInput} from "./fields/MyTextInput";
 
 export const formInitialValues = {
     blankSource: '',
     material: materialInitialValues,
     geometry: geometryInitialValues,
+    dimensionalAccuracy: '',
     surface: [surfaceInitialValues]
 }
 
@@ -63,8 +65,8 @@ export default function MainForm() {
                             Integrated Optic Chip, Assembly and Others
                             </label>
                             <label>
-                            <Field type="radio" name="serviceType" value="Optic Coating" />
-                            Optic Coating
+                            <Field type="radio" name="serviceType" value="Optical Coating" />
+                            Optical Coating
                             </label>
                             <label>
                             <Field type="radio" name="serviceType" value="Photonic Coating" />
@@ -108,6 +110,71 @@ export default function MainForm() {
                                                 )}
                                             </FieldArray>
                                         </label>
+                                    </Fragment>
+                                )
+                            }
+                            {
+                                values.serviceType === "Optical Coating" && (
+                                    <Fragment>
+                                        <label>
+                                            Substrate source:
+                                            <Field name='substrateSource' as='select'>
+                                                <option value='N/A'>Please Select</option>
+                                                <option value='ANFF supplied-stock'>ANFF supplied-stock</option>
+                                                <option value='Customer supplied'>Customer supplied</option>
+                                                <option value='ANFF supplied – full custom'>ANFF supplied – full custom</option>
+                                            </Field>
+                                            <div>Picked:{values.substrateSource}</div>
+                                            {
+                                                values.substrateSource === "ANFF supplied-stock" &&(
+                                                    <Fragment>
+                                                        <label>
+                                                            In stock:
+                                                            <Field name='size' as='select'>
+                                                                <option value='N/A'>Please Select</option>
+                                                                <option value='12.7mm'>12.7mm</option>
+                                                                <option value='25.4mm'>25.4mm</option>
+                                                                <option value='50.8mm'>50.8mm</option>
+                                                            </Field>
+                                                        </label>
+                                                    </Fragment>
+                                                )
+                                            }
+                                            {
+                                                values.substrateSource === "Customer supplied" &&(
+                                                    <Fragment>
+                                                        <Material
+                                                            serviceType='optical'
+                                                            handleChange={handleChange}
+                                                            materialValues={values.material}
+                                                        />
+                                                        <Geometry
+                                                            handleChange={handleChange}
+                                                            geometryValues={values.geometry}
+                                                            blankSource={values.blankSource}
+                                                        />
+                                                    </Fragment>
+                                                )
+                                            }
+                                            {
+                                                values.substrateSource === "ANFF supplied – full custom" &&(
+                                                    <Fragment>
+                                                        <Material
+                                                            serviceType='optical'
+                                                            handleChange={handleChange}
+                                                            materialValues={values.material}
+                                                        />
+                                                        <Geometry
+                                                            handleChange={handleChange}
+                                                            geometryValues={values.geometry}
+                                                            blankSource={values.blankSource}
+                                                        />
+                                                        <MyTextInput label='Dimensional Accuracy(mm):  +-' name='dimensionalAccuracy' onChange={handleChange} />
+                                                    </Fragment>
+                                                )
+                                            }
+                                        </label>
+                                        <br />
                                     </Fragment>
                                 )
                             }
