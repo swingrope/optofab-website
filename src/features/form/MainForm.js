@@ -98,10 +98,11 @@ export default function MainForm() {
                                                     <div>
                                                         {values.surface.map((side, index) => (
                                                             <Surface 
-                                                                key = {index}
+                                                                key={index}
                                                                 index={index} 
                                                                 handleChange={handleChange}
                                                                 surfaceValues={values.surface[index]}
+                                                                blankSource={values.blankSource}
                                                             />
                                                         ))}
                                                     </div>

@@ -12,10 +12,12 @@ export const geometryInitialValues = {
     chamfery: '',
     width: '',
     height: '',
-    sideLength: ''
+    sideLength: '',
+    dimensionalAccuracy: ''
 }
 
 export default function Geometry({geometryValues, handleChange, blankSource}) {
+    console.log(blankSource)
     return (
         <div>
             <label>
@@ -63,6 +65,11 @@ export default function Geometry({geometryValues, handleChange, blankSource}) {
                         <button>Upload file</button>
                         Max 5M PDF / PNG only
                     </label>
+                </Fragment>
+            )}
+            {(geometryValues.geometryType !== geometryInitialValues.geometryType && blankSource === 'Custom supplied') && (
+                <Fragment>
+                    <MyTextInput label='Dimensional Accuracy (mm): ±' name='geometry.dimensionalAccuracy' onChange={handleChange} />
                 </Fragment>
             )}
         </div>
