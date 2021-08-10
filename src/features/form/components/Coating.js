@@ -4,7 +4,9 @@ export const coatingInitialValues = {
 
 }
 
-export default function Coating() {
+export default function Coating({coatingValues, handleChange, index}) {
+    
+
     return (
         <div>
             

@@ -17,7 +17,6 @@ export const geometryInitialValues = {
 }
 
 export default function Geometry({geometryValues, handleChange, blankSource}) {
-    console.log(blankSource)
     return (
         <div>
             <label>
