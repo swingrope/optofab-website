@@ -2,6 +2,7 @@ import { Field } from 'formik'
 import React, { Fragment, useState } from 'react'
 import { MyTextArea } from '../fields/MyTextArea.js'
 import { MyTextInput } from '../fields/MyTextInput.js'
+import Coating, { coatingInitialValues } from './Coating.js'
 
 export const surfaceInitialValues = {
     descriptionOfFace: '',
@@ -19,7 +20,8 @@ export const surfaceInitialValues = {
     a8: '',
     a10: '',
     a12: '',
-    formAccuracy: ''
+    formAccuracy: '',
+    coating: coatingInitialValues
 }
 
 export default function Surface({handleChange, index, surfaceValues, blankSource}) {
@@ -111,6 +113,7 @@ export default function Surface({handleChange, index, surfaceValues, blankSource
                     <MyTextInput label='Form Accuracy (mm): ±' name={`surface.${index}.formAccuracy`} onChange={handleChange} />
                 </Fragment>
             )}
+            <Coating coatingValues={surfaceValues.coating} handleChange={handleChange} index={index} />
         </div>
     )
 }

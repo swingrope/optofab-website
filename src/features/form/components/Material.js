@@ -33,7 +33,7 @@ export default function Material({serviceType, handleChange, materialValues}) {
                     )}
                 </Field>            
             </label>
-            {(true || materialValues.materialType === 'other') && (
+            {(materialValues.materialType === 'other') && (
                 <div>
                     <label>
                         Reactivity: 

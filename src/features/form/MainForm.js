@@ -28,7 +28,6 @@ export const flattenObject = (obj) => {
 
 export default function MainForm() {
 
-
       const getChangedValues = (values, initialValues) => {
         const flattenedValues = flattenObject(values)
         const flattenInitial = flattenObject(initialValues)
