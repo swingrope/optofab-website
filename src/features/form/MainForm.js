@@ -31,6 +31,7 @@ export default function MainForm() {
       const getChangedValues = (values, initialValues) => {
         const flattenedValues = flattenObject(values)
         const flattenInitial = flattenObject(initialValues)
+        // has bug
         return Object.entries(flattenedValues).reduce((acc, [key, value]) => {
             const hasChanged = flattenInitial[key] !== value
             if (hasChanged)
@@ -46,7 +47,7 @@ export default function MainForm() {
                 initialValues={formInitialValues}
                 onSubmit={
                     async (values) => {
-                        console.log(formInitialValues)
+                        console.log(values)
                         await new Promise((r) => setTimeout(r, 500));
                         alert(JSON.stringify(getChangedValues(values, formInitialValues), null, 2));
                     }}
@@ -106,6 +107,7 @@ export default function MainForm() {
                                                                 blankSource={values.blankSource}
                                                             />
                                                         ))}
+                                                        <button type='button' onClick={() => push(surfaceInitialValues)}>Add a side</button>
                                                     </div>
                                                 )}
                                             </FieldArray>
