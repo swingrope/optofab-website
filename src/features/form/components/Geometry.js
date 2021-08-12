@@ -16,7 +16,7 @@ export const geometryInitialValues = {
     dimensionalAccuracy: ''
 }
 
-export default function Geometry({geometryValues, handleChange, blankSource}) {
+export default function Geometry({geometryValues, handleChange, blankSource, substrateSource}) {
     return (
         <div>
             <label>
@@ -67,7 +67,7 @@ export default function Geometry({geometryValues, handleChange, blankSource}) {
                     </label>
                 </Fragment>
             )}
-            {(geometryValues.geometryType !== geometryInitialValues.geometryType && blankSource === 'Custom supplied') && (
+            {(geometryValues.geometryType !== geometryInitialValues.geometryType && (blankSource === 'Customer supplied'||substrateSource=== 'Customer supplied')) && (
                 <Fragment>
                     <MyTextInput label='Dimensional Accuracy (mm): ±' name='geometry.dimensionalAccuracy' onChange={handleChange} />
                 </Fragment>

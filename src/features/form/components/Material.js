@@ -29,11 +29,12 @@ export default function Material({serviceType, handleChange, materialValues}) {
                     {serviceType === 'optical' && (
                         <Fragment>
                             <option value='N/A'>Please select</option>
+                            <option value='other'>Other</option>
                         </Fragment>
                     )}
                 </Field>            
             </label>
-            {(materialValues.materialType === 'other') && (
+            {(materialValues.materialType === 'other'/* && serviceType === 'optical'*/) && (
                 <div>
                     <label>
                         Reactivity: 

@@ -4,13 +4,18 @@ import Geometry, { geometryInitialValues } from './components/Geometry'
 import Material, { materialInitialValues } from './components/Material'
 import Surface, { surfaceInitialValues } from './components/Surface'
 import {MyTextInput} from "./fields/MyTextInput";
+import {MyTextArea} from "./fields/MyTextArea";
 
 export const formInitialValues = {
     blankSource: '',
+    substrateSource: '',
+    stockSize: '',
     material: materialInitialValues,
     geometry: geometryInitialValues,
     dimensionalAccuracy: '',
-    surface: [surfaceInitialValues]
+    surface: [surfaceInitialValues],
+    quantity: '',
+    specialInstructions:''
 }
 
 export const flattenObject = (obj) => {
@@ -81,7 +86,7 @@ export default function MainForm() {
                                             Blank source:
                                             <Field name='blankSource' as='select'>
                                                 <option value='ANFF supplied'>ANFF supplied</option>
-                                                <option value='Custom supplied'>Custom supplied</option>
+                                                <option value='Customer supplied'>Customer supplied</option>
                                             </Field>
                                             <Material 
                                                 serviceType='spdt' 
@@ -92,6 +97,7 @@ export default function MainForm() {
                                                 handleChange={handleChange}
                                                 geometryValues={values.geometry}
                                                 blankSource={values.blankSource}
+                                                substrateSource={'N/A'}
                                             />
                                             <FieldArray
                                                 name='surface'
@@ -105,6 +111,7 @@ export default function MainForm() {
                                                                 handleChange={handleChange}
                                                                 surfaceValues={values.surface[index]}
                                                                 blankSource={values.blankSource}
+                                                                substrateSource={'N/A'}
                                                             />
                                                         ))}
                                                         <button type='button' onClick={() => push(surfaceInitialValues)}>Add a side</button>
@@ -126,24 +133,24 @@ export default function MainForm() {
                                                 <option value='Customer supplied'>Customer supplied</option>
                                                 <option value='ANFF supplied – full custom'>ANFF supplied – full custom</option>
                                             </Field>
-                                            <div>Picked:{values.substrateSource}</div>
                                             {
                                                 values.substrateSource === "ANFF supplied-stock" &&(
                                                     <Fragment>
-                                                        <label>
+                                                        <label><br />
                                                             In stock:
-                                                            <Field name='size' as='select'>
+                                                            <Field name='stockSize' as='select' onChange={handleChange}>
                                                                 <option value='N/A'>Please Select</option>
                                                                 <option value='12.7mm'>12.7mm</option>
                                                                 <option value='25.4mm'>25.4mm</option>
                                                                 <option value='50.8mm'>50.8mm</option>
                                                             </Field>
+
                                                         </label>
                                                     </Fragment>
                                                 )
                                             }
                                             {
-                                                values.substrateSource === "Customer supplied" &&(
+                                                (values.substrateSource === "Customer supplied"||values.substrateSource === "ANFF supplied – full custom") &&(
                                                     <Fragment>
                                                         <Material
                                                             serviceType='optical'
@@ -153,25 +160,47 @@ export default function MainForm() {
                                                         <Geometry
                                                             handleChange={handleChange}
                                                             geometryValues={values.geometry}
-                                                            blankSource={values.blankSource}
+                                                            blankSource={'N/A'}
+                                                            substrateSource={values.substrateSource}
                                                         />
+                                                        <FieldArray
+                                                            name='surface'
+                                                        >
+                                                            {({push}) => (
+                                                                <div>
+                                                                    {values.surface.map((side, index) => (
+                                                                        <Surface
+                                                                            key={index}
+                                                                            index={index}
+                                                                            handleChange={handleChange}
+                                                                            surfaceValues={values.surface[index]}
+                                                                            blankSource={'N/A'}
+                                                                            substrateSource={values.substrateSource}
+                                                                        />
+                                                                    ))}
+                                                                    <button type='button' onClick={() => push(surfaceInitialValues)}>Add a side</button>
+                                                                </div>
+                                                            )}
+                                                        </FieldArray>
                                                     </Fragment>
                                                 )
                                             }
                                             {
-                                                values.substrateSource === "ANFF supplied – full custom" &&(
+                                                (values.substrateSource === "ANFF supplied-stock"||values.substrateSource === "Customer supplied"||values.substrateSource === "ANFF supplied – full custom") &&(
                                                     <Fragment>
-                                                        <Material
-                                                            serviceType='optical'
-                                                            handleChange={handleChange}
-                                                            materialValues={values.material}
+                                                        <br />
+                                                        <MyTextInput label='Quantity:' name='quantity' onChange={handleChange} />
+                                                        <MyTextArea
+                                                            label='Special instructions:'
+                                                            name='specialInstructions'
+                                                            placeholder='Leave the description here'
+                                                            rows={3}
+                                                            onChange={handleChange}
                                                         />
-                                                        <Geometry
-                                                            handleChange={handleChange}
-                                                            geometryValues={values.geometry}
-                                                            blankSource={values.blankSource}
-                                                        />
-                                                        <MyTextInput label='Dimensional Accuracy(mm):  +-' name='dimensionalAccuracy' onChange={handleChange} />
+                                                        <label>
+                                                            <button>Upload file</button>
+                                                            Max 5M PDF / PNG only
+                                                        </label>
                                                     </Fragment>
                                                 )
                                             }

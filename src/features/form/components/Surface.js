@@ -24,7 +24,7 @@ export const surfaceInitialValues = {
     coating: coatingInitialValues
 }
 
-export default function Surface({handleChange, index, surfaceValues, blankSource}) {
+export default function Surface({handleChange, index, surfaceValues, blankSource, substrateSource}) {
 
     const [expand, setExpand] = useState(false)
     const [buttonText, setButtonText] = useState('show more')
