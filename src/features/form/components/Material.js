@@ -34,7 +34,7 @@ export default function Material({serviceType, handleChange, materialValues}) {
                     )}
                 </Field>            
             </label>
-            {(materialValues.materialType === 'other'/* && serviceType === 'optical'*/) && (
+            {(materialValues.materialType === 'other' && serviceType === 'optical') && (
                 <div>
                     <label>
                         Reactivity: 

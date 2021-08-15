@@ -10,16 +10,15 @@ export const coatingInitialValues = {
     specs: [{ ...specInitialValues}]
 }
 
-export default function Coating({coatingValues, handleChange, index}) {
+export default function Coating({coatingValues, handleChange, index, serviceType}) {
     
     // method1: index/thickness method2: transmission/reflection
-    const [specMethod1, setSpecMethod1] = useState(false)
+    const [specMethod1, setSpecMethod1] = useState(serviceType==='Photonic Coating'?true:false)
 
     const switchSpecMethod = (e) => {
         e.preventDefault()
         setSpecMethod1(!specMethod1)
     }
-
     const handleAddLayerOrSpec = (e, arrayHelpers) => {
         e.preventDefault()
         specMethod1 ? arrayHelpers.push({ ...layerInitialValues}) : arrayHelpers.push({ ...specInitialValues})
@@ -28,7 +27,7 @@ export default function Coating({coatingValues, handleChange, index}) {
         <div>
             <label>
                 Coating specification method: {specMethod1 ? 'Index/thickness' : 'Tranmission/reflection'}
-                <button onClick={e => switchSpecMethod(e)}>switch</button>
+                <button onClick={e => switchSpecMethod(e)}>Switch</button>
             </label>
             {specMethod1 ? (
                 <FieldArray
@@ -65,6 +64,7 @@ export default function Coating({coatingValues, handleChange, index}) {
             <label>
                 Deposition Process:
                 <Field as='select' name={`surface[${index}].coating.depositionProcess`} onChange={handleChange}>
+                    <option value="N/A">Please select</option>
                     <option value="lowTempLowStress">Low Temperature + Low Stress</option>
                     <option value="highTempHighStress">High Temperature + High Stress</option>
                 </Field>

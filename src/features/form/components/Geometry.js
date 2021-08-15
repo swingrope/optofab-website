@@ -67,7 +67,7 @@ export default function Geometry({geometryValues, handleChange, blankSource, sub
                     </label>
                 </Fragment>
             )}
-            {(geometryValues.geometryType !== geometryInitialValues.geometryType && (blankSource === 'Customer supplied'||substrateSource=== 'Customer supplied')) && (
+            {(geometryValues.geometryType !== geometryInitialValues.geometryType && (blankSource === 'Customer supplied' && substrateSource=== 'ANFF supplied – full custom')) && (
                 <Fragment>
                     <MyTextInput label='Dimensional Accuracy (mm): ±' name='geometry.dimensionalAccuracy' onChange={handleChange} />
                 </Fragment>
