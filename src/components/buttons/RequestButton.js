@@ -1,16 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import { Caption2, SmallText } from "../styles/TextStyles";
-import creditIcon from "../../assets/images/smallicons/credit.svg";
-import ringIcon from "../../assets/images/smallicons/icon-ring.svg";
 
 export default function RequestButton(props) {
   const { title, subtitle } = props;
   return (
     <Wrapper>
       <IconWrapper>
-        <Icon src={creditIcon} alt="button icon" />
-        <Ring src={ringIcon} alt="ring icon" />
+        <Icon src="/images/smallicons/credit.svg" alt="button icon" />
+        <Ring src="/images/smallicons/icon-ring.svg" alt="ring icon" />
       </IconWrapper>
       <TextWrapper>
         <Title>{title || "Request an order"}</Title>
