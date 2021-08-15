@@ -1,11 +1,4 @@
 <?php
-require 'phpmailer/PHPMailer.php';
-require 'phpmailer/SMTP.php';
-require 'phpmailer/Exception.php';
-
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception; 
 
 /**
  * @param string $subject: the subject of the email
@@ -53,4 +46,17 @@ function sendEmail($subject, $msg, $attachments=NULL) {
     }
 
     $mail -> smtpClose();
+}
+
+/**
+ * @return the decoded JSON object received via POST method
+ */
+function handlePostJson() {
+    $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
+    if ($contentType === "application/json") {
+    $requestPayload = file_get_contents("php://input");
+    $decodedObject = json_decode($requestPayload, true);
+    $decodedObject = var_dump($decodedObject);
+    return $decodedObject;
+  }
 }
