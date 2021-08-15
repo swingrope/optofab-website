@@ -1,17 +1,18 @@
-import './App.css';
-import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
-import MainForm from './features/form/MainForm';
+import "./App.css";
+// reset css for consistency
+// import "./components/layout/layout.css";
+import Layout from "./components/layout/layout";
+import ButtonComponent from "./components/buttons/ButtonComponent";
+import HeroSection from "./components/sections/HeroSection";
 
 function App() {
-
   return (
-    <Router>
-      <Switch>
-        <Route exact path='/'>
-          <MainForm />
-        </Route>
-      </Switch>
-    </Router>
+    <>
+      <Layout>
+        <HeroSection />
+        <ButtonComponent />
+      </Layout>
+    </>
   );
 }
 
