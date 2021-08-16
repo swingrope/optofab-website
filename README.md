@@ -2,6 +2,12 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+To run the website _locally_, you need to intall [`node.js`](https://nodejs.org/en/download/) manully first (alternatively, to limit the hassels, we recommend using [`Homebrew`](https://brew.sh/) for installation.). Check the version with `node --version`.
+
+Then use `git` to clone the project to your local drive, e.g. `git clone git@github.com:swingrope/optofab-website.git`, and `cd` into the folder `optofab-website`.
+
+Use the command `npm install` to install dependent node modules.
+
 ## Available Scripts
 
 In the project directory, you can run:
