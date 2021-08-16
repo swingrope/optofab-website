@@ -143,7 +143,6 @@ export default function MainForm() {
                                                                 <option value='25.4mm'>25.4mm</option>
                                                                 <option value='50.8mm'>50.8mm</option>
                                                             </Field>
-
                                                         </label>
                                                     </Fragment>
                                                 )
@@ -162,28 +161,29 @@ export default function MainForm() {
                                                             blankSource={'N/A'}
                                                             substrateSource={values.substrateSource}
                                                         />
-                                                        <FieldArray
-                                                            name='surface'
-                                                        >
-                                                            {({push}) => (
-                                                                <div>
-                                                                    {values.surface.map((side, index) => (
-                                                                        <Surface
-                                                                            key={index}
-                                                                            index={index}
-                                                                            handleChange={handleChange}
-                                                                            surfaceValues={values.surface[index]}
-                                                                            blankSource={'N/A'}
-                                                                            serviceType={values.serviceType}
-                                                                        />
-                                                                    ))}
-                                                                    <button type='button' onClick={() => push(surfaceInitialValues)}>Add a side</button>
-                                                                </div>
-                                                            )}
-                                                        </FieldArray>
                                                     </Fragment>
                                                 )
                                             }
+                                            <FieldArray
+                                                name='surface'
+                                            >
+                                                {({push}) => (
+                                                    <div>
+                                                        {values.surface.map((side, index) => (
+                                                            <Surface
+                                                                key={index}
+                                                                index={index}
+                                                                handleChange={handleChange}
+                                                                surfaceValues={values.surface[index]}
+                                                                blankSource={'N/A'}
+                                                                serviceType={values.serviceType}
+                                                            />
+                                                        ))}
+                                                        <button type='button' onClick={() => push(surfaceInitialValues)}>Add a side</button>
+                                                    </div>
+                                                )}
+                                            </FieldArray>
+
                                             {
                                                 (values.substrateSource === "ANFF supplied-stock"||values.substrateSource === "Customer supplied"||values.substrateSource === "ANFF supplied – full custom") &&(
                                                     <Fragment>
@@ -295,7 +295,24 @@ export default function MainForm() {
                                 </Fragment>
                             )
                         }
-                            <button type="submit">Submit</button>
+                        {
+                            values.serviceType === "Integrated Optic Chip, Assembly and Others" && (
+                                <Fragment>
+                                    <label>
+                                        For any requests or info about integrated optics and chip assembly please feel free to contact the following:<br />
+                                        Node Director: A/Prof. Steve Madden<br />
+                                        Email: stephen.madden@anu.edu.au<br />
+                                        Phone: (02) 612 58574 or 0404 932 099<br />
+                                    </label>
+                                    <br />
+                                </Fragment>
+                            )
+                        }
+                        {
+                            (values.serviceType === "Integrated Optic Chip, Assembly and Others"||values.serviceType === "Optical Coating"||values.serviceType === "Photonic Coating") && (
+                                <button type="submit">Submit</button>
+                            )
+                        }
                     </Form>
                 )}
             </Formik>
