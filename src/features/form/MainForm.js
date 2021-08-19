@@ -219,7 +219,6 @@ export default function MainForm() {
                                                 )
                                             }
                                         </label>
-                                        <br />
                                     </Fragment>
                                 )
                             }
@@ -306,7 +305,6 @@ export default function MainForm() {
                                             )
                                         }
                                     </label>
-                                    <br />
                                 </Fragment>
                             )
                         }
@@ -324,8 +322,12 @@ export default function MainForm() {
                             )
                         }
                         {
-                            (values.serviceType === "Integrated Optic Chip, Assembly and Others"||values.serviceType === "Optical Coating"||values.serviceType === "Photonic Coating") && (
-                                <button type="submit">Submit</button>
+                            (values.serviceType === "SPDT Optic"||values.serviceType === "Optical Coating"||values.serviceType === "Photonic Coating") && (
+                                <Fragment>
+                                    <div>
+                                    <button type="submit">Submit</button>
+                                    </div>
+                                </Fragment>
                             )
                         }
                     </Form>
