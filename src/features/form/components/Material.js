@@ -24,6 +24,22 @@ export default function Material({serviceType, handleChange, materialValues}) {
                     {serviceType === 'spdt' && (
                         <Fragment>
                             <option value='N/A'>Please select</option>
+                            <option value='Aluminium'>Aluminium</option>
+                            <option value='Nickel'>Nickel</option>
+                            <option value='Titanium'>Titanium</option>
+                            <option value='Copper'>Copper</option>
+                            <option value='ZnSe'>ZnSe</option>
+                            <option value='CaF2'>CaF2</option>
+                            <option value='BaF2'>BaF2</option>
+                            <option value='MgF2'>MgF2</option>
+                            <option value='Silicon'>Silicon</option>
+                            <option value='Germanium'>Germanium</option>
+                            <option value='PMMA'>PMMA</option>
+                            <option value='Polycarbonate'>Polycarbonate</option>
+                            <option value='Vespel'>Vespel</option>
+                            <option value='Nylon'>Nylon</option>
+                            <option value='Delrin'>Delrin </option>
+                            <option value='PTFE'>PTFE </option>
                         </Fragment>
                     )}
                     {(serviceType === 'optical'||serviceType === 'photonic') && (

@@ -35,6 +35,8 @@ export default function Layer({sideIndex, index, handleChange}) {
                 onChange={handleChange}
                 >
                     <option value='N/A'>Please select</option>
+                    <option value='Silica'>Silica</option>
+                    <option value='Tantala'>Tantala</option>
                 </Field>
             </label>
             <MyTextInput 

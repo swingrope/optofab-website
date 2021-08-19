@@ -84,6 +84,7 @@ export default function MainForm() {
                                         <label>
                                             Blank source:
                                             <Field name='blankSource' as='select'>
+                                                <option value='N/A'>Please Select</option>
                                                 <option value='ANFF supplied'>ANFF supplied – full custom</option>
                                                 <option value='Customer supplied'>Customer supplied</option>
                                             </Field>
@@ -240,9 +241,9 @@ export default function MainForm() {
                                                         In stock:
                                                         <Field name='stockSize' as='select' onChange={handleChange}>
                                                             <option value='N/A'>Please Select</option>
-                                                            <option value='12.7mm'>12.7mm</option>
-                                                            <option value='25.4mm'>25.4mm</option>
-                                                            <option value='50.8mm'>50.8mm</option>
+                                                            <option value='100mm Silicon'>100mm Silicon</option>
+                                                            <option value='150mm Silicon'>150mm Silicon</option>
+                                                            <option value='100mm Thermal Oxide'>100mm Thermal Oxide</option>
                                                         </Field>
                                                     </label>
                                                 </Fragment>

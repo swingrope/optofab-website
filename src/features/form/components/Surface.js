@@ -108,7 +108,7 @@ export default function Surface({handleChange, index, surfaceValues, blankSource
                     </label>
                 </Fragment>
             )}
-            {(surfaceValues.curvature !== surfaceInitialValues.curvature && (blankSource === 'Customer supplied'|| substrateSource==='ANFF supplied – full custom')) && (
+            {(surfaceValues.curvature !== surfaceInitialValues.curvature && (blankSource === 'ANFF supplied'|| substrateSource==='ANFF supplied – full custom')) && (
                 <Fragment>
                     <MyTextInput label='Form Accuracy (nm): ±' name={`surface.${index}.formAccuracy`} onChange={handleChange} />
                 </Fragment>
