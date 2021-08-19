@@ -84,7 +84,7 @@ export default function MainForm() {
                                         <label>
                                             Blank source:
                                             <Field name='blankSource' as='select'>
-                                                <option value='ANFF supplied'>ANFF supplied</option>
+                                                <option value='ANFF supplied'>ANFF supplied – full custom</option>
                                                 <option value='Customer supplied'>Customer supplied</option>
                                             </Field>
                                             <Material 
@@ -117,6 +117,19 @@ export default function MainForm() {
                                                     </div>
                                                 )}
                                             </FieldArray>
+                                            <br />
+                                            <MyTextInput label='Quantity:' name='quantity' onChange={handleChange} />
+                                            <MyTextArea
+                                                label='Special instructions:'
+                                                name='specialInstructions'
+                                                placeholder='Leave the description here'
+                                                rows={3}
+                                                onChange={handleChange}
+                                            />
+                                            <label>
+                                                <button>Upload file</button>
+                                                Max 5M PDF / PNG only
+                                            </label>
                                         </label>
                                     </Fragment>
                                 )
@@ -128,12 +141,12 @@ export default function MainForm() {
                                             Substrate source:
                                             <Field name='substrateSource' as='select'>
                                                 <option value='N/A'>Please select</option>
-                                                <option value='ANFF supplied-stock'>ANFF supplied-stock</option>
+                                                <option value='ANFF supplied – stock'>ANFF supplied – stock</option>
                                                 <option value='Customer supplied'>Customer supplied</option>
                                                 <option value='ANFF supplied – full custom'>ANFF supplied – full custom</option>
                                             </Field>
                                             {
-                                                values.substrateSource === "ANFF supplied-stock" &&(
+                                                values.substrateSource === "ANFF supplied – stock" &&(
                                                     <Fragment>
                                                         <label><br />
                                                             In stock:
@@ -177,6 +190,7 @@ export default function MainForm() {
                                                                 surfaceValues={values.surface[index]}
                                                                 blankSource={'N/A'}
                                                                 serviceType={values.serviceType}
+                                                                substrateSource={values.substrateSource}
                                                             />
                                                         ))}
                                                         <button type='button' onClick={() => push(surfaceInitialValues)}>Add a side</button>
@@ -215,12 +229,12 @@ export default function MainForm() {
                                         Substrate source:
                                         <Field name='substrateSource' as='select'>
                                             <option value='N/A'>Please select</option>
-                                            <option value='ANFF supplied-stock'>ANFF supplied-stock</option>
+                                            <option value='ANFF supplied – stock'>ANFF supplied – stock</option>
                                             <option value='Customer supplied'>Customer supplied</option>
                                             <option value='ANFF supplied – full custom'>ANFF supplied – full custom</option>
                                         </Field>
                                         {
-                                            values.substrateSource === "ANFF supplied-stock" &&(
+                                            values.substrateSource === "ANFF supplied – stock" &&(
                                                 <Fragment>
                                                     <label><br />
                                                         In stock:
@@ -230,7 +244,6 @@ export default function MainForm() {
                                                             <option value='25.4mm'>25.4mm</option>
                                                             <option value='50.8mm'>50.8mm</option>
                                                         </Field>
-
                                                     </label>
                                                 </Fragment>
                                             )
@@ -239,7 +252,7 @@ export default function MainForm() {
                                             (values.substrateSource === "Customer supplied"||values.substrateSource === "ANFF supplied – full custom") &&(
                                                 <Fragment>
                                                     <Material
-                                                        serviceType='optical'
+                                                        serviceType='photonic'
                                                         handleChange={handleChange}
                                                         materialValues={values.material}
                                                     />
@@ -249,28 +262,29 @@ export default function MainForm() {
                                                         blankSource={'N/A'}
                                                         substrateSource={values.substrateSource}
                                                     />
-                                                    <FieldArray
-                                                        name='surface'
-                                                    >
-                                                        {({push}) => (
-                                                            <div>
-                                                                {values.surface.map((side, index) => (
-                                                                    <Surface
-                                                                        key={index}
-                                                                        index={index}
-                                                                        handleChange={handleChange}
-                                                                        surfaceValues={values.surface[index]}
-                                                                        blankSource={'N/A'}
-                                                                        serviceType={values.serviceType}
-                                                                    />
-                                                                ))}
-                                                                <button type='button' onClick={() => push(surfaceInitialValues)}>Add a side</button>
-                                                            </div>
-                                                        )}
-                                                    </FieldArray>
                                                 </Fragment>
                                             )
                                         }
+                                        <FieldArray
+                                            name='surface'
+                                        >
+                                            {({push}) => (
+                                                <div>
+                                                    {values.surface.map((side, index) => (
+                                                        <Surface
+                                                            key={index}
+                                                            index={index}
+                                                            handleChange={handleChange}
+                                                            surfaceValues={values.surface[index]}
+                                                            blankSource={'N/A'}
+                                                            serviceType={values.serviceType}
+                                                            substrateSource={values.substrateSource}
+                                                        />
+                                                    ))}
+                                                    <button type='button' onClick={() => push(surfaceInitialValues)}>Add a side</button>
+                                                </div>
+                                            )}
+                                        </FieldArray>
                                         {
                                             (values.substrateSource === "ANFF supplied-stock"||values.substrateSource === "Customer supplied"||values.substrateSource === "ANFF supplied – full custom") &&(
                                                 <Fragment>

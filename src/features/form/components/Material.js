@@ -26,7 +26,7 @@ export default function Material({serviceType, handleChange, materialValues}) {
                             <option value='N/A'>Please select</option>
                         </Fragment>
                     )}
-                    {serviceType === 'optical' && (
+                    {(serviceType === 'optical'||serviceType === 'photonic') && (
                         <Fragment>
                             <option value='N/A'>Please select</option>
                             <option value='other'>Other</option>
@@ -34,13 +34,15 @@ export default function Material({serviceType, handleChange, materialValues}) {
                     )}
                 </Field>            
             </label>
-            {(materialValues.materialType === 'other' && serviceType === 'optical') && (
+            {(materialValues.materialType === 'other' && (serviceType === 'optical'||serviceType === 'photonic')) && (
                 <div>
                     <label>
                         Reactivity: 
                         <Field as='select' name='material.reactivity' onChange={handleChange}>
                             <Fragment>
                                 <option value='N/A'>Please select</option>
+                                <option value='reactive'>Reactive</option>
+                                <option value='inert'>Inert</option>
                             </Fragment>
                         </Field>     
                     </label>
@@ -50,6 +52,9 @@ export default function Material({serviceType, handleChange, materialValues}) {
                         <Field as='select' name='material.toxicity' onChange={handleChange}>
                             <Fragment>
                                 <option value='N/A'>Please select</option>
+                                <option value='toxic'>Toxic</option>
+                                <option value='radioactive'>Radioactive</option>
+                                <option value='toxic and radioactive'>Toxic and Radioactive</option>
                             </Fragment>
                         </Field>     
                     </label>
@@ -70,6 +75,8 @@ export default function Material({serviceType, handleChange, materialValues}) {
                             No
                             </label>
                         </span>
+                        <br />
+                        * Please tell us if any of the parts react with liquinox brand detergent, di water, acetone, isopropanol alcohol, ethanol, methanol, citranox, ultrasonic agitation. If you wish to have the substrate cleaned with a special regimen, please add full details to special requirements.
                     </label>
                     <br />
                     <label id="MTA">
@@ -77,17 +84,33 @@ export default function Material({serviceType, handleChange, materialValues}) {
                         <span role="group" aria-labelledby="MTA">
                             <label>
                             <Field type="radio" name="material.materialTransferAgreement" value="standard" />
-                            Standard
+                            Download Standard MTA
                             </label>
                             <label>
-                            <Field type="radio" name="material.materialTransferAgreement" value="by agreement" />
-                            By Agreement (via email1234567@anu.edu.au)
+                            <Field type="radio" name="material.materialTransferAgreement" value="custom" />
+                            Upload Custom MTA
+                            </label>
+                            <label>
+                            <Field type="radio" name="material.materialTransferAgreement" value="to be agreed" />
+                            To Be Agreed
                             </label>
                         </span>
                     </label>
-
                 </div>
             )}
+            {(materialValues.materialType === 'other' && (serviceType === 'optical'||serviceType === 'photonic') && materialValues.materialTransferAgreement==='standard') && (
+                <label>
+                    <button>Download</button>
+                    Download Standard MTA
+                </label>
+            )}
+            {(materialValues.materialType === 'other' && (serviceType === 'optical'||serviceType === 'photonic') && materialValues.materialTransferAgreement==='custom') && (
+                <label>
+                    <button>Upload</button>
+                    Upload Custom MTA
+                </label>
+            )}
+
         </div>
     )
 }

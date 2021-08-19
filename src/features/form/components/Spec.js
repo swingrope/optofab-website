@@ -8,6 +8,7 @@ export const specInitialValues = {
     RTSelect:'',
     min: '',
     max: '',
+    unit: '',
     AOItheta1: '',
     AOItheta2: ''
 }
@@ -33,6 +34,14 @@ export default function Spec({sideIndex, index, handleChange}) {
                 </label>
                 <label>min: <Field name={`surface[${sideIndex}].coating.specs[${index}].min`} onChange={handleChange} /></label>
                 <label>max: <Field name={`surface[${sideIndex}].coating.specs[${index}].max`} onChange={handleChange} /></label>
+                <label>
+                    <Field name={`surface[${sideIndex}].coating.specs[${index}].unit`} as='select' onChange={handleChange}>
+                        <option value='N/A'>Please Select</option>
+                        <option value='ppm'>ppm</option>
+                        <option value='%'>%</option>
+                        <option value='dB'>dB</option>
+                    </Field>
+                </label>
             </div>
             <label>
                 Polarisation:

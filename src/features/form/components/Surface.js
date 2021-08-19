@@ -24,7 +24,7 @@ export const surfaceInitialValues = {
     coating: coatingInitialValues
 }
 
-export default function Surface({handleChange, index, surfaceValues, blankSource, serviceType}) {
+export default function Surface({handleChange, index, surfaceValues, blankSource, serviceType, substrateSource}) {
 
     const [expand, setExpand] = useState(false)
     const [buttonText, setButtonText] = useState('show more')
@@ -108,7 +108,7 @@ export default function Surface({handleChange, index, surfaceValues, blankSource
                     </label>
                 </Fragment>
             )}
-            {(surfaceValues.curvature !== surfaceInitialValues.curvature && blankSource === 'Customer supplied') && (
+            {(surfaceValues.curvature !== surfaceInitialValues.curvature && (blankSource === 'Customer supplied'|| substrateSource==='ANFF supplied – full custom')) && (
                 <Fragment>
                     <MyTextInput label='Form Accuracy (nm): ±' name={`surface.${index}.formAccuracy`} onChange={handleChange} />
                 </Fragment>
