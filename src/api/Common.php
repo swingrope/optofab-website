@@ -1,4 +1,11 @@
 <?php
+require 'phpmailer/PHPMailer.php';
+require 'phpmailer/SMTP.php';
+require 'phpmailer/Exception.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception; 
 
 /**
  * @param string $subject: the subject of the email
@@ -27,7 +34,7 @@ function sendEmail($subject, $msg, $attachments=NULL) {
 
     // delete the temporary attachment folder 
     if ($mail -> Send()){
-        echo "sent";
+        echo json_encode(array('success' => 'The email has been sent.'));
         // delete the temp folder
         if (!$attachments==NULL){
             foreach($attachments as $a){
@@ -37,7 +44,7 @@ function sendEmail($subject, $msg, $attachments=NULL) {
         }
     }
     else{
-        echo "not sent";
+        echo json_encode(array('error' => 'There is a problem sending email.'));
         if (!$attachments==NULL){
             foreach($attachments as $a){
                 unlink($a);
