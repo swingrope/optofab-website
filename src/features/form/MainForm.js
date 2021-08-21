@@ -1,5 +1,5 @@
 import { Formik, Form, Field, FieldArray } from 'formik'
-import React, { Fragment } from 'react'
+import React, { Fragment, useState } from 'react'
 import Geometry, { geometryInitialValues } from './components/Geometry'
 import Material, { materialInitialValues } from './components/Material'
 import Surface, { surfaceInitialValues } from './components/Surface'
@@ -30,9 +30,9 @@ export const flattenObject = (obj) => {
     return flattened
   }
 
-export default function MainForm() {
+export default function MainForm({part, setPart}) {
 
-      const getChangedValues = (values, initialValues) => {
+    const getChangedValues = (values, initialValues) => {
         const flattenedValues = flattenObject(values)
         const flattenInitial = flattenObject(initialValues)
         // has bug
@@ -42,6 +42,14 @@ export default function MainForm() {
                 acc[key] = value
             return acc
         }, {})
+    }
+
+    function handleAddPart(e, values, resetForm) {
+        e.preventDefault()
+        console.log(part)
+        localStorage.setItem(part, values)
+        setPart(part+1)
+        resetForm()
     }
 
     return (
@@ -56,7 +64,7 @@ export default function MainForm() {
                         alert(JSON.stringify(getChangedValues(values, formInitialValues), null, 2));
                     }}
                 >
-                {({values, handleChange, handleSubmit}) => (
+                {({values, handleChange, resetForm}) => (
                     <Form>
                         <h1 id="service-type">Service Type: </h1>
                         <div role="group" aria-labelledby="service-type">
@@ -325,11 +333,12 @@ export default function MainForm() {
                             (values.serviceType === "SPDT Optic"||values.serviceType === "Optical Coating"||values.serviceType === "Photonic Coating") && (
                                 <Fragment>
                                     <div>
-                                    <button type="submit">Submit</button>
+                                    <button onClick={(e) => handleAddPart(e, values, resetForm)} className='add'>Add another part</button>
                                     </div>
                                 </Fragment>
                             )
                         }
+                    
                     </Form>
                 )}
             </Formik>
