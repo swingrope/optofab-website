@@ -3,6 +3,7 @@ import React, { Fragment, useState } from 'react'
 import { MyTextArea } from '../fields/MyTextArea.js'
 import { MyTextInput } from '../fields/MyTextInput.js'
 import Coating, { coatingInitialValues } from './Coating.js'
+import { MathComponent } from 'mathjax-react'
 
 export const surfaceInitialValues = {
     descriptionOfFace: '',
@@ -81,6 +82,8 @@ export default function Surface({handleChange, index, surfaceValues, blankSource
             )}
             {surfaceValues.curvature === 'aspheric' && (
                 <Fragment>
+                    Surface Form:
+                    <MathComponent tex={String.raw`Z=f(x)=\frac{C_{v}x^2}{1+\sqrt{1-(1+k)C_{v}^2x^2}}+A_{01}x+A_{02}x^2+\cdots`} />
                     <MyTextInput label='Cv: ' name={`surface.${index}.cv`} onChange={handleChange} />
                     <MyTextInput label='k: ' name={`surface.${index}.k`} onChange={handleChange} />
                     <MyTextInput label='A1: ' name={`surface.${index}.a1`} onChange={handleChange} />
