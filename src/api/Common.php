@@ -13,7 +13,7 @@ use PHPMailer\PHPMailer\Exception;
  * @param string array or NULL $attachments: the attachments path
  */
 
-function sendEmail($subject, $msg, $attachments=NULL) {
+function sendEmail($subject, $msg, $attachments=NULL, $JsonFile=NULL) {
     $mail = new PHPMailer();
     $mail -> isSMTP();
     $mail -> Host = "smtp.gmail.com"; // maybe anu email server
@@ -23,12 +23,13 @@ function sendEmail($subject, $msg, $attachments=NULL) {
     $mail -> Username = "anffoptofab.autotest@gmail.com"; // put correct email address
     $mail -> Password = "808909anff"; // put correct password
     $mail -> Subject = $subject; 
-    $mail -> Body = $message;
+    $mail -> Body = $msg;
     if (!$attachments==NULL){
         foreach($attachments as $a){
             $mail -> addAttachment($a); 
         }
     }
+    
     $mail -> setFrom("anffoptofab.autotest@gmail.com"); // put correct email address
     $mail -> addAddress("anffoptofab.autotest@gmail.com"); // put correct email address
 
@@ -67,3 +68,9 @@ function handlePostJson() {
     return $decodedObject;
   }
 }
+
+// How to grant file write access on Mac with XAMPP
+// Under General Tab, in XAMPP app, click Open Terminal
+// A terminal will be launched with something like, root@debian:~#, on the terminal shell
+// on that terminal shell, type, chmod -R 0777  /opt/lampp/htdocs/ and enter
+// Exit, the terminal and you be good to go
