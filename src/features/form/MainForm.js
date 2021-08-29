@@ -1,5 +1,5 @@
 import { Formik, Form, Field, FieldArray } from 'formik'
-import React, { Fragment, useState } from 'react'
+import React, { Fragment } from 'react'
 import Geometry, { geometryInitialValues } from './components/Geometry'
 import Material, { materialInitialValues } from './components/Material'
 import Surface, { surfaceInitialValues } from './components/Surface'
@@ -100,7 +100,7 @@ export default function MainForm({part, setPart}) {
                                             <FieldArray
                                                 name='surface'
                                             >
-                                                {({push}) => (
+                                                {({push, pop}) => (
                                                     <div>
                                                         {values.surface.map((side, index) => (
                                                             <Surface 
@@ -113,6 +113,7 @@ export default function MainForm({part, setPart}) {
                                                             />
                                                         ))}
                                                         <button type='button' onClick={() => push(surfaceInitialValues)}>Add a side</button>
+                                                        <button type='button' onClick={() => pop()}>Remove last side</button>
                                                     </div>
                                                 )}
                                             </FieldArray>
@@ -179,7 +180,7 @@ export default function MainForm({part, setPart}) {
                                             <FieldArray
                                                 name='surface'
                                             >
-                                                {({push}) => (
+                                                {({push, pop}) => (
                                                     <div>
                                                         {values.surface.map((side, index) => (
                                                             <Surface
@@ -193,6 +194,7 @@ export default function MainForm({part, setPart}) {
                                                             />
                                                         ))}
                                                         <button type='button' onClick={() => push(surfaceInitialValues)}>Add a side</button>
+                                                        <button type='button' onClick={() => pop()}>Remove last side</button>
                                                     </div>
                                                 )}
                                             </FieldArray>
@@ -266,7 +268,7 @@ export default function MainForm({part, setPart}) {
                                         <FieldArray
                                             name='surface'
                                         >
-                                            {({push}) => (
+                                            {({push, pop}) => (
                                                 <div>
                                                     {values.surface.map((side, index) => (
                                                         <Surface
@@ -280,6 +282,7 @@ export default function MainForm({part, setPart}) {
                                                         />
                                                     ))}
                                                     <button type='button' onClick={() => push(surfaceInitialValues)}>Add a side</button>
+                                                    <button type='button' onClick={() => pop()}>Remove last side</button>
                                                 </div>
                                             )}
                                         </FieldArray>

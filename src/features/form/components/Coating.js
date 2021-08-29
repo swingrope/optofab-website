@@ -23,6 +23,7 @@ export default function Coating({coatingValues, handleChange, index, serviceType
         e.preventDefault()
         specMethod1 ? arrayHelpers.push({ ...layerInitialValues}) : arrayHelpers.push({ ...specInitialValues})
     }
+
     return (
         <div>
             <label>
@@ -39,6 +40,7 @@ export default function Coating({coatingValues, handleChange, index, serviceType
                                 <Layer key={idx} sideIndex={index} index={idx} handleChange={handleChange} />
                             ))}
                             <button type='button' onClick={(e) => handleAddLayerOrSpec(e, arrayHelpers)}>Add a layer</button>
+                            <button type='button' onClick={arrayHelpers.pop}>Remove last layer</button>
                         </div>
                     )}
                 </FieldArray>
@@ -52,6 +54,7 @@ export default function Coating({coatingValues, handleChange, index, serviceType
                                 <Spec key={idx} sideIndex={index} index={idx} handleChange={handleChange} />
                             ))}
                             <button type='button' onClick={(e) => handleAddLayerOrSpec(e, arrayHelpers)}>Add a spec</button>
+                            <button type='button' onClick={arrayHelpers.pop}>Remove last spec</button>
                         </div>
                     )}
                 </FieldArray>
