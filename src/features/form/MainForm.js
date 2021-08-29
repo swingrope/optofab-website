@@ -1,10 +1,11 @@
 import { Formik, Form, Field, FieldArray } from 'formik'
-import React, { Fragment, useState } from 'react'
+import React, { Fragment } from 'react'
 import Geometry, { geometryInitialValues } from './components/Geometry'
 import Material, { materialInitialValues } from './components/Material'
 import Surface, { surfaceInitialValues } from './components/Surface'
 import {MyTextInput} from "./fields/MyTextInput";
 import {MyTextArea} from "./fields/MyTextArea";
+import { Link } from 'react-router-dom'
 
 export const formInitialValues = {
     blankSource: '',
@@ -32,22 +33,11 @@ export const flattenObject = (obj) => {
 
 export default function MainForm({part, setPart}) {
 
-    const getChangedValues = (values, initialValues) => {
-        const flattenedValues = flattenObject(values)
-        const flattenInitial = flattenObject(initialValues)
-        // has bug
-        return Object.entries(flattenedValues).reduce((acc, [key, value]) => {
-            const hasChanged = flattenInitial[key] !== value
-            if (hasChanged)
-                acc[key] = value
-            return acc
-        }, {})
-    }
 
     function handleAddPart(e, values, resetForm) {
         e.preventDefault()
         console.log(part)
-        localStorage.setItem(part, values)
+        localStorage.setItem(`part${part}`, JSON.stringify(values))
         setPart(part+1)
         resetForm()
     }
@@ -61,7 +51,7 @@ export default function MainForm({part, setPart}) {
                     async (values) => {
                         console.log(values)
                         await new Promise((r) => setTimeout(r, 500));
-                        alert(JSON.stringify(getChangedValues(values, formInitialValues), null, 2));
+                        alert(JSON.stringify(values, null, 2));
                     }}
                 >
                 {({values, handleChange, resetForm}) => (
@@ -110,7 +100,7 @@ export default function MainForm({part, setPart}) {
                                             <FieldArray
                                                 name='surface'
                                             >
-                                                {({push}) => (
+                                                {({push, pop}) => (
                                                     <div>
                                                         {values.surface.map((side, index) => (
                                                             <Surface 
@@ -123,6 +113,7 @@ export default function MainForm({part, setPart}) {
                                                             />
                                                         ))}
                                                         <button type='button' onClick={() => push(surfaceInitialValues)}>Add a side</button>
+                                                        <button type='button' onClick={() => pop()}>Remove last side</button>
                                                     </div>
                                                 )}
                                             </FieldArray>
@@ -189,7 +180,7 @@ export default function MainForm({part, setPart}) {
                                             <FieldArray
                                                 name='surface'
                                             >
-                                                {({push}) => (
+                                                {({push, pop}) => (
                                                     <div>
                                                         {values.surface.map((side, index) => (
                                                             <Surface
@@ -203,6 +194,7 @@ export default function MainForm({part, setPart}) {
                                                             />
                                                         ))}
                                                         <button type='button' onClick={() => push(surfaceInitialValues)}>Add a side</button>
+                                                        <button type='button' onClick={() => pop()}>Remove last side</button>
                                                     </div>
                                                 )}
                                             </FieldArray>
@@ -276,7 +268,7 @@ export default function MainForm({part, setPart}) {
                                         <FieldArray
                                             name='surface'
                                         >
-                                            {({push}) => (
+                                            {({push, pop}) => (
                                                 <div>
                                                     {values.surface.map((side, index) => (
                                                         <Surface
@@ -290,6 +282,7 @@ export default function MainForm({part, setPart}) {
                                                         />
                                                     ))}
                                                     <button type='button' onClick={() => push(surfaceInitialValues)}>Add a side</button>
+                                                    <button type='button' onClick={() => pop()}>Remove last side</button>
                                                 </div>
                                             )}
                                         </FieldArray>
@@ -334,6 +327,9 @@ export default function MainForm({part, setPart}) {
                                 <Fragment>
                                     <div>
                                     <button onClick={(e) => handleAddPart(e, values, resetForm)} className='add'>Add another part</button>
+                                    <button onClick = {(e) => handleAddPart(e, values, resetForm)}>
+                                        <Link style={{color: 'black', textDecoration: 'none'}} to='/customer'>Enter customer information (please ensure all information are entered)</Link>
+                                    </button>
                                     </div>
                                 </Fragment>
                             )

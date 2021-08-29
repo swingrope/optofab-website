@@ -6,11 +6,12 @@ export const customerInfoInitialValues = {
     sameAsAbove: false
 }
 
-export default function CustomerInfo() {
+export default function CustomerInfo({part}) {
 
-    const {values, setFieldValue} = useFormikContext()
+    function fillBilling(values, setFieldValue) {
+        
+        values.sameAsAbove = !values.sameAsAbove
 
-    useEffect(() => {
         if(values.sameAsAbove) {
             for (const [key, value] of Object.entries(values)) {
                 if(key.endsWith('Shipping')) {
@@ -19,52 +20,72 @@ export default function CustomerInfo() {
                 }
             }
         }
-    }, [setFieldValue, values])
+        else {
+            for (const [key] of Object.entries(values)) {
+                if(key.endsWith('Billing')) {
+                    setFieldValue(key, '')
+                }
+            }
+        }
+    }
+
+    function handleSubmitForm(values) {
+        let data = { customerInfo: values }
+    
+        for (let i=1; i<part; i++) {
+            let itemName = `part${i}`
+            let item = window.localStorage.getItem(itemName)
+            data[itemName] = JSON.parse(item)
+        }
+
+        console.log(data)
+        // next is ajax request
+    }
     
     return (
         <Formik
             initialValues={customerInfoInitialValues}
             onSubmit={(values, actions) => {
                 setTimeout(() => {
-                alert(JSON.stringify(values, null, 2));
+                handleSubmitForm(values)
                 actions.setSubmitting(false);
                 }, 1000);
             }}>
-            {({handleSubmit, handleChange, values}) => (
+            {({handleChange, values, setFieldValue, isSubmitting}) => (
                 <Form>
                     <h1>Customer Information</h1>
-                    <MyTextInput name='firstName' label='First Name' handleChange={handleChange} />
-                    <MyTextInput name='lastName' label='Last Name' handleChange={handleChange} />
-                    <MyTextInput name='companyName' label='Company Name' handleChange={handleChange} />
-                    <MyTextInput name='email' label='Email' handleChange={handleChange} />
-                    <MyTextInput name='phoneNumber' label='Company Name' handleChange={handleChange} />
+                    <MyTextInput name='firstName' label='First Name' onChange={handleChange} />
+                    <MyTextInput name='lastName' label='Last Name' onChange={handleChange} />
+                    <MyTextInput name='companyName' label='Company Name' onChange={handleChange} />
+                    <MyTextInput name='email' label='Email' onChange={handleChange} />
+                    <MyTextInput name='phoneNumber' label='Company Name' onChange={handleChange} />
                     
                     <h2>Shipping Address</h2>
-                    <MyTextInput name='firstNameShipping' label='First Name' handleChange={handleChange} />
-                    <MyTextInput name='lastNameShipping' label='Last Name' handleChange={handleChange} />
-                    <MyTextInput name='companyNameShipping' label='Company Name' handleChange={handleChange} />
-                    <MyTextInput name='address1Shipping' label='Address' handleChange={handleChange} />
-                    <MyTextInput name='address2Shipping' label='Address2' handleChange={handleChange} />
-                    <MyTextInput name='countryShipping' label='Country' handleChange={handleChange} />
-                    <MyTextInput name='stateShipping' label='State' handleChange={handleChange} />
-                    <MyTextInput name='cityShipping' label='City' handleChange={handleChange} />
-                    <MyTextInput name='postcodeShipping' label='PostCode' handleChange={handleChange} />
+                    <MyTextInput name='firstNameShipping' label='First Name' onChange={handleChange} />
+                    <MyTextInput name='lastNameShipping' label='Last Name' onChange={handleChange} />
+                    <MyTextInput name='companyNameShipping' label='Company Name' onChange={handleChange} />
+                    <MyTextInput name='address1Shipping' label='Address' onChange={handleChange} />
+                    <MyTextInput name='address2Shipping' label='Address2' onChange={handleChange} />
+                    <MyTextInput name='countryShipping' label='Country' onChange={handleChange} />
+                    <MyTextInput name='stateShipping' label='State' onChange={handleChange} />
+                    <MyTextInput name='cityShipping' label='City' onChange={handleChange} />
+                    <MyTextInput name='postcodeShipping' label='PostCode' onChange={handleChange} />
                     
                     <label>
                         same as above?
-                        <Field name='sameAsAbove' type='checkbox' />
+                        <Field name='sameAsAbove' type='checkbox' onClick={() => fillBilling(values, setFieldValue)}/>
                     </label>
                     <h2>Billing Address</h2>
-                    <MyTextInput name='firstNameBilling' label='First Name' handleChange={handleChange} />
-                    <MyTextInput name='lastNameBilling' label='Last Name' handleChange={handleChange} />
-                    <MyTextInput name='companyNameBilling' label='Company Name' handleChange={handleChange} />
-                    <MyTextInput name='address1Billing' label='Address' handleChange={handleChange} />
-                    <MyTextInput name='address2Billing' label='Address2' handleChange={handleChange} />
-                    <MyTextInput name='countryBilling' label='Country' handleChange={handleChange} />
-                    <MyTextInput name='stateBilling' label='State' handleChange={handleChange} />
-                    <MyTextInput name='cityBilling' label='City' handleChange={handleChange} />
-                    <MyTextInput name='postcodeBilling' label='PostCode' handleChange={handleChange} />
-                    
+                    <MyTextInput name='firstNameBilling' label='First Name' onChange={handleChange} />
+                    <MyTextInput name='lastNameBilling' label='Last Name' onChange={handleChange} />
+                    <MyTextInput name='companyNameBilling' label='Company Name' onChange={handleChange} />
+                    <MyTextInput name='address1Billing' label='Address' onChange={handleChange} />
+                    <MyTextInput name='address2Billing' label='Address2' onChange={handleChange} />
+                    <MyTextInput name='countryBilling' label='Country' onChange={handleChange} />
+                    <MyTextInput name='stateBilling' label='State' onChange={handleChange} />
+                    <MyTextInput name='cityBilling' label='City' onChange={handleChange} />
+                    <MyTextInput name='postcodeBilling' label='PostCode' onChange={handleChange} />
+                    <button type='submit' disabled={isSubmitting}>Submit</button>
                 </Form>
             )}
         </Formik>
