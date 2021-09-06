@@ -3,14 +3,14 @@ import styled from "styled-components";
 import ButtonComponent from "../buttons/ButtonComponent";
 
 const SearchForm = (props) => {
-  const { icon, placeholder } = props;
+  const { icon, placeholder, buttonTitle } = props;
   return (
     <InputForms>
       <SearchInput>
         <Icon src={icon} />
         <OrderForm type="text" placeholder={placeholder}></OrderForm>
       </SearchInput>
-      <ButtonComponent title="Search" />
+      <ButtonComponent title={buttonTitle || "Search"} />
     </InputForms>
   );
 };
