@@ -22,10 +22,11 @@ export const surfaceInitialValues = {
     a10: '',
     a12: '',
     formAccuracy: '',
-    coating: coatingInitialValues
+    coating: coatingInitialValues,
+    faceType:''
 }
 
-export default function Surface({handleChange, index, surfaceValues, blankSource, serviceType, substrateSource}) {
+export default function Surface({handleChange, index, surfaceValues, blankSource, serviceType, substrateSource, geometry}) {
 
     const [expand, setExpand] = useState(false)
     const [buttonText, setButtonText] = useState('show more')
@@ -52,6 +53,17 @@ export default function Surface({handleChange, index, surfaceValues, blankSource
                 rows={3}
                 onChange={handleChange}
             />
+            {(serviceType === 'Optical Coating'&&geometry==='regular polygon') && (
+                <label>
+                    <Field as='select' name={`surface.${index}.descriptionOfFace`} >
+                        <option value='N/A'>Please select</option>
+                        <option value='Polygonal face'>Polygonal face</option>
+                        <option value='Extruded face'>Extruded face</option>
+                    </Field>
+                    <br />
+                </label>
+            )}
+
             <label>
                 Curvature:
                 <Field as='select' name={`surface.${index}.curvature`} onChange={handleChange} >
@@ -106,9 +118,9 @@ export default function Surface({handleChange, index, surfaceValues, blankSource
                 <Fragment>
                     <label>
                         Upload Zemax/Winlens File:
-                        <button onClick={e => handleUpload(e)}>Choose file</button>
-                        No file chosen
                     </label>
+                    <input type="file" name='curvatureFile' accept=".zmx" />
+
                 </Fragment>
             )}
             {(surfaceValues.curvature !== surfaceInitialValues.curvature && (blankSource === 'ANFF supplied'|| substrateSource==='ANFF supplied – full custom')) && (

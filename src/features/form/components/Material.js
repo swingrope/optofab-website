@@ -42,15 +42,92 @@ export default function Material({serviceType, handleChange, materialValues}) {
                             <option value='PTFE'>PTFE </option>
                         </Fragment>
                     )}
-                    {(serviceType === 'optical'||serviceType === 'photonic') && (
+                    {(serviceType === 'optical') && (
                         <Fragment>
                             <option value='N/A'>Please select</option>
                             <option value='other'>Other</option>
                         </Fragment>
                     )}
+                    {(serviceType === 'photonic') && (
+                        <Fragment>
+                            <option value='other'>Other</option><br />
+                            <label>Please describe substrate and all existing layers in special instructions</label>
+                        </Fragment>
+                    )}
+
                 </Field>            
             </label>
-            {(materialValues.materialType === 'other' && (serviceType === 'optical'||serviceType === 'photonic')) && (
+            {(serviceType === 'photonic') && (
+                <Fragment>
+                    <br />
+                    <label>Please describe substrate and all existing layers in special instructions</label>
+                    <div>
+                        <label>
+                            Reactivity:
+                            <Field as='select' name='material.reactivity' onChange={handleChange}>
+                                <Fragment>
+                                    <option value='N/A'>Please select</option>
+                                    <option value='reactive'>Reactive</option>
+                                    <option value='inert'>Inert</option>
+                                </Fragment>
+                            </Field>
+                        </label>
+                        <br />
+                        <label>
+                            Toxicity:
+                            <Field as='select' name='material.toxicity' onChange={handleChange}>
+                                <Fragment>
+                                    <option value='N/A'>Please select</option>
+                                    <option value='toxic'>Toxic</option>
+                                    <option value='radioactive'>Radioactive</option>
+                                    <option value='toxic and radioactive'>Toxic and Radioactive</option>
+                                </Fragment>
+                            </Field>
+                        </label>
+                        <br />
+                        <MyTextInput name='material.type' label='Type (e.g.BK7): ' onChange={handleChange} />
+                        <MyTextInput name='material.maxTemperature' label='Max Temperature(°C): ' onChange={handleChange} />
+                        <MyTextArea name='material.hazards' label='Hazards: ' onChange={handleChange} />
+                        <MyTextArea name='material.specialInstructions' label='Special Instructions: ' onChange={handleChange} />
+                        <label id="compatibility">
+                            Chemical compatibility for cleaning:
+                            <span role="group" aria-labelledby="compatibility">
+                            <label>
+                            <Field type="radio" name="material.chemicalCompatibilityForCleaning" value="yes" />
+                            Yes
+                            </label>
+                            <label>
+                            <Field type="radio" name="material.chemicalCompatibilityForCleaning" value="no" />
+                            No
+                            </label>
+                        </span>
+                            <br />
+                            * Please tell us if any of the parts react with liquinox brand detergent, di water, acetone, isopropanol alcohol, ethanol, methanol, citranox, ultrasonic agitation. If you wish to have the substrate cleaned with a special regimen, please add full details to special requirements.
+                        </label>
+                        <br />
+                        <label id="MTA">
+                            <strong>Material Transfer Agreement: </strong>
+                            <span role="group" aria-labelledby="MTA">
+                            <label>
+                            <Field type="radio" name="material.materialTransferAgreement" value="standard" />
+                            Download Standard MTA
+                            </label>
+                            <label>
+                            <Field type="radio" name="material.materialTransferAgreement" value="custom" />
+                            Upload Custom MTA
+                            </label>
+                            <label>
+                            <Field type="radio" name="material.materialTransferAgreement" value="to be agreed" />
+                            To Be Agreed
+                            </label>
+                        </span>
+                        </label>
+                    </div>
+
+                </Fragment>
+            )}
+
+            {(materialValues.materialType === 'other' && serviceType === 'optical') && (
                 <div>
                     <label>
                         Reactivity: 

@@ -26,7 +26,7 @@ export default function Modify() {
                         placeholder='Please type in here'
                         rows={3}
                     />
-                    <input type="file" />
+                    <input type="file" name='modificationFile' accept=".pdf,.png" />
                     <div><button type="submit">Submit</button></div>
                 </Form>
             </Formik>

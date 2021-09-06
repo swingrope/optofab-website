@@ -8,15 +8,15 @@ export const geometryInitialValues = {
     minorDiamter: '',
     thickness: '',
     wedge: '',
-    chamferx: '',
-    chamfery: '',
+    chamferWidth: '',
     width: '',
     height: '',
     sideLength: '',
-    dimensionalAccuracy: ''
+    dimensionalAccuracy: '',
+    numberOfSides:''
 }
 
-export default function Geometry({geometryValues, handleChange, blankSource, substrateSource}) {
+export default function Geometry({geometryValues, handleChange, blankSource, substrateSource, serviceType}) {
     return (
         <div>
             <label>
@@ -36,8 +36,8 @@ export default function Geometry({geometryValues, handleChange, blankSource, sub
                     <MyTextInput label='Minor Diameter (mm):' name='geometry.minorDiameter' onChange={handleChange} />
                     <MyTextInput label='Thickness (mm):' name='geometry.thickness' onChange={handleChange} />
                     <MyTextInput label='Wedge (arcsecond):' name='geometry.wedge' onChange={handleChange} />
-                    <MyTextInput label='Chamfer x:' name='geometry.chamferx' onChange={handleChange} />
-                    <MyTextInput label='Chamfer y:' name='geometry.chamfery' onChange={handleChange} />
+                    <MyTextInput label='Chamfer width (mm):' name='geometry.chamferWidth' onChange={handleChange} />
+                    <label>Chamfers are assumed to be 45 degrees to the coated or turned face. If other chamfer types are required, please stipulate in the 'Additional Specifications' field.</label>
                 </Fragment>
             )}
             {geometryValues.geometryType === 'rectangle' && (
@@ -46,17 +46,20 @@ export default function Geometry({geometryValues, handleChange, blankSource, sub
                     <MyTextInput label='Height (mm):' name='geometry.height' onChange={handleChange} />
                     <MyTextInput label='Thickness (mm):' name='geometry.thickness' onChange={handleChange} />
                     <MyTextInput label='Wedge (arcsecond):' name='geometry.wedge' onChange={handleChange} />
-                    <MyTextInput label='Chamfer x:' name='geometry.chamferx' onChange={handleChange} />
-                    <MyTextInput label='Chamfer y:' name='geometry.chamfery' onChange={handleChange} />
+                    <MyTextInput label='Chamfer width (mm):' name='geometry.chamferWidth' onChange={handleChange} />
+                    <label>Chamfers are assumed to be 45 degrees to the coated or turned face. If other chamfer types are required, please stipulate in the 'Additional Specifications' field.</label>
                 </Fragment>
             )}
             {geometryValues.geometryType === 'regular polygon' && (
                 <Fragment>
+                    {serviceType === 'Optical Coating' && (
+                        <MyTextInput label='Number of Sides:' name='geometry.numberOfSides' onChange={handleChange} />
+                    )}
                     <MyTextInput label='Side Length (mm):' name='geometry.sideLength' onChange={handleChange} />
                     <MyTextInput label='Thickness (mm):' name='geometry.thickness' onChange={handleChange} />
                     <MyTextInput label='Wedge (arcsecond):' name='geometry.wedge' onChange={handleChange} />
-                    <MyTextInput label='Chamfer x:' name='geometry.chamferx' onChange={handleChange} />
-                    <MyTextInput label='Chamfer y:' name='geometry.chamfery' onChange={handleChange} />
+                    <MyTextInput label='Chamfer width (mm):' name='geometry.chamferWidth' onChange={handleChange} />
+                    <label>Chamfers are assumed to be 45 degrees to the coated or turned face. If other chamfer types are required, please stipulate in the 'Additional Specifications' field.</label>
                 </Fragment>
             )}
             {geometryValues.geometryType === 'other' && (

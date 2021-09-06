@@ -127,9 +127,9 @@ export default function MainForm({part, setPart}) {
                                                 onChange={handleChange}
                                             />
                                             <label>
-                                                <button>Upload file</button>
-                                                Max 5M PDF / PNG only
+                                                Upload PDF/PNG File:
                                             </label>
+                                            <input type="file" name='specialInstructionFile' accept=".pdf,.png" />
                                         </label>
                                     </Fragment>
                                 )
@@ -173,6 +173,7 @@ export default function MainForm({part, setPart}) {
                                                             geometryValues={values.geometry}
                                                             blankSource={'N/A'}
                                                             substrateSource={values.substrateSource}
+                                                            serviceType={values.serviceType}
                                                         />
                                                     </Fragment>
                                                 )
@@ -191,6 +192,7 @@ export default function MainForm({part, setPart}) {
                                                                 blankSource={'N/A'}
                                                                 serviceType={values.serviceType}
                                                                 substrateSource={values.substrateSource}
+                                                                geometry={values.geometry.geometryType}
                                                             />
                                                         ))}
                                                         <button type='button' onClick={() => push(surfaceInitialValues)}>Add a side</button>
@@ -212,9 +214,9 @@ export default function MainForm({part, setPart}) {
                                                             onChange={handleChange}
                                                         />
                                                         <label>
-                                                            <button>Upload file</button>
-                                                            Max 5M PDF / PNG only
+                                                            Upload PDF/PNG File:
                                                         </label>
+                                                        <input type="file" name='specialInstructionFile' accept=".pdf,.png" />
                                                     </Fragment>
                                                 )
                                             }
@@ -240,9 +242,9 @@ export default function MainForm({part, setPart}) {
                                                         In stock:
                                                         <Field name='stockSize' as='select' onChange={handleChange}>
                                                             <option value='N/A'>Please Select</option>
-                                                            <option value='100mm Silicon'>100mm Silicon</option>
-                                                            <option value='150mm Silicon'>150mm Silicon</option>
-                                                            <option value='100mm Thermal Oxide'>100mm Thermal Oxide</option>
+                                                            <option value='(Silicon (P-type, <100>) ø100mm x 525µm'>Silicon (P-type, &lt;100&gt;) ø100mm x 525µm</option>
+                                                            <option value='5µm TOx on Silicon (P-type, <100>) ø100mm x 525µm'>5µm TOx on Silicon (P-type, &lt;100&gt;) ø100mm x 525µm</option>
+                                                            <option value='Silicon (P-type, <100>) ø150mm x 675µm'>Silicon (P-type, &lt;100&gt;) ø150mm x 675µm</option>
                                                         </Field>
                                                     </label>
                                                 </Fragment>
@@ -299,9 +301,9 @@ export default function MainForm({part, setPart}) {
                                                         onChange={handleChange}
                                                     />
                                                     <label>
-                                                        <button>Upload file</button>
-                                                        Max 5M PDF / PNG only
+                                                        Upload PDF/PNG File:
                                                     </label>
+                                                    <input type="file" name='specialInstructionFile' accept=".pdf,.png" />
                                                 </Fragment>
                                             )
                                         }
