@@ -1,10 +1,10 @@
-import React from "react"
-import styled from "styled-components"
-import RequestButton from "../buttons/RequestButton"
-import { H1, MediumText } from "../styles/TextStyles"
-import { themes } from "../styles/ColorStyles"
-import MockupAnimation from "../animations/MockupAnimation"
-import WaveBackgound from "../backgrounds/WaveBackgound"
+import React from "react";
+import styled from "styled-components";
+import RequestButton from "../buttons/RequestButton";
+import { H1, MediumText } from "../styles/TextStyles";
+import { themes } from "../styles/ColorStyles";
+import MockupAnimation from "../animations/MockupAnimation";
+import WaveBackgound from "../backgrounds/WaveBackgound";
 
 const HeroSection = () => {
   return (
@@ -30,15 +30,15 @@ const HeroSection = () => {
         <MockupAnimation />
       </ContentWrapper>
     </Wrapper>
-  )
-}
+  );
+};
 
-export default HeroSection
+export default HeroSection;
 
 const Wrapper = styled.div`
   /* prevent future mockups of overflowing outside*/
   overflow: hidden;
-`
+`;
 
 const ContentWrapper = styled.div`
   /* don't use width */
@@ -55,13 +55,13 @@ const ContentWrapper = styled.div`
     gap: 60px;
     padding: 150px 20px 250px;
   }
-`
+`;
 
 const TextWrapper = styled.div`
   max-width: 540px;
   display: grid;
   gap: 30px;
-`
+`;
 
 const Title = styled(H1)`
   color: ${themes.dark.text1};
@@ -69,6 +69,6 @@ const Title = styled(H1)`
   background-clip: text;
   --webkit-background-clip: text;
   color: transparent;
-`
+`;
 
-const Description = styled(MediumText)``
+const Description = styled(MediumText)``;
