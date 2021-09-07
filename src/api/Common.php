@@ -1,4 +1,12 @@
 <?php
+// header("Access-Control-Allow-Origin: http://localhost:3000");
+// header('Access-Control-Allow-Headers: Content-Type');
+// header("Access-Control-Allow-Credential: true");
+
+// // header("Access-Control-Allow-Headers: *");
+// header('Access-Control-Allow-Methods: POST, GET');
+
+// header('Content-Type: application/json');
 require 'phpmailer/PHPMailer.php';
 require 'phpmailer/SMTP.php';
 require 'phpmailer/Exception.php';

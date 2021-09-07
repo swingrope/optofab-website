@@ -1,5 +1,6 @@
 <?php
-
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Headers: *");
 if  (!empty($_FILES['file']['name'])){
     $oldmask = umask(0);
     $nameArray = explode('.', $_FILES['file']['name']);

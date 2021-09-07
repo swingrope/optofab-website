@@ -1,5 +1,13 @@
 <?php
+header("Access-Control-Allow-Origin: http://localhost:3000");
+header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');
+header("Access-Control-Allow-Credential: true");
+// // header("Access-Control-Allow-Headers: *");
+header('Access-Control-Allow-Methods: POST, OPTIONS');
+// // header('Content-Type: application/json');
+// Allow from any origin
 
+echo("header: Access-Control-Allow-Origin: http://localhost:3000");
 require 'Common.php';
 
 $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';

@@ -9,6 +9,7 @@ export const customerInfoInitialValues = {
 
 export default function CustomerInfo({part}) {
 
+    const baseURL = 'http://localhost:8080/comp8715/optofab-website/src/api/OrderRequest.php'
     function fillBilling(values, setFieldValue) {
         
         values.sameAsAbove = !values.sameAsAbove
@@ -41,8 +42,12 @@ export default function CustomerInfo({part}) {
 
         console.log(data)
         // next is ajax request
-        axios.post('../../../api/OrderRequest.php', {
-            body: data
+        fetch(baseURL, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            }
         })
     }
     
