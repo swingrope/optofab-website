@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { Field, Form, Formik, useFormikContext } from 'formik'
 import React, { useEffect, useState } from 'react'
 import { MyTextInput } from '../fields/MyTextInput';
@@ -40,6 +41,9 @@ export default function CustomerInfo({part}) {
 
         console.log(data)
         // next is ajax request
+        axios.post('../../../api/OrderRequest.php', {
+            body: data
+        })
     }
     
     return (
