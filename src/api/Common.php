@@ -15,6 +15,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception; 
 
+
 /**
  * @param string $subject: the subject of the email
  * @param string $subject: the main body of the email
@@ -22,14 +23,16 @@ use PHPMailer\PHPMailer\Exception;
  */
 
 function sendEmail($subject, $msg, $attachments=NULL, $JsonFile=NULL) {
+    $credential = file_get_contents('../../credentials.json');
+    $decoded_credential = json_decode($credential, true);
     $mail = new PHPMailer();
     $mail -> isSMTP();
     $mail -> Host = "smtp.gmail.com"; // maybe anu email server
     $mail -> SMTPAuth = "true";
     $mail -> SMTPSecure = "tls"; // may be different
     $mail -> Port = "587"; // may be different
-    $mail -> Username = "anffoptofab.autotest@gmail.com"; // put correct email address
-    $mail -> Password = "808909anff"; // put correct password
+    $mail -> Username = $decoded_credential['EMAIL']; // put correct email address
+    $mail -> Password = $decoded_credential["PASSWORD"]; // put correct password
     $mail -> Subject = $subject; 
     $mail -> Body = $msg;
     if (!$attachments==NULL){
@@ -38,8 +41,8 @@ function sendEmail($subject, $msg, $attachments=NULL, $JsonFile=NULL) {
         }
     }
     
-    $mail -> setFrom("anffoptofab.autotest@gmail.com"); // put correct email address
-    $mail -> addAddress("anffoptofab.autotest@gmail.com"); // put correct email address
+    $mail -> setFrom($decoded_credential["EMAIL"]); // put correct email address
+    $mail -> addAddress($decoded_credential["EMAIL"]); // put correct email address
 
     // delete the temporary attachment folder 
     if ($mail -> Send()){
