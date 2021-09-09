@@ -1,16 +1,19 @@
-import React from "react";
+import React, { useRef } from "react";
 import Layout from "../components/layout/layout";
 import styled from "styled-components";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { SmallText } from "../components/styles/TextStyles";
 import SubmitButton from "../components/buttons/SubmitButton";
+import getFirebase from "../utils/firebase";
+import { getStorage, ref, uploadBytes } from "firebase/storage";
+import UploadButton from "../components/buttons/UploadButton";
 
 type Inputs = {
   orderNo: string;
   description: string;
 };
 
-const RequestPage = () => {
+const ModifyPage = () => {
   const {
     register,
     handleSubmit,
@@ -22,37 +25,84 @@ const RequestPage = () => {
   };
   console.log(watch("orderNo"), watch("description"));
 
+  const refCustom = useRef(null);
+  const firebase = getFirebase();
+
+  const handleClick = () => {
+    if (refCustom) {
+      return refCustom.current?.click();
+    }
+  };
+
+  const handleUpload = async (event) => {
+    // console.log(event);
+
+    if (!firebase) return;
+    const uploadedFile = event?.target.files[0];
+    // console.log(uploadedFile);
+    if (!uploadedFile) return;
+    const storage = getStorage(firebase);
+    // const storageRef = storage.ref("modifiedFiles");
+    const storageRef = ref(storage, uploadedFile.name);
+    try {
+      // await storageRef.child(uploadedFile.name).put(uploadedFile);
+      await uploadBytes(storageRef, uploadedFile).then((snapshot) => {
+        console.log("Uploaded from file");
+      });
+      alert("Uploaded!");
+    } catch (error) {
+      console.log("errors: ", error);
+    }
+  };
+
   return (
     <>
       <Layout>
         <Wrapper>
           <ContentWrapper>
             <Form onSubmit={handleSubmit(onSubmit)}>
-              <OrderNoWrapper>
-                <img src="/images/smallicons/billing.svg" />
-                <InputOrder
-                  {...register("orderNo", { required: true })}
-                  placeholder="Order No."
-                />
-              </OrderNoWrapper>
-              {(errors.orderNo || errors.description) && (
-                <ErrorMsg>Field Required</ErrorMsg>
-              )}
-              <DescriptionWrapper>
-                <img src="/images/smallicons/courses.svg" />
-                <InputDescription
-                  {...register("description", { required: true })}
-                  placeholder="Description"
-                />
-              </DescriptionWrapper>
-              {(errors.orderNo || errors.description) && (
-                <ErrorMsg>Field Required</ErrorMsg>
-              )}
-              <UploadWrapper>
+              <FieldRequiredWrapper>
+                <OrderNoWrapper>
+                  <img src="/images/smallicons/billing.svg" />
+                  <InputOrder
+                    {...register("orderNo", { required: true })}
+                    placeholder="Order No."
+                  />
+                </OrderNoWrapper>
+                {(errors.orderNo || errors.description) && (
+                  <ErrorMsg>Field Required</ErrorMsg>
+                )}
+              </FieldRequiredWrapper>
+              <FieldRequiredWrapper>
+                <DescriptionWrapper>
+                  <img src="/images/smallicons/courses.svg" />
+                  <InputDescription
+                    {...register("description", { required: true })}
+                    placeholder="Description"
+                  />
+                </DescriptionWrapper>
+                {(errors.orderNo || errors.description) && (
+                  <ErrorMsg>Field Required</ErrorMsg>
+                )}
+              </FieldRequiredWrapper>
+              {/* <UploadWrapper>
                 <img src="/images/smallicons/link.svg" />
-                <UploadFile type="file" />
-              </UploadWrapper>
-              <SubmitButton title="Submit" />
+                <UploadFile ref={ref} type="file" accept=".jpg, .png" hidden />
+              </UploadWrapper> */}
+              <UploadFile
+                ref={refCustom}
+                onChange={handleUpload}
+                type="file"
+                accept=".jpg, .png"
+                hidden
+              />
+              <UploadButtonWrapper>
+                <UploadButton
+                  onClick={() => handleClick()}
+                  title="UPLOAD FILE HERE"
+                />
+                <SubmitButton title="Submit" />
+              </UploadButtonWrapper>
             </Form>
           </ContentWrapper>
         </Wrapper>
@@ -61,7 +111,7 @@ const RequestPage = () => {
   );
 };
 
-export default RequestPage;
+export default ModifyPage;
 
 const Wrapper = styled.div`
   background: linear-gradient(115.82deg, #00486f 0%, #eb7776 93.65%);
@@ -126,7 +176,10 @@ const DescriptionWrapper = styled.div`
   border-radius: 20px;
 `;
 
-const ErrorMsg = styled(SmallText)``;
+const ErrorMsg = styled(SmallText)`
+  color: red;
+  opacity: 0.5;
+`;
 
 const UploadWrapper = styled.div`
   border: 1px solid #000000;
@@ -175,4 +228,16 @@ const UploadFile = styled.input`
   border: 0;
   /* no border highlight when typing */
   outline: none;
+`;
+
+const FieldRequiredWrapper = styled.div`
+  display: grid;
+  grid-template-columns: auto 30px;
+  gap: 10px;
+`;
+
+const UploadButtonWrapper = styled.div`
+  display: grid;
+  grid-template-columns: 300px auto;
+  gap: 30px;
 `;
