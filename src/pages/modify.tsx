@@ -1,11 +1,11 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import Layout from "../components/layout/layout";
 import styled from "styled-components";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { SmallText } from "../components/styles/TextStyles";
 import SubmitButton from "../components/buttons/SubmitButton";
 import getFirebase from "../utils/firebase";
-import { getStorage, ref, uploadBytes } from "firebase/storage";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import UploadButton from "../components/buttons/UploadButton";
 
 type Inputs = {
@@ -27,6 +27,7 @@ const ModifyPage = () => {
 
   const refCustom = useRef(null);
   const firebase = getFirebase();
+  const [fileUrl, setFileUrl] = useState(null);
 
   const handleClick = () => {
     if (refCustom) {
@@ -49,6 +50,9 @@ const ModifyPage = () => {
       await uploadBytes(storageRef, uploadedFile).then((snapshot) => {
         console.log("Uploaded from file");
       });
+      setFileUrl(await getDownloadURL(storageRef));
+      console.log(fileUrl);
+
       alert("Uploaded!");
     } catch (error) {
       console.log("errors: ", error);
