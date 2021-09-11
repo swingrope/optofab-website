@@ -1,23 +1,51 @@
 import React from "react";
 import styled from "styled-components";
+import { MediumText } from "../styles/TextStyles";
 
 const DropdownTest = (props) => {
   const { name, ...options } = props;
   console.log(options);
   return (
     <Wrapper>
-      <select name={name} id={name + "select"}>
-        <option value="">--please select</option>
+      <Select name={name} id={name + "select"}>
+        <Option value="">--Please select--</Option>
         {Object.entries(options).map(([key, value], i) => (
-          <option key={i} value={value}>
+          <Option key={i} value={value}>
             {value}
-          </option>
+          </Option>
         ))}
-      </select>
+      </Select>
     </Wrapper>
   );
 };
 
 export default DropdownTest;
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  padding: 5px;
+  margin: 2px 10px;
+`;
+
+const Select = styled.select`
+  /* background: linear-gradient(
+    180deg,
+    rgba(24, 32, 79, 0) 0%,
+    rgba(24, 32, 79, 0.1) 100%
+  ); */
+  width: 100%;
+  /* border: none; */
+  border: 0.5px solid rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+  box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(40px);
+  /* Note: backdrop-filter has minimal browser support */
+  height: 33px;
+  border-radius: 5px;
+  color: rgba(0, 0, 0, 0.8);
+  font-weight: normal;
+  font-size: 17px;
+  line-height: 130%;
+  padding: 0 10px;
+`;
+
+const Option = styled.option``;

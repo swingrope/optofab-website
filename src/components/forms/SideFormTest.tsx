@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import TextareaTest from "./TextareaTest";
 
 const SideForm = (props) => {
   const { descriptionLabel, description, reg, req } = props;
@@ -9,10 +10,14 @@ const SideForm = (props) => {
       <DescriptionLabel>
         {descriptionLabel || "Description of Face"}
       </DescriptionLabel>
-      <TextareaWrapper
+      {/* <TextareaWrapper
         {...reg(description, { required: req })}
         placeholder="Leave the description here"
-      ></TextareaWrapper>
+      ></TextareaWrapper> */}
+      <TextareaTest
+        {...reg(description, { required: req })}
+        placeholder="Leave the description here"
+      />
     </Wrapper>
   );
 };
