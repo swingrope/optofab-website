@@ -14,7 +14,7 @@ export default SubmitButton;
 
 const Button = styled.input`
   /* display: block; */
-  margin: 0px 16px 0 16px;
+  margin: 10px;
   padding: 12px 0;
 
   /* position: static; */
@@ -41,5 +41,6 @@ const Button = styled.input`
   :hover {
     filter: hue-rotate(10deg) brightness(110%) saturate(110%);
     box-shadow: 0px 30px 60px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
   }
 `;

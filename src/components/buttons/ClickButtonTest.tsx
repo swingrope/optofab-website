@@ -44,5 +44,6 @@ const Button = styled.input`
   :hover {
     /* filter: hue-rotate(10deg) brightness(150%) saturate(150%); */
     box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
   }
 `;
