@@ -5,6 +5,8 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import Layout from "../components/layout/layout";
 import SideFormTest from "../components/forms/SideFormTest";
 import DropdownTest from "../components/forms/DropdownTest";
+import BasicInputTest from "../components/forms/BasicInputTest";
+import ClickButtonTest from "../components/buttons/ClickButtonTest";
 
 const testpage = () => {
   const { register, handleSubmit } = useForm();
@@ -18,10 +20,15 @@ const testpage = () => {
           <h1>Hi from the test page</h1>
           <p>Welcome to test</p>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <label>
-              Input 1:
-              <input {...register("input1", { required: true })} type="text" />
-            </label>
+            <label>Input 1:</label>
+            <input {...register("input1", { required: true })} type="text" />
+            <br />
+            <label>Input 2:</label>
+            <BasicInputTest
+              {...register("input2", { required: true })}
+              type="text"
+            />
+
             <SideFormTest
               descriptionLabel="D"
               description="descript"
@@ -29,7 +36,7 @@ const testpage = () => {
               req="true"
             />
             <DropdownTest name="dropdown" option1="hi" option2="hello" />
-            <input type="submit" value="Submit" />
+            <ClickButtonTest title="Click" type="submit" />
           </form>
         </ContentWrapper>
       </Wrapper>
