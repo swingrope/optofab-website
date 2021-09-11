@@ -77,50 +77,52 @@ const ModifyPage = () => {
       <Layout>
         <Wrapper>
           <ContentWrapper>
-            <Form onSubmit={handleSubmit(onSubmit)}>
-              <FieldRequiredWrapper>
-                <OrderNoWrapper>
-                  <img src="/images/smallicons/billing.svg" />
-                  <InputOrder
-                    {...register("orderNo", { required: true })}
-                    placeholder="Order No."
-                  />
-                </OrderNoWrapper>
-                {(errors.orderNo || errors.description) && (
-                  <ErrorMsg>Field Required</ErrorMsg>
-                )}
-              </FieldRequiredWrapper>
-              <FieldRequiredWrapper>
-                <DescriptionWrapper>
-                  <img src="/images/smallicons/courses.svg" />
-                  <InputDescription
-                    {...register("description", { required: true })}
-                    placeholder="Description"
-                  />
-                </DescriptionWrapper>
-                {(errors.orderNo || errors.description) && (
-                  <ErrorMsg>Field Required</ErrorMsg>
-                )}
-              </FieldRequiredWrapper>
-              {/* <UploadWrapper>
+            <BackgroundBlurWrapper>
+              <Form onSubmit={handleSubmit(onSubmit)}>
+                <FieldRequiredWrapper>
+                  <OrderNoWrapper>
+                    <img src="/images/smallicons/billing.svg" />
+                    <InputOrder
+                      {...register("orderNo", { required: true })}
+                      placeholder="Order No."
+                    />
+                  </OrderNoWrapper>
+                  {(errors.orderNo || errors.description) && (
+                    <ErrorMsg>Field Required</ErrorMsg>
+                  )}
+                </FieldRequiredWrapper>
+                <FieldRequiredWrapper>
+                  <DescriptionWrapper>
+                    <img src="/images/smallicons/courses.svg" />
+                    <InputDescription
+                      {...register("description", { required: true })}
+                      placeholder="Description"
+                    />
+                  </DescriptionWrapper>
+                  {(errors.orderNo || errors.description) && (
+                    <ErrorMsg>Field Required</ErrorMsg>
+                  )}
+                </FieldRequiredWrapper>
+                {/* <UploadWrapper>
                 <img src="/images/smallicons/link.svg" />
                 <UploadFile ref={ref} type="file" accept=".jpg, .png" hidden />
               </UploadWrapper> */}
-              <UploadFile
-                ref={refCustom}
-                onChange={handleUpload}
-                type="file"
-                accept=".jpg, .png"
-                hidden
-              />
-              <UploadButtonWrapper>
-                <UploadButton
-                  onClick={() => handleClick()}
-                  title="UPLOAD FILE HERE"
+                <UploadFile
+                  ref={refCustom}
+                  onChange={handleUpload}
+                  type="file"
+                  accept=".jpg, .png"
+                  hidden
                 />
-                <SubmitButton title="Submit" />
-              </UploadButtonWrapper>
-            </Form>
+                <UploadButtonWrapper>
+                  <UploadButton
+                    onClick={() => handleClick()}
+                    title="UPLOAD FILE HERE"
+                  />
+                  <SubmitButton title="Submit" />
+                </UploadButtonWrapper>
+              </Form>
+            </BackgroundBlurWrapper>
           </ContentWrapper>
         </Wrapper>
       </Layout>
@@ -140,6 +142,13 @@ const ContentWrapper = styled.div`
   max-width: 1234px;
   margin: 0 auto;
   padding: 200px 30px;
+`;
+
+const BackgroundBlurWrapper = styled.div`
+  background: rgba(255, 255, 255, 0.01);
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.05);
+  padding: 50px;
+  border-radius: 30px;
 `;
 
 const Form = styled.form`
