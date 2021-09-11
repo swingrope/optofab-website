@@ -17,10 +17,10 @@ const Wrapper = styled.div`
   display: grid;
   grid-template-columns: 28px auto;
   padding: 10px;
-  margin: 5px 10px;
+  margin: 10px;
 
-  width: 520px;
-  height: 100px;
+  max-width: 700px;
+  max-height: 100px;
 
   background: linear-gradient(
     180deg,
