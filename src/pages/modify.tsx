@@ -7,6 +7,7 @@ import SubmitButton from "../components/buttons/SubmitButton";
 import getFirebase from "../utils/firebase";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import UploadButton from "../components/buttons/UploadButton";
+import sendEmail from "../utils/sendEmail";
 
 type Inputs = {
   orderNo: string;
@@ -20,14 +21,26 @@ const ModifyPage = () => {
     watch,
     formState: { errors },
   } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log(data);
-  };
-  console.log(watch("orderNo"), watch("description"));
 
   const refCustom = useRef(null);
   const firebase = getFirebase();
   const [fileUrl, setFileUrl] = useState(null);
+
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    console.log(data);
+    const orderMsg = "Order No.: " + data["orderNo"] + "<br/>";
+    const descriptMsg = "Details: " + data["description"] + "<br/>";
+    let fileMsg = "";
+    if (fileUrl) {
+      fileMsg += "File uploaded: " + fileUrl;
+    }
+    const message = orderMsg + descriptMsg + fileMsg;
+    console.log(message);
+
+    sendEmail("OptoFab ACT", "Dear Customer", "tianwu.too@gmail.com", message);
+  };
+
+  console.log(watch("orderNo"), watch("description"));
 
   const handleClick = () => {
     if (refCustom) {

@@ -6,6 +6,7 @@
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
     "babel-plugin-styled-components": "^1.13.2",
+    "emailjs-com": "^3.2.0",
     "firebase": "^9.0.1",
     "gatsby": "^3.12.1",
     "gatsby-plugin-gatsby-cloud": "^2.11.0",
