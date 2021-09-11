@@ -32,4 +32,14 @@ const Button = styled.input`
   color: white;
   font-weight: bold;
   font-family: Segoe UI, sans-serif;
+
+  & {
+    transition: 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    transition-delay: 0.1s;
+  }
+
+  :hover {
+    filter: hue-rotate(10deg) brightness(110%) saturate(110%);
+    box-shadow: 0px 30px 60px rgba(0, 0, 0, 0.3);
+  }
 `;
