@@ -63,18 +63,8 @@ export default function Material({serviceType, handleChange, materialValues}) {
                     <br />
                     <label>Please describe substrate and all existing layers in special instructions</label>
                     <div>
-                        <label>
-                            Reactivity:
-                            <Field as='select' name='material.reactivity' onChange={handleChange}>
-                                <Fragment>
-                                    <option value='N/A'>Please select</option>
-                                    <option value='reactive'>Reactive</option>
-                                    <option value='inert'>Inert</option>
-                                </Fragment>
-                            </Field>
-                        </label>
                         <br />
-                        <label>
+                        <label className="required">
                             Toxicity:
                             <Field as='select' name='material.toxicity' onChange={handleChange}>
                                 <Fragment>
@@ -90,7 +80,7 @@ export default function Material({serviceType, handleChange, materialValues}) {
                         <MyTextInput name='material.maxTemperature' label='Max Temperature(°C): ' onChange={handleChange} />
                         <MyTextArea name='material.hazards' label='Hazards: ' onChange={handleChange} />
                         <MyTextArea name='material.specialInstructions' label='Special Instructions: ' onChange={handleChange} />
-                        <label id="compatibility">
+                        <label className="required" id="compatibility">
                             Chemical compatibility for cleaning:
                             <span role="group" aria-labelledby="compatibility">
                             <label>
@@ -106,16 +96,16 @@ export default function Material({serviceType, handleChange, materialValues}) {
                             * Please tell us if any of the parts react with liquinox brand detergent, di water, acetone, isopropanol alcohol, ethanol, methanol, citranox, ultrasonic agitation. If you wish to have the substrate cleaned with a special regimen, please add full details to special requirements.
                         </label>
                         <br />
-                        <label id="MTA">
+                        <label className="required" id="MTA">
                             <strong>Material Transfer Agreement: </strong>
                             <span role="group" aria-labelledby="MTA">
                             <label>
                             <Field type="radio" name="material.materialTransferAgreement" value="standard" />
-                            Download Standard MTA
+                            Standard MTA
                             </label>
                             <label>
                             <Field type="radio" name="material.materialTransferAgreement" value="custom" />
-                            Upload Custom MTA
+                            Custom MTA (pdf only)
                             </label>
                             <label>
                             <Field type="radio" name="material.materialTransferAgreement" value="to be agreed" />
@@ -130,18 +120,8 @@ export default function Material({serviceType, handleChange, materialValues}) {
 
             {(materialValues.materialType === 'other' && serviceType === 'optical') && (
                 <div>
-                    <label>
-                        Reactivity: 
-                        <Field as='select' name='material.reactivity' onChange={handleChange}>
-                            <Fragment>
-                                <option value='N/A'>Please select</option>
-                                <option value='reactive'>Reactive</option>
-                                <option value='inert'>Inert</option>
-                            </Fragment>
-                        </Field>     
-                    </label>
                     <br />
-                    <label>
+                    <label className="required">
                         Toxicity: 
                         <Field as='select' name='material.toxicity' onChange={handleChange}>
                             <Fragment>
@@ -157,7 +137,7 @@ export default function Material({serviceType, handleChange, materialValues}) {
                     <MyTextInput name='material.maxTemperature' label='Max Temperature(°C): ' onChange={handleChange} />
                     <MyTextArea name='material.hazards' label='Hazards: ' onChange={handleChange} />
                     <MyTextArea name='material.specialInstructions' label='Special Instructions: ' onChange={handleChange} />
-                    <label id="compatibility">
+                    <label className="required" id="compatibility">
                         Chemical compatibility for cleaning: 
                         <span role="group" aria-labelledby="compatibility">
                             <label>
@@ -173,16 +153,16 @@ export default function Material({serviceType, handleChange, materialValues}) {
                         * Please tell us if any of the parts react with liquinox brand detergent, di water, acetone, isopropanol alcohol, ethanol, methanol, citranox, ultrasonic agitation. If you wish to have the substrate cleaned with a special regimen, please add full details to special requirements.
                     </label>
                     <br />
-                    <label id="MTA">
+                    <label className="required" id="MTA">
                         <strong>Material Transfer Agreement: </strong>
                         <span role="group" aria-labelledby="MTA">
                             <label>
                             <Field type="radio" name="material.materialTransferAgreement" value="standard" />
-                            Download Standard MTA
+                            Standard MTA
                             </label>
                             <label>
                             <Field type="radio" name="material.materialTransferAgreement" value="custom" />
-                            Upload Custom MTA
+                            Custom MTA (pdf only)
                             </label>
                             <label>
                             <Field type="radio" name="material.materialTransferAgreement" value="to be agreed" />
@@ -193,15 +173,15 @@ export default function Material({serviceType, handleChange, materialValues}) {
                 </div>
             )}
             {(materialValues.materialType === 'other' && (serviceType === 'optical'||serviceType === 'photonic') && materialValues.materialTransferAgreement==='standard') && (
-                <label>
+                <label className="required">
                     <button>Download</button>
-                    Download Standard MTA
+                    Standard MTA
                 </label>
             )}
             {(materialValues.materialType === 'other' && (serviceType === 'optical'||serviceType === 'photonic') && materialValues.materialTransferAgreement==='custom') && (
-                <label>
+                <label className="required">
                     <button>Upload</button>
-                    Upload Custom MTA
+                    Custom MTA (pdf only)
                 </label>
             )}
 
