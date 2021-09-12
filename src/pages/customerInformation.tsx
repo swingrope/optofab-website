@@ -6,7 +6,7 @@ import Layout from "../components/layout/layout";
 import { themes } from "../components/styles/ColorStyles";
 import { H1, H3 } from "../components/styles/TextStyles";
 
-const customerInfo = () => {
+const customerInformation = () => {
   const [sameAdd, setSameAdd] = useState(false);
 
   const handleClick = () => {
@@ -62,7 +62,9 @@ const customerInfo = () => {
                       checked={sameAdd}
                     />
                     {/* <label for="checkSameAdd"> */}
-                    <label>Is billing address same as shipping address?</label>
+                    <label for="checkSameAdd">
+                      Is billing address same as shipping address?
+                    </label>
                   </CheckboxWrapper>
                 </DetailWrapper>
               </SectionWrapper>
@@ -102,7 +104,7 @@ const customerInfo = () => {
   );
 };
 
-export default customerInfo;
+export default customerInformation;
 
 const Title = styled(H1)`
   /* color: ${themes.dark.text1}; */
