@@ -2,15 +2,16 @@ import React from "react";
 import styled from "styled-components";
 
 const UploadButton = (props) => {
-  return <Button onClick={props.onClick}>{props.title || "Upload"}</Button>;
+  return <Button onClick={props.onClick} value={props.title || "Upload"} />;
 };
 
 export default UploadButton;
 
-const Button = styled.button`
+const Button = styled.input`
   /* background: linear-gradient(91.4deg, #2fb8ff 0%, #9eecd9 100%); */
   background: transparent;
-  padding: 10px;
+  margin: 10px;
+  padding: 12px 24px;
   max-width: 400px;
   /* border: none; */
   border-radius: 30px;
@@ -19,7 +20,8 @@ const Button = styled.button`
   font-family: Segoe UI, sans-serif;
   cursor: pointer;
   border: 1px solid #000000;
-  box-sizing: border-box;
+  text-align: center;
+  /* box-sizing: border-box; */
 
   & {
     transition: 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955);
