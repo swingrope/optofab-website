@@ -8,7 +8,7 @@ export const geometryInitialValues = {
     majorDiameter: '',
     minorDiameter: '',
     thickness: '',
-    wedge: '',
+    wedge: 0,
     chamferWidth: '',
     width: '',
     length: '',
