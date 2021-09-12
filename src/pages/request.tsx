@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "gatsby";
 import Layout from "../components/layout/layout";
 import styled from "styled-components";
 import SubmitButton from "../components/buttons/SubmitButton";
@@ -6,6 +7,8 @@ import DropdownTest from "../components/forms/DropdownTest";
 import { BodyMain, H3, MediumText } from "../components/styles/TextStyles";
 import TextareaTest from "../components/forms/TextareaTest";
 import ClickButtonTest from "../components/buttons/ClickButtonTest";
+import BasicInputTest from "../components/forms/BasicInputTest";
+import UploadButton from "../components/buttons/UploadButton";
 
 const RequestPage = () => {
   const [serviceType, setServiceType] = useState("");
@@ -136,12 +139,97 @@ const RequestPage = () => {
                   </DetailWrapper>
                 </SectionWrapper>
               )}
+              <HrLine />
+              {serviceType === "spdt" && (
+                <SectionWrapper>
+                  <SectionTitle>Spec 1</SectionTitle>
+                  <DetailWrapper>
+                    <LineInputWrapper>
+                      <Label>Wavelength (nm)</Label>
+                      <BasicInputTest label="min: " width="150px" />
+                      <BasicInputTest label="max: " width="150px" />
+                    </LineInputWrapper>
+                    <LineDropdownWrapper>
+                      <DropdownTest
+                        name="refTrans"
+                        option1="Reflection"
+                        option2="Transmission"
+                      />
+                      <BasicInputTest label="min: " width="150px" />
+                      <BasicInputTest label="max: " width="150px" />
+                      <DropdownTest
+                        name="refTransUnit"
+                        option1="ppm"
+                        option2="%"
+                        option3="dB"
+                      />
+                    </LineDropdownWrapper>
+                    <DropdownWrapper>
+                      <Label>Polarisation: </Label>
+                      <DropdownTest
+                        name="polarisation"
+                        option1="S"
+                        option2="P"
+                        option3="UNP"
+                      />
+                    </DropdownWrapper>
+                    <LineInputWrapper>
+                      <Label>Angle of Incidence: </Label>
+                      <BasicInputTest label="&#952;1: " width="150px" />
+                      <BasicInputTest label="&#952;2: " width="150px" />
+                    </LineInputWrapper>
+                    <HrLine />
+                    <LineButtonWrapper>
+                      <ClickButtonTest title="Add a spec" />
+                      <ClickButtonTest title="Remove last spec" />
+                    </LineButtonWrapper>
+                    <HrLine />
+                    <BasicInputTest label="Coated Area Dimension: " />
+                    <BasicInputTest label="Position: " />
+                    <Label>Compensation Coating</Label>
+                    <TextareaTest placeholder="Enter here..." />
+                    <Label>Protective Coating</Label>
+                    <TextareaTest placeholder="Enter here..." />
+                    <Label>Add Specification</Label>
+                    <TextareaTest placeholder="Enter specifications here..." />
+                    <DropdownWrapper>
+                      <Label>Deposition Process: </Label>
+                      <DropdownTest
+                        name="depositionProcess"
+                        option1="Low Temperature + Low Stress"
+                        option2="High Temperature + High Stress"
+                      />
+                    </DropdownWrapper>
+                    <HrLine />
+                    <LineButtonWrapper>
+                      <ClickButtonTest title="Add a side" />
+                      <ClickButtonTest title="Remove last side" />
+                    </LineButtonWrapper>
+                    <HrLine />
+                    <BasicInputTest label="Quantity: " />
+                    <Label>Special Instructions</Label>
+                    <TextareaTest placeholder="Leave the description here..." />
+                    <HrLine />
+                    <LineButtonWrapper>
+                      <UploadButton title="Upload PDF/PNG file here..." />
+                      <ClickButtonTest title="Add another part" />
+                    </LineButtonWrapper>
+                  </DetailWrapper>
+                </SectionWrapper>
+              )}
+
+              {/* {serviceType === "spdt" && (
+                
+              )} */}
+
               {/* Last Section of submit buttons */}
               <HrLine />
               <SectionWrapper>
                 <SectionTitle></SectionTitle>
                 <SubmitWrapper>
-                  <SubmitButton title="Submit" />
+                  <Link to="/customerInfo">
+                    <SubmitButton title="All parts specified -> Next Step" />
+                  </Link>
                 </SubmitWrapper>
               </SectionWrapper>
             </form>
@@ -182,7 +270,7 @@ const Label = styled.label`
 
 const SectionWrapper = styled.div`
   display: grid;
-  grid-template-columns: 220px auto;
+  grid-template-columns: minmax(120px, 200px) auto;
 `;
 
 const SectionTitle = styled(H3)`
@@ -190,14 +278,14 @@ const SectionTitle = styled(H3)`
 `;
 
 const DetailWrapper = styled.div`
-  margin: 15px;
+  margin: 20px;
 `;
 
 const DropdownWrapper = styled.div`
   display: grid;
-  grid-template-columns: 150px auto;
+  grid-template-columns: minmax(120px, 200px) auto;
   align-items: center;
-  margin: 30px 30px 30px 0;
+  margin: 20px 20px 20px 0;
 `;
 
 const ClickButtonWrapper = styled.div`
@@ -215,4 +303,26 @@ const HrLine = styled.hr`
   margin: 15px 0;
   border: 0.5px solid rgba(0, 0, 0, 0.15);
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+`;
+
+const LineInputWrapper = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  max-width: 700px;
+`;
+
+const LineDropdownWrapper = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: center;
+  max-width: 800px;
+`;
+
+const LineButtonWrapper = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: left;
+  max-width: 400px;
+  /* margin: 20px; */
 `;
