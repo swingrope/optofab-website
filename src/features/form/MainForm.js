@@ -42,8 +42,9 @@ export default function MainForm({part, setPart}) {
 
     function handleAddPart(e, values, resetForm, setFieldValue, validateForm) {
         e.preventDefault()
-        console.log(part)
+
         validateForm().then(errors => {
+            console.log(errors)
             if (errors.length > 0) {
                 setDefaultValues(setFieldValue, values)
                 localStorage.setItem(`part${part}`, JSON.stringify(values))

@@ -1,5 +1,6 @@
 import { Field } from 'formik'
 import React from 'react'
+import { validateField } from '../Helpers'
 
 export const specInitialValues = {
     wavelengthMin: '',
@@ -9,23 +10,23 @@ export const specInitialValues = {
     min: '',
     max: '',
     unit: '',
-    AOItheta1: '',
-    AOItheta2: ''
+    AOImin: '',
+    AOImax: ''
 }
 
 export default function Spec({sideIndex, index, handleChange}) {
 
-    let specNum = index + 1
+    const specNum = index + 1
     return (
         <div>
             <h3>Spec {specNum}</h3>
-            <div>
+            <div className="required">
                 Wavelength (nm): &nbsp;&nbsp;&nbsp;
-                <label>min: <Field name={`surface[${sideIndex}].coating.specs[${index}].wavelengthMin`} onChange={handleChange} /></label>
-                <label>max: <Field name={`surface[${sideIndex}].coating.specs[${index}].wavelengthMax`} onChange={handleChange} /></label>
+                <label>min: <Field name={`surface[${sideIndex}].coating.specs[${index}].wavelengthMin`} validate={validateField} onChange={handleChange} /></label>
+                <label>max: <Field name={`surface[${sideIndex}].coating.specs[${index}].wavelengthMax`} validate={validateField} onChange={handleChange} /></label>
             </div>
             <div>
-                <label>
+                <label className="required">
                     <Field name={`surface[${sideIndex}].coating.specs[${index}].RTSelect`} as='select' onChange={handleChange}>
                         <option value='N/A'>Please Select</option>
                         <option value='Reflection'>Reflection</option>
@@ -43,19 +44,19 @@ export default function Spec({sideIndex, index, handleChange}) {
                     </Field>
                 </label>
             </div>
-            <label>
+            <label className="required">
                 Polarisation:
-                <Field as='select' name={`surface[${sideIndex}].coating.specs[${index}].polarisation`} onChange={handleChange} >
+                <Field validate={validateField} as='select' name={`surface[${sideIndex}].coating.specs[${index}].polarisation`} onChange={handleChange} >
                     <option value='N/A'>Please select</option>
                     <option value='S'>S</option>
                     <option value='P'>P</option>
                     <option value='UNP'>UNP</option>
                 </Field>
             </label>
-            <div>
+            <div className="required">
                 Angle of Incidence: &nbsp;&nbsp;&nbsp;
-                <label>θ1: <Field name={`surface[${sideIndex}].coating.specs[${index}].AOItheta1`} onChange={handleChange} /></label>
-                <label>θ2: <Field name={`surface[${sideIndex}].coating.specs[${index}].AOItheta2`} onChange={handleChange} /></label>
+                <label>min: <Field validate={validateField} name={`surface[${sideIndex}].coating.specs[${index}].AOImin`} onChange={handleChange} /></label>
+                <label>max: <Field validate={validateField} name={`surface[${sideIndex}].coating.specs[${index}].AOImax`} onChange={handleChange} /></label>
             </div>
         </div>
     )

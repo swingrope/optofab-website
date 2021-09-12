@@ -31,7 +31,8 @@ export default function Surface({handleChange, index, surfaceValues, blankSource
 
     const [expand, setExpand] = useState(false)
     const [buttonText, setButtonText] = useState('show more')
-    let sideNumber = index + 1
+    const [hasCoating, setHasCoating] = useState(false)
+    const sideNumber = index + 1
 
     const handleExpand = (e) => {
         e.preventDefault()
@@ -105,8 +106,8 @@ export default function Surface({handleChange, index, surfaceValues, blankSource
             )}
             {surfaceValues.curvature === 'parabolic' && (
                 <Fragment>
+                    <MyTextInput labelClass="required" validate={validateField} label='Focal Length: ' name={`surface.${index}.focalLength`} onChange={handleChange} />
                     <MyTextInput label='Turning Angle: ' name={`surface.${index}.turningAngle`} onChange={handleChange} />
-                    <MyTextInput label='Focal Length: ' name={`surface.${index}.focalLength`} onChange={handleChange} />
                     <MyTextInput label='Surface Figure (nm): ±' name={`surface.${index}.surfaceFigure`} onChange={handleChange} />
                     <MyTextInput label='Surface Roughness (nm): rms' name={`surface.${index}.surfaceRoughness`} onChange={handleChange} />
                     <label>
@@ -122,7 +123,7 @@ export default function Surface({handleChange, index, surfaceValues, blankSource
             )}
             {surfaceValues.curvature === 'spherical' && (
                 <Fragment>
-                    <MyTextInput label='Radius of Curvature: ' name={`surface.${index}.radiusOfCurvature`} onChange={handleChange} />
+                    <MyTextInput labelClass="required" validate={validateField} label='Radius of Curvature: ' name={`surface.${index}.radiusOfCurvature`} onChange={handleChange} />
                     <MyTextInput label='Surface Figure (nm): ±' name={`surface.${index}.surfaceFigure`} onChange={handleChange} />
                     <MyTextInput label='Surface Roughness (nm): rms' name={`surface.${index}.surfaceRoughness`} onChange={handleChange} />
                     <label>
@@ -140,10 +141,10 @@ export default function Surface({handleChange, index, surfaceValues, blankSource
                 <Fragment>
                     Surface Form:
                     <MathComponent tex={String.raw`Z=f(x)=\frac{C_{v}x^2}{1+\sqrt{1-(1+k)C_{v}^2x^2}}+A_{01}x+A_{02}x^2+\cdots`} />
-                    <MyTextInput label='Cv: ' name={`surface.${index}.cv`} onChange={handleChange} />
-                    <MyTextInput label='k: ' name={`surface.${index}.k`} onChange={handleChange} />
+                    <MyTextInput labelClass="required" validate={validateField} label='Cv: ' name={`surface.${index}.cv`} onChange={handleChange} />
+                    <MyTextInput labelClass="required" validate={validateField} label='k: ' name={`surface.${index}.k`} onChange={handleChange} />
                     <MyTextInput label='A1: ' name={`surface.${index}.a1`} onChange={handleChange} />
-                    <MyTextInput label='A2: ' name={`surface.${index}.a2`} onChange={handleChange} />
+                    <MyTextInput labelClass="required" validate={validateField} label='A2: ' name={`surface.${index}.a2`} onChange={handleChange} />
                     <button onClick={(e) => handleExpand(e)}>{buttonText}</button>
                     <br />
                     { expand && (
@@ -177,7 +178,10 @@ export default function Surface({handleChange, index, surfaceValues, blankSource
 
                 </Fragment>
             )}
-            <Coating coatingValues={surfaceValues.coating} handleChange={handleChange} index={index} serviceType={serviceType}/>
+            <button type="button" onClick={() => setHasCoating(!hasCoating)}>Add Coating</button>
+            {hasCoating && (
+                <Coating coatingValues={surfaceValues.coating} handleChange={handleChange} index={index} serviceType={serviceType}/>
+            )}
         </div>
     )
 }
