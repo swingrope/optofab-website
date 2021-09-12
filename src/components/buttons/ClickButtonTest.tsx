@@ -1,19 +1,19 @@
 import React from "react";
 import styled from "styled-components";
 
-const ButtonComponent = (props) => {
+const ClickButtonTest = (props) => {
   const { title } = props;
   return (
     <div>
-      <Button value={title} />
+      <Button>{title}</Button>
     </div>
   );
 };
 
-export default ButtonComponent;
+export default ClickButtonTest;
 
-const Button = styled.input`
-  width: auto;
+const Button = styled.button`
+  max-width: 200px;
   height: 33px;
   margin: 5px 10px;
 
@@ -35,7 +35,7 @@ const Button = styled.input`
   text-align: center;
   color: rgba(255, 255, 255, 0.9);
   /* background: transparent; */
-  padding: 0px 10px;
+  padding: 0px 20px;
 
   & {
     transition: 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955);

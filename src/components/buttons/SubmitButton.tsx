@@ -15,10 +15,10 @@ export default SubmitButton;
 const Button = styled.input`
   /* display: block; */
   margin: 10px;
-  padding: 12px 0;
+  padding: 12px 24px;
 
   /* position: static; */
-  width: 160px;
+  width: minmax(200px, 360px);
   height: 44px;
 
   background: linear-gradient(270deg, #d90068 0%, rgba(0, 28, 129, 0.9) 100%);
