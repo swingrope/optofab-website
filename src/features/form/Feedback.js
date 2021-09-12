@@ -23,7 +23,7 @@ export default function Feedback() {
                 onSubmit={async (values) => {
                     await new Promise((r) => setTimeout(r, 500));
                     alert(JSON.stringify(values, null, 2));
-                    postData('http://localhost:8000/src/api/Feedback.php', values)
+                    postData('http://localhost:8080/comp8715/optofab-website/src/api/Feedback.php', values)
                         .then((res) => {
                             console.log(res.status)
                             //if(res.status==200) window.location.href = 'Feedback_Success.html'
