@@ -1,5 +1,5 @@
-import { Formik, Form, Field, FieldArray } from 'formik'
-import React, { Fragment } from 'react'
+import { Formik, Form, Field, FieldArray, useFormikContext } from 'formik'
+import React, { Fragment, useEffect } from 'react'
 import Geometry, { geometryInitialValues } from './components/Geometry'
 import Material, { materialInitialValues } from './components/Material'
 import Surface, { surfaceInitialValues } from './components/Surface'
@@ -8,6 +8,7 @@ import {MyTextArea} from "./fields/MyTextArea";
 import { Link } from 'react-router-dom'
 
 export const formInitialValues = {
+    serviceType: '',
     blankSource: '',
     substrateSource: '',
     stockSize: '',
@@ -30,6 +31,18 @@ export const flattenObject = (obj) => {
     })
     return flattened
   }
+
+const SwitchServiceType = () => {
+
+    const { values, setValues } = useFormikContext()
+
+    useEffect(() => {
+        const temp = values.serviceType
+        setValues({...formInitialValues, serviceType: temp})
+    }, [values.serviceType, setValues])
+
+    return null
+}
 
 export default function MainForm({part, setPart}) {
 
@@ -56,6 +69,7 @@ export default function MainForm({part, setPart}) {
                 >
                 {({values, handleChange, resetForm}) => (
                     <Form>
+                        <SwitchServiceType />
                         <h1 id="service-type">Service Type: </h1>
                         <div role="group" aria-labelledby="service-type">
                             <label>
