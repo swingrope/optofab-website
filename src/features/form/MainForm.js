@@ -133,7 +133,7 @@ export default function MainForm({part, setPart}) {
                                                 )}
                                             </FieldArray>
                                             <br />
-                                            <MyTextInput label='Quantity:' name='quantity' onChange={handleChange} />
+                                            <MyTextInput labelClass="required" validate={validateField} label='Quantity:' name='quantity' onChange={handleChange} />
                                             <MyTextArea
                                                 label='Special instructions:'
                                                 name='specialInstructions'
@@ -141,7 +141,7 @@ export default function MainForm({part, setPart}) {
                                                 rows={3}
                                                 onChange={handleChange}
                                             />
-                                            <label>
+                                            <label className="required">
                                                 Upload PDF/PNG File:
                                             </label>
                                             <input type="file" name='specialInstructionFile' accept=".pdf,.png" />
@@ -307,7 +307,7 @@ export default function MainForm({part, setPart}) {
                                             (values.substrateSource === "ANFF supplied-stock"||values.substrateSource === "Customer supplied"||values.substrateSource === "ANFF supplied – full custom") &&(
                                                 <Fragment>
                                                     <br />
-                                                    <MyTextInput label='Quantity:' name='quantity' onChange={handleChange} />
+                                                    <MyTextInput labelClass="required" validate={validateField} label='Quantity:' name='quantity' onChange={handleChange} />
                                                     <MyTextArea
                                                         label='Special instructions:'
                                                         name='specialInstructions'
@@ -345,7 +345,7 @@ export default function MainForm({part, setPart}) {
                                     <div>
                                     <button onClick={(e) => handleAddPart(e, values, resetForm, setFieldValue, validateForm)} className='add'>Add another part</button>
                                     <button onClick = {(e) => handleAddPart(e, values, resetForm)}>
-                                        <Link style={{color: 'black', textDecoration: 'none'}} to='/customer'>Enter customer information (please ensure all information are entered)</Link>
+                                        <Link style={{color: 'black', textDecoration: 'none'}} to='/customer'>All parts specified - Next Step</Link>
                                     </button>
                                     </div>
                                 </Fragment>
