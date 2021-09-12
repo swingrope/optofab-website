@@ -2,7 +2,13 @@ import React from "react";
 import styled from "styled-components";
 
 const UploadButton = (props) => {
-  return <Button onClick={props.onClick} value={props.title || "Upload"} />;
+  return (
+    <Button
+      type="button"
+      onClick={props.onClick}
+      value={props.title || "Upload"}
+    />
+  );
 };
 
 export default UploadButton;
@@ -18,7 +24,6 @@ const Button = styled.input`
   color: #fff;
   font-weight: bold;
   font-family: Segoe UI, sans-serif;
-  cursor: pointer;
   border: 1px solid #000000;
   text-align: center;
   /* box-sizing: border-box; */
@@ -32,5 +37,6 @@ const Button = styled.input`
   }
   :hover {
     background: rgba(0, 0, 0, 0.1);
+    cursor: pointer;
   }
 `;
