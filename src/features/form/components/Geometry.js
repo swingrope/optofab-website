@@ -6,12 +6,12 @@ import { validateField } from '../Helpers'
 export const geometryInitialValues = {
     geometryType: '',
     majorDiameter: '',
-    minorDiamter: '',
+    minorDiameter: '',
     thickness: '',
     wedge: '',
     chamferWidth: '',
     width: '',
-    height: '',
+    length: '',
     sideLength: '',
     dimensionalAccuracy: '',
     numberOfSides:''
@@ -43,8 +43,8 @@ export default function Geometry({geometryValues, handleChange, blankSource, sub
             )}
             {geometryValues.geometryType === 'rectangle' && (
                 <Fragment>
-                    <MyTextInput label='Width (mm):' name='geometry.width' onChange={handleChange} />
-                    <MyTextInput label='Height (mm):' name='geometry.height' onChange={handleChange} />
+                    <MyTextInput labelClass="required" validate={validateField} label='Width (mm):' name='geometry.width' onChange={handleChange} />
+                    <MyTextInput label='Length (mm):' name='geometry.length' onChange={handleChange} />
                     <MyTextInput label='Thickness (mm):' name='geometry.thickness' onChange={handleChange} />
                     <MyTextInput label='Wedge (arcsecond):' name='geometry.wedge' onChange={handleChange} />
                     <MyTextInput label='Chamfer width (mm):' name='geometry.chamferWidth' onChange={handleChange} />

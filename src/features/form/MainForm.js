@@ -32,6 +32,12 @@ const SwitchServiceType = () => {
     return null
 }
 
+const setDefaultValues = (setFieldValue, values) => {
+    if (values.geometry.minorDiameter === '') {
+        setFieldValue('geometry.minorDiameter', values.geometry.MajorDiameter)
+    }
+}
+
 export default function MainForm({part, setPart}) {
 
     function handleAddPart(e, values, resetForm, setFieldValue, validateForm) {
@@ -39,6 +45,7 @@ export default function MainForm({part, setPart}) {
         console.log(part)
         validateForm().then(errors => {
             if (errors.length > 0) {
+                setDefaultValues(setFieldValue, values)
                 localStorage.setItem(`part${part}`, JSON.stringify(values))
                 setPart(part+1)
                 resetForm()

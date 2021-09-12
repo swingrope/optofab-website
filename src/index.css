@@ -15,3 +15,7 @@ code {
   content: "*";
   color: #FF0000;
 }
+
+.error {
+  color: #FF0000;
+}
