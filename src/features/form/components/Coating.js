@@ -27,7 +27,7 @@ export default function Coating({coatingValues, handleChange, index, serviceType
     return (
         <div>
             <label>
-                Coating specification method: {specMethod1 ? 'Index/thickness' : 'Tranmission/reflection'}
+                Coating specification method: {specMethod1 ? 'Index/thickness' : 'Transmission/reflection'}
                 <button onClick={e => switchSpecMethod(e)}>Switch</button>
             </label>
             {specMethod1 ? (
