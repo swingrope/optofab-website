@@ -1,7 +1,7 @@
 <?php
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: *");
-require __DIR__ . 'Common.php';
+require 'Common.php';
 
 
 // header
@@ -13,7 +13,7 @@ $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) 
 if ($contentType === "application/json") {
     $requestPayload = file_get_contents("php://input");
     $decodedJson = json_decode($requestPayload, true);
-    $decodedJson = var_dump($decodedJson);
+    //$decodedJson = var_dump($decodedJson);
     $message = $decodedJson['feedback']; // need to match the key with front end
     if ($message == null) {
         echo json_encode(array('error' => 'The feedback is empty'));
