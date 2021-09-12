@@ -87,7 +87,8 @@ export default function MainForm({part, setPart}) {
                             <label>
                                 <Field type="radio" name="serviceType" value="Integrated Optic Chip, Assembly and Others" />
                                 Integrated Optic Chip, Assembly and Others
-                            </label>                        </div>
+                            </label>                        
+                        </div>
                         <div>Picked: {values.serviceType}</div>
                             {
                                 values.serviceType === "SPDT Optic" && (

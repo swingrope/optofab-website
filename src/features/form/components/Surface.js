@@ -4,11 +4,12 @@ import { MyTextArea } from '../fields/MyTextArea.js'
 import { MyTextInput } from '../fields/MyTextInput.js'
 import Coating, { coatingInitialValues } from './Coating.js'
 import { MathComponent } from 'mathjax-react'
+import { validateField } from '../Helpers.js'
 
 export const surfaceInitialValues = {
     descriptionOfFace: '',
     curvature: '',
-    surfaceAccuracy: '',
+    surfaceFigure: '',
     turningAngle: '',
     focalLength: '',
     radiusOfCurvature: '',
@@ -47,13 +48,15 @@ export default function Surface({handleChange, index, surfaceValues, blankSource
         <div>
             <h3>Side {sideNumber}</h3>
             <MyTextArea 
+                labelClass="required"
+                validate={validateField}
                 label='Description Of Face:' 
                 name={`surface.${index}.descriptionOfFace`}
                 placeholder='Leave the description here' 
                 rows={3}
                 onChange={handleChange}
             />
-            {(serviceType === 'Optical Coating'&&geometry==='regular polygon') && (
+            {(serviceType === 'Optical Coating' && geometry==='regular polygon') && (
                 <label>
                     <Field as='select' name={`surface.${index}.descriptionOfFace`} >
                         <option value='N/A'>Please select</option>
@@ -64,9 +67,9 @@ export default function Surface({handleChange, index, surfaceValues, blankSource
                 </label>
             )}
 
-            <label>
+            <label className="required">
                 Curvature:
-                <Field as='select' name={`surface.${index}.curvature`} onChange={handleChange} >
+                <Field validate={validateField} as='select' name={`surface.${index}.curvature`} onChange={handleChange} >
                     <option value='N/A'>Please select</option>
                     <option value='flat'>Flat</option>
                     <option value='parabolic'>Parabolic</option>
@@ -77,19 +80,60 @@ export default function Surface({handleChange, index, surfaceValues, blankSource
             </label>
             <br />
             {surfaceValues.curvature === 'flat' && (
-                <MyTextInput label='Surface Accuracy (nm): ±' name={`surface.${index}.surfaceAccuracy`} onChange={handleChange} />
+                <Fragment>
+                    <MyTextInput label='Surface Figure (nm): ±' name={`surface.${index}.surfaceFigure`} onChange={handleChange} />
+                    <MyTextInput label='Surface Roughness (nm): rms' name={`surface.${index}.surfaceRoughness`} onChange={handleChange} />
+                    <label>
+                        Surface Quality:
+                        <Field as='select' name={`surface.${index}.surfaceQuality`} onChange={handleChange} >
+                            <option value='N/A'>Please select</option>
+                            <option value='40-20'>40-20</option>
+                            <option value='20-10'>20-10</option>
+                            <option value='10-5'>10-5</option>
+                        </Field>
+                    </label>
+                    <p>
+                    Surface Figure: Maximum deviation (figure error) of the optical surface from the specified shape across the clear aperture, in units of λ/N, where λ=632.8nm
+                    <br />
+                    <br />
+                    Surface Quality: Describes the number & severity of surface defects/imperfections within the clear aperture using the Scratch/Dig standard following ISO 10110-7
+                    <br />
+                    <br />
+                    Surface Roughness: Root mean square variation of the optical surface with respect to the specified shape across the clear aperture
+                    </p>
+                </Fragment>
             )}
             {surfaceValues.curvature === 'parabolic' && (
                 <Fragment>
                     <MyTextInput label='Turning Angle: ' name={`surface.${index}.turningAngle`} onChange={handleChange} />
                     <MyTextInput label='Focal Length: ' name={`surface.${index}.focalLength`} onChange={handleChange} />
-                    <MyTextInput label='Surface Accuracy (nm): ±' name={`surface.${index}.surfaceAccuracy`} onChange={handleChange} />
+                    <MyTextInput label='Surface Figure (nm): ±' name={`surface.${index}.surfaceFigure`} onChange={handleChange} />
+                    <MyTextInput label='Surface Roughness (nm): rms' name={`surface.${index}.surfaceRoughness`} onChange={handleChange} />
+                    <label>
+                        Surface Quality:
+                        <Field as='select' name={`surface.${index}.surfaceQuality`} onChange={handleChange} >
+                            <option value='N/A'>Please select</option>
+                            <option value='40-20'>40-20</option>
+                            <option value='20-10'>20-10</option>
+                            <option value='10-5'>10-5</option>
+                        </Field>
+                    </label>
                 </Fragment>
             )}
             {surfaceValues.curvature === 'spherical' && (
                 <Fragment>
                     <MyTextInput label='Radius of Curvature: ' name={`surface.${index}.radiusOfCurvature`} onChange={handleChange} />
-                    <MyTextInput label='Surface Accuracy (nm): ±' name={`surface.${index}.surfaceAccuracy`} onChange={handleChange} />
+                    <MyTextInput label='Surface Figure (nm): ±' name={`surface.${index}.surfaceFigure`} onChange={handleChange} />
+                    <MyTextInput label='Surface Roughness (nm): rms' name={`surface.${index}.surfaceRoughness`} onChange={handleChange} />
+                    <label>
+                        Surface Quality:
+                        <Field as='select' name={`surface.${index}.surfaceQuality`} onChange={handleChange} >
+                            <option value='N/A'>Please select</option>
+                            <option value='40-20'>40-20</option>
+                            <option value='20-10'>20-10</option>
+                            <option value='10-5'>10-5</option>
+                        </Field>
+                    </label>
                 </Fragment>
             )}
             {surfaceValues.curvature === 'aspheric' && (
@@ -111,7 +155,17 @@ export default function Surface({handleChange, index, surfaceValues, blankSource
                             <MyTextInput label='A12: ' name={`surface.${index}.a12`} onChange={handleChange} />
                         </Fragment>
                     )}
-                    <MyTextInput label='Surface Accuracy (nm): ±' name={`surface.${index}.surfaceAccuracy`} onChange={handleChange} />
+                    <MyTextInput label='Surface Figure (nm): ±' name={`surface.${index}.surfaceFigure`} onChange={handleChange} />
+                    <MyTextInput label='Surface Roughness (nm): rms' name={`surface.${index}.surfaceRoughness`} onChange={handleChange} />
+                    <label>
+                        Surface Quality:
+                        <Field as='select' name={`surface.${index}.surfaceQuality`} onChange={handleChange} >
+                            <option value='N/A'>Please select</option>
+                            <option value='40-20'>40-20</option>
+                            <option value='20-10'>20-10</option>
+                            <option value='10-5'>10-5</option>
+                        </Field>
+                    </label>
                 </Fragment>
             )}
             {surfaceValues.curvature === 'other' && (
@@ -121,11 +175,6 @@ export default function Surface({handleChange, index, surfaceValues, blankSource
                     </label>
                     <input type="file" name='curvatureFile' accept=".zmx" />
 
-                </Fragment>
-            )}
-            {(surfaceValues.curvature !== surfaceInitialValues.curvature && (blankSource === 'ANFF supplied'|| substrateSource==='ANFF supplied – full custom')) && (
-                <Fragment>
-                    <MyTextInput label='Form Accuracy (nm): ±' name={`surface.${index}.formAccuracy`} onChange={handleChange} />
                 </Fragment>
             )}
             <Coating coatingValues={surfaceValues.coating} handleChange={handleChange} index={index} serviceType={serviceType}/>

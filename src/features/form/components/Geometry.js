@@ -9,7 +9,7 @@ export const geometryInitialValues = {
     minorDiameter: '',
     thickness: '',
     wedge: 0,
-    chamferWidth: '',
+    chamferWidth: 0,
     width: '',
     length: '',
     sideLength: '',
@@ -45,7 +45,7 @@ export default function Geometry({geometryValues, handleChange, blankSource, sub
                 <Fragment>
                     <MyTextInput labelClass="required" validate={validateField} label='Width (mm):' name='geometry.width' onChange={handleChange} />
                     <MyTextInput label='Length (mm):' name='geometry.length' onChange={handleChange} />
-                    <MyTextInput label='Thickness (mm):' name='geometry.thickness' onChange={handleChange} />
+                    <MyTextInput labelClass="required" validate={validateField} label='Thickness (mm):' name='geometry.thickness' onChange={handleChange} />
                     <MyTextInput label='Wedge (arcsecond):' name='geometry.wedge' onChange={handleChange} />
                     <MyTextInput label='Chamfer width (mm):' name='geometry.chamferWidth' onChange={handleChange} />
                     <label>Chamfers are assumed to be 45 degrees to the coated or turned face. If other chamfer types are required, please stipulate in the 'Additional Specifications' field.</label>
@@ -54,10 +54,10 @@ export default function Geometry({geometryValues, handleChange, blankSource, sub
             {geometryValues.geometryType === 'regular polygon' && (
                 <Fragment>
                     {serviceType === 'Optical Coating' && (
-                        <MyTextInput label='Number of Sides:' name='geometry.numberOfSides' onChange={handleChange} />
+                        <MyTextInput labelClass="required" validate={validateField} label='Number of Sides:' name='geometry.numberOfSides' onChange={handleChange} />
                     )}
-                    <MyTextInput label='Side Length (mm):' name='geometry.sideLength' onChange={handleChange} />
-                    <MyTextInput label='Thickness (mm):' name='geometry.thickness' onChange={handleChange} />
+                    <MyTextInput labelClass="required" validate={validateField} label='Side Length (mm):' name='geometry.sideLength' onChange={handleChange} />
+                    <MyTextInput labelClass="required" validate={validateField} label='Thickness (mm):' name='geometry.thickness' onChange={handleChange} />
                     <MyTextInput label='Wedge (arcsecond):' name='geometry.wedge' onChange={handleChange} />
                     <MyTextInput label='Chamfer width (mm):' name='geometry.chamferWidth' onChange={handleChange} />
                     <label>Chamfers are assumed to be 45 degrees to the coated or turned face. If other chamfer types are required, please stipulate in the 'Additional Specifications' field.</label>
