@@ -1,6 +1,7 @@
 import { Field } from 'formik'
 import React, { Fragment } from 'react'
 import { MyTextInput } from '../fields/MyTextInput'
+import { validateField } from '../Helpers'
 
 export const geometryInitialValues = {
     geometryType: '',
@@ -19,22 +20,22 @@ export const geometryInitialValues = {
 export default function Geometry({geometryValues, handleChange, blankSource, substrateSource, serviceType}) {
     return (
         <div>
-            <label>
+            <label className="required">
                 Geometry:
-                <Field as='select' name='geometry.geometryType' >
+                <Field validate={validateField} as='select' name='geometry.geometryType' >
                     <option value='N/A'>Please select</option>
-                    <option value='oval'>Oval</option>
+                    <option value='circular/elliptical'>Circular/Elliptical</option>
                     <option value='rectangle'>Rectangle</option>
                     <option value='regular polygon'>Regular Polygon</option>
                     <option value='other'>Other</option>
                 </Field>
             </label>
             <br />
-            {geometryValues.geometryType === 'oval' && (
+            {geometryValues.geometryType === 'circular/elliptical' && (
                 <Fragment>
-                    <MyTextInput label='Major Diameter (mm):' name='geometry.majorDiameter' onChange={handleChange} />
+                    <MyTextInput labelClass="required" validate={validateField} label='Major Diameter (mm):' name='geometry.majorDiameter' onChange={handleChange} />
                     <MyTextInput label='Minor Diameter (mm):' name='geometry.minorDiameter' onChange={handleChange} />
-                    <MyTextInput label='Thickness (mm):' name='geometry.thickness' onChange={handleChange} />
+                    <MyTextInput labelClass="required" validate={validateField} label='Thickness (mm):' name='geometry.thickness' onChange={handleChange} />
                     <MyTextInput label='Wedge (arcsecond):' name='geometry.wedge' onChange={handleChange} />
                     <MyTextInput label='Chamfer width (mm):' name='geometry.chamferWidth' onChange={handleChange} />
                     <label>Chamfers are assumed to be 45 degrees to the coated or turned face. If other chamfer types are required, please stipulate in the 'Additional Specifications' field.</label>

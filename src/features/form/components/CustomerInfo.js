@@ -1,6 +1,5 @@
-import axios from 'axios';
-import { Field, Form, Formik, useFormikContext } from 'formik'
-import React, { useEffect, useState } from 'react'
+import { Field, Form, Formik } from 'formik'
+import React from 'react'
 import { MyTextInput } from '../fields/MyTextInput';
 
 export const customerInfoInitialValues = {

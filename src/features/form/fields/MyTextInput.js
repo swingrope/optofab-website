@@ -1,11 +1,11 @@
 import React from 'react';
 import { useField } from 'formik';
 
-export const MyTextInput = ({ label, ...props }) => {
+export const MyTextInput = ({ label, labelClass, ...props }) => {
   const [field, meta] = useField(props);
   return (
     <>
-      <label>
+      <label className={labelClass}>
         {label}
         <input {...field} {...props} />
         <br />

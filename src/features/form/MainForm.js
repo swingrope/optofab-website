@@ -6,6 +6,7 @@ import Surface, { surfaceInitialValues } from './components/Surface'
 import {MyTextInput} from "./fields/MyTextInput";
 import {MyTextArea} from "./fields/MyTextArea";
 import { Link } from 'react-router-dom'
+import { validateField } from './Helpers'
 
 export const formInitialValues = {
     serviceType: '',
@@ -19,26 +20,13 @@ export const formInitialValues = {
     specialInstructions:''
 }
 
-export const flattenObject = (obj) => {
-    const flattened = {}
-  
-    Object.keys(obj).forEach((key) => {
-      if (typeof obj[key] === 'object' && obj[key] !== null) {
-        Object.assign(flattened, flattenObject(obj[key]))
-      } else {
-        flattened[key] = obj[key]
-      }
-    })
-    return flattened
-  }
-
 const SwitchServiceType = () => {
 
     const { values, setValues } = useFormikContext()
 
     useEffect(() => {
         const temp = values.serviceType
-        setValues({...formInitialValues, serviceType: temp})
+        setValues({...formInitialValues, serviceType: temp}, false)
     }, [values.serviceType, setValues])
 
     return null
@@ -46,13 +34,17 @@ const SwitchServiceType = () => {
 
 export default function MainForm({part, setPart}) {
 
-
-    function handleAddPart(e, values, resetForm) {
+    function handleAddPart(e, values, resetForm, setFieldValue, validateForm) {
         e.preventDefault()
         console.log(part)
-        localStorage.setItem(`part${part}`, JSON.stringify(values))
-        setPart(part+1)
-        resetForm()
+        validateForm().then(errors => {
+            if (errors.length > 0) {
+                localStorage.setItem(`part${part}`, JSON.stringify(values))
+                setPart(part+1)
+                resetForm()
+            }
+        })
+
     }
 
     return (
@@ -67,7 +59,7 @@ export default function MainForm({part, setPart}) {
                         alert(JSON.stringify(values, null, 2));
                     }}
                 >
-                {({values, handleChange, resetForm}) => (
+                {({values, setFieldValue, validateForm, handleChange, resetForm, errors}) => (
                     <Form>
                         <SwitchServiceType />
                         <h1 id="service-type">Service Type: </h1>
@@ -93,9 +85,9 @@ export default function MainForm({part, setPart}) {
                             {
                                 values.serviceType === "SPDT Optic" && (
                                     <Fragment>
-                                        <label>
+                                        <label className="required">
                                             Blank source:
-                                            <Field name='blankSource' as='select'>
+                                            <Field validate={validateField} name='blankSource' as='select'>
                                                 <option value='N/A'>Please Select</option>
                                                 <option value='ANFF supplied'>ANFF supplied – full custom</option>
                                                 <option value='Customer supplied'>Customer supplied</option>
@@ -342,7 +334,7 @@ export default function MainForm({part, setPart}) {
                             (values.serviceType === "SPDT Optic"||values.serviceType === "Optical Coating"||values.serviceType === "Photonic Coating") && (
                                 <Fragment>
                                     <div>
-                                    <button onClick={(e) => handleAddPart(e, values, resetForm)} className='add'>Add another part</button>
+                                    <button onClick={(e) => handleAddPart(e, values, resetForm, setFieldValue, validateForm)} className='add'>Add another part</button>
                                     <button onClick = {(e) => handleAddPart(e, values, resetForm)}>
                                         <Link style={{color: 'black', textDecoration: 'none'}} to='/customer'>Enter customer information (please ensure all information are entered)</Link>
                                     </button>

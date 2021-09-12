@@ -2,6 +2,7 @@ import { Field } from 'formik'
 import React, { Fragment } from 'react'
 import { MyTextInput } from '../fields/MyTextInput'
 import { MyTextArea } from '../fields/MyTextArea'
+import { validateField } from '../Helpers'
 
 export const materialInitialValues = {
     materialType: '',
@@ -18,9 +19,9 @@ export const materialInitialValues = {
 export default function Material({serviceType, handleChange, materialValues}) {
     return (
         <div>
-            <label>
+            <label className="required">
                 Material:
-                <Field as='select' name='material.materialType' onChange={handleChange}>
+                <Field validate={validateField} as='select' name='material.materialType' onChange={handleChange}>
                     {serviceType === 'spdt' && (
                         <Fragment>
                             <option value='N/A'>Please select</option>
