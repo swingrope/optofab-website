@@ -32,7 +32,7 @@ const Select = styled.select`
     rgba(24, 32, 79, 0) 0%,
     rgba(24, 32, 79, 0.1) 100%
   ); */
-  max-width: 250px;
+  max-width: 200px;
   /* border: none; */
   border: 0.5px solid rgba(0, 0, 0, 0.3);
   box-sizing: border-box;

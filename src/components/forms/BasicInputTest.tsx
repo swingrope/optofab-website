@@ -15,7 +15,8 @@ export default BasicInputTest;
 
 const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: 130px auto;
+  /* use minmax to set a range */
+  grid-template-columns: minmax(50px, 200px) auto;
   align-items: center;
   margin: 10px;
 `;
