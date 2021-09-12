@@ -152,9 +152,9 @@ export default function MainForm({part, setPart}) {
                             {
                                 values.serviceType === "Optical Coating" && (
                                     <Fragment>
-                                        <label>
+                                        <label className="required">
                                             Substrate source:
-                                            <Field name='substrateSource' as='select'>
+                                            <Field validate={validateField} name='substrateSource' as='select'>
                                                 <option value='N/A'>Please select</option>
                                                 <option value='ANFF supplied – stock'>ANFF supplied – stock</option>
                                                 <option value='Customer supplied'>Customer supplied</option>
