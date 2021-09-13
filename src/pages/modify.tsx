@@ -37,7 +37,7 @@ const ModifyPage = () => {
     const message = orderMsg + descriptMsg + fileMsg;
     console.log(message);
 
-    sendEmail("OptoFab ACT", "Dear Customer", "tianwu.too@gmail.com", message);
+    sendEmail("OptoFab ACT", "", "optofab.anu@gmail.com", message);
   };
 
   console.log(watch("orderNo"), watch("description"));
