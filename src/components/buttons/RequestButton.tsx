@@ -1,10 +1,10 @@
-import { Link } from "gatsby"
-import React from "react"
-import styled from "styled-components"
-import { Caption2, SmallText } from "../styles/TextStyles"
+import { Link } from "gatsby";
+import React from "react";
+import styled from "styled-components";
+import { Caption2, SmallText } from "../styles/TextStyles";
 
 export default function RequestButton(props) {
-  const { title, subtitle } = props
+  const { title, subtitle } = props;
   return (
     <Link to="/request">
       <Wrapper>
@@ -22,7 +22,7 @@ export default function RequestButton(props) {
         </TextWrapper>
       </Wrapper>
     </Link>
-  )
+  );
 }
 
 const Wrapper = styled.div`
@@ -66,22 +66,22 @@ const Wrapper = styled.div`
       transform: scale(1.3);
     }
   }
-`
+`;
 
 const Title = styled(Caption2)`
   color: black;
-`
+`;
 
 const Subtitle = styled(SmallText)`
   color: black;
   /* opacity applies to all the layers, vs color rgba only applies to text color */
   opacity: 0.7;
-`
+`;
 
 const Icon = styled.img`
   width: 29px;
   height: 29px;
-`
+`;
 
 const Ring = styled.img`
   position: absolute;
@@ -92,7 +92,7 @@ const Ring = styled.img`
   ${Wrapper}:hover & {
     transform: rotate(10deg) scale(1.1);
   }
-`
+`;
 
 const IconWrapper = styled.div`
   width: 45px;
@@ -114,9 +114,9 @@ const IconWrapper = styled.div`
     /* filter effects, see:  https://developer.mozilla.org/en-US/docs/Web/CSS/filter */
     filter: hue-rotate(10deg) brightness(120%) saturate(80%);
   }
-`
+`;
 
 const TextWrapper = styled.div`
   display: grid;
   gap: 4px;
-`
+`;

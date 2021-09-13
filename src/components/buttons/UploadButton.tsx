@@ -38,5 +38,6 @@ const Button = styled.input`
   :hover {
     background: rgba(0, 0, 0, 0.1);
     cursor: pointer;
+    transform: scale(1.05);
   }
 `;
