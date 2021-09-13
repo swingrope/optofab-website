@@ -141,7 +141,7 @@ export default function MainForm({part, setPart}) {
                                                 rows={3}
                                                 onChange={handleChange}
                                             />
-                                            <label className="required">
+                                            <label>
                                                 Upload PDF/PNG File:
                                             </label>
                                             <input type="file" name='specialInstructionFile' accept=".pdf,.png" />
@@ -351,7 +351,7 @@ export default function MainForm({part, setPart}) {
                                 <Fragment>
                                     <div>
                                     <button onClick={(e) => handleAddPart(e, values, resetForm, setFieldValue, validateForm)} className='add'>Add another part</button>
-                                    <button onClick = {(e) => handleAddPart(e, values, resetForm)}>
+                                    <button onClick = {(e) => handleAddPart(e, values, resetForm, setFieldValue, validateForm)}>
                                         <Link style={{color: 'black', textDecoration: 'none'}} to='/customer'>All parts specified - Next Step</Link>
                                     </button>
                                     </div>
