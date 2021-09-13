@@ -69,26 +69,11 @@ export default function Geometry({geometryValues, handleChange, blankSource, sub
                         Max 5M PDF / PNG only
                     </label>
                     <br />
-                    <MyTextArea labelClass="required" validate={validateField} label='Dimensional Accuracy (mm): ' name='geometry.dimensionalAccuracy' onChange={handleChange} />
-                    <p>
-                        Our standard tolerances on substrates are as follows. If different tolerances are required, let us know in the ‘Tolerances’ field below.
-                        <br />
-                        Optical substrates:
-                        <br />
-                        Diameter/Face Dimensions: ±0.15mm
-                        <br />
-                        Thickness: ±0.15mm
-                        <br />
-                        Wafers:
-                        <br />
-                        Diameter: +- 0.1mm
-                        <br />
-                        Thickness: +- 25um
-                    </p>
                 </Fragment>
             )}
             {(geometryValues.geometryType !== geometryInitialValues.geometryType && (blankSource === 'ANFF supplied' || blankSource === 'Customer supplied' || substrateSource=== 'ANFF supplied – full custom')) && (
                 <Fragment>
+                    <br />
                     <MyTextArea labelClass="required" validate={validateField} label='Dimensional Accuracy (mm): ' name='geometry.dimensionalAccuracy' onChange={handleChange} />
                     <p>
                         Our standard tolerances on substrates are as follows. If different tolerances are required, let us know in the ‘Tolerances’ field below.
