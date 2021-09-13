@@ -71,7 +71,7 @@ export default function Geometry({geometryValues, handleChange, blankSource, sub
                     <br />
                 </Fragment>
             )}
-            {(geometryValues.geometryType !== geometryInitialValues.geometryType && (blankSource === 'ANFF supplied' || blankSource === 'Customer supplied' || substrateSource=== 'ANFF supplied – full custom')) && (
+            {(geometryValues.geometryType !== geometryInitialValues.geometryType) && (
                 <Fragment>
                     <br />
                     <MyTextArea labelClass="required" validate={validateField} label='Dimensional Accuracy (mm): ' name='geometry.dimensionalAccuracy' onChange={handleChange} />
