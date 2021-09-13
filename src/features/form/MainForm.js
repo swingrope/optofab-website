@@ -45,14 +45,13 @@ export default function MainForm({part, setPart}) {
 
         validateForm().then(errors => {
             console.log(errors)
-            if (errors.length > 0) {
+            if (Object.keys(errors).length === 0) {
                 setDefaultValues(setFieldValue, values)
                 localStorage.setItem(`part${part}`, JSON.stringify(values))
                 setPart(part+1)
                 resetForm()
             }
         })
-
     }
 
     return (
