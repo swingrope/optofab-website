@@ -57,7 +57,8 @@ export default function Surface({handleChange, index, surfaceValues, blankSource
                 rows={3}
                 onChange={handleChange}
             />
-            {(serviceType === 'Optical Coating' && geometry==='regular polygon') && (
+            <div>{geometry}</div>
+            {(geometry==='regular polygon') && (
                 <label>
                     <Field as='select' name={`surface.${index}.descriptionOfFace`} >
                         <option value='N/A'>Please select</option>
@@ -83,7 +84,7 @@ export default function Surface({handleChange, index, surfaceValues, blankSource
             {surfaceValues.curvature === 'flat' && (
                 <Fragment>
                     <MyTextInput label='Surface Figure (nm): ±' name={`surface.${index}.surfaceFigure`} onChange={handleChange} />
-                    <MyTextInput label='Surface Roughness (nm): rms' name={`surface.${index}.surfaceRoughness`} onChange={handleChange} />
+                    <MyTextInput label='Surface Roughness (nm rms): ' name={`surface.${index}.surfaceRoughness`} onChange={handleChange} />
                     <label>
                         Surface Quality:
                         <Field as='select' name={`surface.${index}.surfaceQuality`} onChange={handleChange} >
@@ -106,10 +107,10 @@ export default function Surface({handleChange, index, surfaceValues, blankSource
             )}
             {surfaceValues.curvature === 'parabolic' && (
                 <Fragment>
-                    <MyTextInput labelClass="required" validate={validateField} label='Focal Length: ' name={`surface.${index}.focalLength`} onChange={handleChange} />
-                    <MyTextInput label='Turning Angle: ' name={`surface.${index}.turningAngle`} onChange={handleChange} />
+                    <MyTextInput labelClass="required" validate={validateField} label='Focal Length (mm): ' name={`surface.${index}.focalLength`} onChange={handleChange} />
+                    <MyTextInput label='Turning Angle (degree): ' name={`surface.${index}.turningAngle`} onChange={handleChange} />
                     <MyTextInput label='Surface Figure (nm): ±' name={`surface.${index}.surfaceFigure`} onChange={handleChange} />
-                    <MyTextInput label='Surface Roughness (nm): rms' name={`surface.${index}.surfaceRoughness`} onChange={handleChange} />
+                    <MyTextInput label='Surface Roughness (nm rms): ' name={`surface.${index}.surfaceRoughness`} onChange={handleChange} />
                     <label>
                         Surface Quality:
                         <Field as='select' name={`surface.${index}.surfaceQuality`} onChange={handleChange} >
@@ -119,13 +120,22 @@ export default function Surface({handleChange, index, surfaceValues, blankSource
                             <option value='10-5'>10-5</option>
                         </Field>
                     </label>
+                    <p>
+                    Surface Figure: Maximum deviation (figure error) of the optical surface from the specified shape across the clear aperture, in units of λ/N, where λ=632.8nm
+                    <br />
+                    <br />
+                    Surface Quality: Describes the number & severity of surface defects/imperfections within the clear aperture using the Scratch/Dig standard following ISO 10110-7
+                    <br />
+                    <br />
+                    Surface Roughness: Root mean square variation of the optical surface with respect to the specified shape across the clear aperture
+                    </p>
                 </Fragment>
             )}
             {surfaceValues.curvature === 'spherical' && (
                 <Fragment>
-                    <MyTextInput labelClass="required" validate={validateField} label='Radius of Curvature: ' name={`surface.${index}.radiusOfCurvature`} onChange={handleChange} />
+                    <MyTextInput labelClass="required" validate={validateField} label='Radius of Curvature(mm): ' name={`surface.${index}.radiusOfCurvature`} onChange={handleChange} />
                     <MyTextInput label='Surface Figure (nm): ±' name={`surface.${index}.surfaceFigure`} onChange={handleChange} />
-                    <MyTextInput label='Surface Roughness (nm): rms' name={`surface.${index}.surfaceRoughness`} onChange={handleChange} />
+                    <MyTextInput label='Surface Roughness (nm rms): ' name={`surface.${index}.surfaceRoughness`} onChange={handleChange} />
                     <label>
                         Surface Quality:
                         <Field as='select' name={`surface.${index}.surfaceQuality`} onChange={handleChange} >
@@ -135,6 +145,15 @@ export default function Surface({handleChange, index, surfaceValues, blankSource
                             <option value='10-5'>10-5</option>
                         </Field>
                     </label>
+                    <p>
+                    Surface Figure: Maximum deviation (figure error) of the optical surface from the specified shape across the clear aperture, in units of λ/N, where λ=632.8nm
+                    <br />
+                    <br />
+                    Surface Quality: Describes the number & severity of surface defects/imperfections within the clear aperture using the Scratch/Dig standard following ISO 10110-7
+                    <br />
+                    <br />
+                    Surface Roughness: Root mean square variation of the optical surface with respect to the specified shape across the clear aperture
+                    </p>
                 </Fragment>
             )}
             {surfaceValues.curvature === 'aspheric' && (
@@ -157,7 +176,7 @@ export default function Surface({handleChange, index, surfaceValues, blankSource
                         </Fragment>
                     )}
                     <MyTextInput label='Surface Figure (nm): ±' name={`surface.${index}.surfaceFigure`} onChange={handleChange} />
-                    <MyTextInput label='Surface Roughness (nm): rms' name={`surface.${index}.surfaceRoughness`} onChange={handleChange} />
+                    <MyTextInput label='Surface Roughness (nm rms): ' name={`surface.${index}.surfaceRoughness`} onChange={handleChange} />
                     <label>
                         Surface Quality:
                         <Field as='select' name={`surface.${index}.surfaceQuality`} onChange={handleChange} >
@@ -167,6 +186,15 @@ export default function Surface({handleChange, index, surfaceValues, blankSource
                             <option value='10-5'>10-5</option>
                         </Field>
                     </label>
+                    <p>
+                    Surface Figure: Maximum deviation (figure error) of the optical surface from the specified shape across the clear aperture, in units of λ/N, where λ=632.8nm
+                    <br />
+                    <br />
+                    Surface Quality: Describes the number & severity of surface defects/imperfections within the clear aperture using the Scratch/Dig standard following ISO 10110-7
+                    <br />
+                    <br />
+                    Surface Roughness: Root mean square variation of the optical surface with respect to the specified shape across the clear aperture
+                    </p>
                 </Fragment>
             )}
             {surfaceValues.curvature === 'other' && (
@@ -175,9 +203,29 @@ export default function Surface({handleChange, index, surfaceValues, blankSource
                         Upload Zemax/Winlens File:
                     </label>
                     <input type="file" name='curvatureFile' accept=".zmx" />
-
+                    <MyTextInput label='Surface Figure (nm): ±' name={`surface.${index}.surfaceFigure`} onChange={handleChange} />
+                    <MyTextInput label='Surface Roughness (nm rms): ' name={`surface.${index}.surfaceRoughness`} onChange={handleChange} />
+                    <label>
+                        Surface Quality:
+                        <Field as='select' name={`surface.${index}.surfaceQuality`} onChange={handleChange} >
+                            <option value='N/A'>Please select</option>
+                            <option value='40-20'>40-20</option>
+                            <option value='20-10'>20-10</option>
+                            <option value='10-5'>10-5</option>
+                        </Field>
+                        </label>
+                        <p>
+                        Surface Figure: Maximum deviation (figure error) of the optical surface from the specified shape across the clear aperture, in units of λ/N, where λ=632.8nm
+                        <br />
+                        <br />
+                        Surface Quality: Describes the number & severity of surface defects/imperfections within the clear aperture using the Scratch/Dig standard following ISO 10110-7
+                        <br />
+                        <br />
+                        Surface Roughness: Root mean square variation of the optical surface with respect to the specified shape across the clear aperture
+                        </p>
                 </Fragment>
             )}
+            <br />
             <button type="button" onClick={() => setHasCoating(!hasCoating)}>Add Coating</button>
             {hasCoating && (
                 <Coating coatingValues={surfaceValues.coating} handleChange={handleChange} index={index} serviceType={serviceType}/>

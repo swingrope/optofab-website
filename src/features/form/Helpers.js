@@ -13,7 +13,7 @@ export const flattenObject = (obj) => {
 
 export const validateField = (value) => {
     let error
-    if (value.length === 0 || !value)
+    if (!value || value.length === 0)
         error = 'This is required!'
     return error
 }

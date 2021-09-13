@@ -53,9 +53,7 @@ export default function Geometry({geometryValues, handleChange, blankSource, sub
             )}
             {geometryValues.geometryType === 'regular polygon' && (
                 <Fragment>
-                    {serviceType === 'Optical Coating' && (
-                        <MyTextInput labelClass="required" validate={validateField} label='Number of Sides:' name='geometry.numberOfSides' onChange={handleChange} />
-                    )}
+                    <MyTextInput labelClass="required" validate={validateField} label='Number of Sides:' name='geometry.numberOfSides' onChange={handleChange} />
                     <MyTextInput labelClass="required" validate={validateField} label='Side Length (mm):' name='geometry.sideLength' onChange={handleChange} />
                     <MyTextInput labelClass="required" validate={validateField} label='Thickness (mm):' name='geometry.thickness' onChange={handleChange} />
                     <MyTextInput label='Wedge (arcsecond):' name='geometry.wedge' onChange={handleChange} />

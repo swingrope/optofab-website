@@ -1,6 +1,7 @@
 import { Field } from 'formik'
 import React from 'react'
 import { MyTextInput } from '../fields/MyTextInput'
+import { validateField } from '../Helpers'
 
 export const layerInitialValues = {
     thicknessOfLayer: '',
@@ -12,24 +13,29 @@ export const layerInitialValues = {
 }
 
 export default function Layer({sideIndex, index, handleChange}) {
-    let layerNum = index + 1
+    const layerNum = index + 1
 
     return (
         <div>
             <h3>Layer {layerNum}</h3>
             <MyTextInput 
+                labelClass='required'
+                validate={validateField}
                 label='Thickness of Layer(nm): ' 
                 name={`surface[${sideIndex}].coating.layers[${index}].thicknessOfLayer`}
                 onChange={handleChange}
             />
             <MyTextInput 
+                labelClass='required'
+                validate={validateField}
                 label='Thickness Tolerance(nm): ' 
-                name={`surface[${sideIndex}].coating.layers[${index}].thicknessTolerence`}
+                name={`surface[${sideIndex}].coating.layers[${index}].thicknessTolerance`}
                 onChange={handleChange}
             />
-            <label>
+            <label className='required'>
                 Material: 
                 <Field 
+                validate={validateField}
                 as='select' 
                 name={`surface[${sideIndex}].coating.layers[${index}].material`}
                 onChange={handleChange}
@@ -41,11 +47,12 @@ export default function Layer({sideIndex, index, handleChange}) {
             </label>
             <MyTextInput 
                 label='Refractive index: ' 
+                br={false}
                 name={`surface[${sideIndex}].coating.layers[${index}].refractiveIndex`}
                 onChange={handleChange}
             />
             <MyTextInput 
-                label='Tolerance (nm): ' 
+                label='+-' 
                 name={`surface[${sideIndex}].coating.layers[${index}].refractiveIndex`}
                 onChange={handleChange}
             />
