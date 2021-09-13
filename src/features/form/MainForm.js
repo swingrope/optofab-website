@@ -125,6 +125,7 @@ export default function MainForm({part, setPart}) {
                                                                 surfaceValues={values.surface[index]}
                                                                 blankSource={values.blankSource}
                                                                 substrateSource={'N/A'}
+                                                                geometry={values.geometry.geometryType}
                                                             />
                                                         ))}
                                                         <button type='button' onClick={() => push(surfaceInitialValues)}>Add a side</button>
@@ -171,6 +172,12 @@ export default function MainForm({part, setPart}) {
                                                                 <option value='25.4mm'>25.4mm</option>
                                                                 <option value='50.8mm'>50.8mm</option>
                                                             </Field>
+                                                            <Material
+                                                            serviceType='optical'
+                                                            handleChange={handleChange}
+                                                            materialValues={values.material}
+                                                            isStock={true}
+                                                            />
                                                         </label>
                                                     </Fragment>
                                                 )
@@ -296,6 +303,7 @@ export default function MainForm({part, setPart}) {
                                                             blankSource={'N/A'}
                                                             serviceType={values.serviceType}
                                                             substrateSource={values.substrateSource}
+                                                            geometry={values.geometry.geometryType}
                                                         />
                                                     ))}
                                                     <button type='button' onClick={() => push(surfaceInitialValues)}>Add a side</button>

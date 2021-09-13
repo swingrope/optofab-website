@@ -16,13 +16,13 @@ export const materialInitialValues = {
     materialTransferAgreement: ''
 }
 
-export default function Material({serviceType, handleChange, materialValues}) {
+export default function Material({serviceType, handleChange, materialValues, isStock}) {
     return (
         <div>
             <label className="required">
                 Material:
                 <Field validate={validateField} as='select' name='material.materialType' onChange={handleChange}>
-                    {serviceType === 'spdt' && (
+                    {(serviceType === 'spdt' || (serviceType === 'optical' && !isStock)) && (
                         <Fragment>
                             <option value='N/A'>Please select</option>
                             <option value='Aluminium'>Aluminium</option>
@@ -41,11 +41,17 @@ export default function Material({serviceType, handleChange, materialValues}) {
                             <option value='Nylon'>Nylon</option>
                             <option value='Delrin'>Delrin </option>
                             <option value='PTFE'>PTFE </option>
+                            {serviceType === 'optical' && (
+                                <option value='Silica'>Silica</option>
+                            )}
                         </Fragment>
                     )}
-                    {(serviceType === 'optical') && (
+                    {(serviceType === 'optical' && isStock) && (
                         <Fragment>
                             <option value='N/A'>Please select</option>
+                            <option value='ø12.7mm x 4mm DSP UVFS'>ø12.7mm x 4mm DSP UVFS</option>
+                            <option value='ø25.4mm x 6mm DSP UVFS'>ø25.4mm x 6mm DSP UVFS</option>
+                            <option value='ø50.8mm x 8mm DSP UVFS'>ø50.8mm x 8mm DSP UVFS</option>
                             <option value='other'>Other</option>
                         </Fragment>
                     )}

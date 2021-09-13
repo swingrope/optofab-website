@@ -57,7 +57,6 @@ export default function Surface({handleChange, index, surfaceValues, blankSource
                 rows={3}
                 onChange={handleChange}
             />
-            <div>{geometry}</div>
             {(geometry==='regular polygon') && (
                 <label>
                     <Field as='select' name={`surface.${index}.descriptionOfFace`} >
