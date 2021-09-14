@@ -1,16 +1,12 @@
 import "./App.css";
-import {
-  Route,
-  BrowserRouter as Router,
-  Switch,
-  NavLink,
-} from "react-router-dom";
+import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import MainForm from "./features/form/MainForm";
 import React, { useState } from "react";
 import Feedback from "./features/form/Feedback";
 import Modify from "./features/form/Modify";
 import Track from "./features/form/Track";
 import CustomerInfo from "./features/form/components/CustomerInfo";
+import HomePage from "./Home";
 
 function App() {
   const [part, setPart] = useState(1);
@@ -20,7 +16,7 @@ function App() {
       <Switch>
         <Route exact path="/">
           <div>
-            <NavLink to="/request">Request</NavLink>
+            <HomePage />
           </div>
         </Route>
         <Route path="/request">
