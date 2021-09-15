@@ -2,23 +2,34 @@ import React from "react";
 import styled from "styled-components";
 import { useField } from "formik";
 
-export const MyTextInput = ({ label, labelClass, br = true, ...props }) => {
+export const MyTextInput = ({
+  label,
+  labelClass,
+  br = true,
+  placeholder,
+  ...props
+}) => {
   const [field, meta] = useField(props);
   return (
-    <>
+    <Wrapper>
       <label className={labelClass}>
         {label}
         {/* <input {...field} {...props} /> */}
-        <Input {...field} {...props} />
+
+        <Input {...field} {...props} placeholder={placeholder} />
 
         {br && <br />}
       </label>
       {meta.touched && meta.error ? (
         <div className="error">{meta.error}</div>
       ) : null}
-    </>
+    </Wrapper>
   );
 };
+
+const Wrapper = styled.div`
+  margin: 3px 0;
+`;
 
 const Input = styled.input`
   font-size: 15px;
@@ -31,3 +42,5 @@ const Input = styled.input`
   /* no border highlight when typing */
   outline: none;
 `;
+
+const InputWrapper = styled.div``;

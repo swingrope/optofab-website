@@ -8,6 +8,7 @@ export const MyTextArea = ({ label, labelClass, ...props }) => {
     <>
       <label className={labelClass}>
         {label}
+        <br />
         <InputArea {...field} {...props} />
       </label>
       {meta.touched && meta.error ? (
@@ -22,10 +23,14 @@ const InputArea = styled.textarea`
   line-height: 130%;
   text-align: left;
   color: rgba(255, 255, 255, 0.8);
-  background: transparent;
+  /* background: transparent; */
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
   /* get rid of input border */
   border: 0;
   /* no border highlight when typing */
   outline: none;
   max-width: 650px;
+  padding: 6px;
+  resize: none;
 `;

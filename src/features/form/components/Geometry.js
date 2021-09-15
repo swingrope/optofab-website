@@ -47,13 +47,15 @@ export default function Geometry({
           <MyTextInput
             labelClass="required"
             validate={validateField}
-            label="Major Diameter (mm):"
+            label="Major Diameter (mm):  "
+            placeholder="enter a float number here"
             name="geometry.majorDiameter"
             onChange={handleChange}
           />
           <MyTextInput
             label="Minor Diameter (mm):"
             name="geometry.minorDiameter"
+            placeholder="enter a float number here"
             onChange={handleChange}
           />
           <MyTextInput
@@ -61,16 +63,19 @@ export default function Geometry({
             validate={validateField}
             label="Thickness (mm):"
             name="geometry.thickness"
+            placeholder="enter a float number here"
             onChange={handleChange}
           />
           <MyTextInput
             label="Wedge (arcsecond):"
             name="geometry.wedge"
+            placeholder="enter a float number here"
             onChange={handleChange}
           />
           <MyTextInput
             label="Chamfer width (mm):"
             name="geometry.chamferWidth"
+            placeholder="enter a float number here"
             onChange={handleChange}
           />
           <label>
@@ -87,11 +92,13 @@ export default function Geometry({
             validate={validateField}
             label="Width (mm):"
             name="geometry.width"
+            placeholder="enter a float number here"
             onChange={handleChange}
           />
           <MyTextInput
             label="Length (mm):"
             name="geometry.length"
+            placeholder="enter a float number here"
             onChange={handleChange}
           />
           <MyTextInput
@@ -99,16 +106,19 @@ export default function Geometry({
             validate={validateField}
             label="Thickness (mm):"
             name="geometry.thickness"
+            placeholder="enter a float number here"
             onChange={handleChange}
           />
           <MyTextInput
             label="Wedge (arcsecond):"
             name="geometry.wedge"
+            placeholder="enter a float number here"
             onChange={handleChange}
           />
           <MyTextInput
             label="Chamfer width (mm):"
             name="geometry.chamferWidth"
+            placeholder="enter a float number here"
             onChange={handleChange}
           />
           <label>
@@ -125,6 +135,7 @@ export default function Geometry({
             validate={validateField}
             label="Number of Sides:"
             name="geometry.numberOfSides"
+            placeholder="enter a float number here"
             onChange={handleChange}
           />
           <MyTextInput
@@ -132,6 +143,7 @@ export default function Geometry({
             validate={validateField}
             label="Side Length (mm):"
             name="geometry.sideLength"
+            placeholder="enter a float number here"
             onChange={handleChange}
           />
           <MyTextInput
@@ -139,16 +151,19 @@ export default function Geometry({
             validate={validateField}
             label="Thickness (mm):"
             name="geometry.thickness"
+            placeholder="enter a float number here"
             onChange={handleChange}
           />
           <MyTextInput
             label="Wedge (arcsecond):"
             name="geometry.wedge"
+            placeholder="enter a float number here"
             onChange={handleChange}
           />
           <MyTextInput
             label="Chamfer width (mm):"
             name="geometry.chamferWidth"
+            placeholder="enter a float number here"
             onChange={handleChange}
           />
           <label>
@@ -175,6 +190,8 @@ export default function Geometry({
             validate={validateField}
             label="Dimensional Accuracy (mm): "
             name="geometry.dimensionalAccuracy"
+            placeholder="Please specify the dimensional accuracy here..."
+            cols={80}
             onChange={handleChange}
           />
           <p>

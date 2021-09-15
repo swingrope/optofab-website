@@ -57,7 +57,7 @@ export default function Feedback() {
                     id="feedback-editor"
                     name="feedback"
                     placeholder="Please type in here"
-                    rows={28}
+                    rows={26}
                     cols={60}
                   />
                 </TextareaWrapper>

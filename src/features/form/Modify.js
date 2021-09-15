@@ -97,15 +97,15 @@ export default function Modify() {
                   />
                 </OrderNoWrapper>
                 <DescriptionWrapper>
-                  <img src="/images/smallicons/courses.svg" />
+                  {/* <img src="/images/smallicons/courses.svg" /> */}
                   <MyTextArea
                     //   label="Please describe what kind of modification you want to make:"
                     label=""
                     id="Modification"
                     name="Modification"
                     placeholder="Please type in modifications here"
-                    rows={13}
-                    cols={90}
+                    rows={12}
+                    cols={100}
                   />
                 </DescriptionWrapper>
                 <input
@@ -169,8 +169,8 @@ const DescriptionWrapper = styled.div`
   display: grid;
   grid-template-columns: 28px auto;
   padding: 10px;
-  width: 720px;
-  height: 300px;
+  width: 680px;
+  height: 320px;
   background: linear-gradient(
     180deg,
     rgba(99, 106, 150, 0.4) 0%,
