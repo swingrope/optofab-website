@@ -59,7 +59,6 @@ export default function MainForm({ part, setPart }) {
       <Wrapper>
         <ContentWrapper>
           <Fragment>
-            <h1>Request Form</h1>
             <Formik
               initialValues={formInitialValues}
               onSubmit={async (values) => {
@@ -79,45 +78,45 @@ export default function MainForm({ part, setPart }) {
                 <Form>
                   <SwitchServiceType />
                   <h1 id="service-type">Service Type: </h1>
-                  <div role="group" aria-labelledby="service-type">
-                    <label>
+                  <div role="group" aria-Labelledby="service-type">
+                    <Label>
                       <Field
                         type="radio"
                         name="serviceType"
                         value="SPDT Optic"
                       />
                       SPDT Optic
-                    </label>
+                    </Label>
 
-                    <label>
+                    <Label>
                       <Field
                         type="radio"
                         name="serviceType"
                         value="Optical Coating"
                       />
                       Optical Coating
-                    </label>
-                    <label>
+                    </Label>
+                    <Label>
                       <Field
                         type="radio"
                         name="serviceType"
                         value="Photonic Coating"
                       />
                       Photonic Coating
-                    </label>
-                    <label>
+                    </Label>
+                    <Label>
                       <Field
                         type="radio"
                         name="serviceType"
                         value="Integrated Optic Chip, Assembly and Others"
                       />
                       Integrated Optic Chip, Assembly and Others
-                    </label>
+                    </Label>
                   </div>
                   <div>Picked: {values.serviceType}</div>
                   {values.serviceType === "SPDT Optic" && (
                     <Fragment>
-                      <label className="required">
+                      <Label className="required">
                         Blank source:
                         <Field
                           validate={validateField}
@@ -171,31 +170,31 @@ export default function MainForm({ part, setPart }) {
                         </FieldArray>
                         <br />
                         <MyTextInput
-                          labelClass="required"
+                          LabelClass="required"
                           validate={validateField}
-                          label="Quantity:"
+                          Label="Quantity:"
                           name="quantity"
                           onChange={handleChange}
                         />
                         <MyTextArea
-                          label="Special instructions:"
+                          Label="Special instructions:"
                           name="specialInstructions"
                           placeholder="Leave the description here"
                           rows={3}
                           onChange={handleChange}
                         />
-                        <label>Upload PDF/PNG File:</label>
+                        <Label>Upload PDF/PNG File:</Label>
                         <input
                           type="file"
                           name="specialInstructionFile"
                           accept=".pdf,.png"
                         />
-                      </label>
+                      </Label>
                     </Fragment>
                   )}
                   {values.serviceType === "Optical Coating" && (
                     <Fragment>
-                      <label className="required">
+                      <Label className="required">
                         Substrate source:
                         <Field
                           validate={validateField}
@@ -215,7 +214,7 @@ export default function MainForm({ part, setPart }) {
                         </Field>
                         {values.substrateSource === "ANFF supplied – stock" && (
                           <Fragment>
-                            <label>
+                            <Label>
                               <br />
                               In stock:
                               <Field
@@ -234,7 +233,7 @@ export default function MainForm({ part, setPart }) {
                                 materialValues={values.material}
                                 isStock={true}
                               />
-                            </label>
+                            </Label>
                           </Fragment>
                         )}
                         {(values.substrateSource === "Customer supplied" ||
@@ -289,18 +288,18 @@ export default function MainForm({ part, setPart }) {
                           <Fragment>
                             <br />
                             <MyTextInput
-                              label="Quantity:"
+                              Label="Quantity:"
                               name="quantity"
                               onChange={handleChange}
                             />
                             <MyTextArea
-                              label="Special instructions:"
+                              Label="Special instructions:"
                               name="specialInstructions"
                               placeholder="Leave the description here"
                               rows={3}
                               onChange={handleChange}
                             />
-                            <label>Upload PDF/PNG File:</label>
+                            <Label>Upload PDF/PNG File:</Label>
                             <input
                               type="file"
                               name="specialInstructionFile"
@@ -308,12 +307,12 @@ export default function MainForm({ part, setPart }) {
                             />
                           </Fragment>
                         )}
-                      </label>
+                      </Label>
                     </Fragment>
                   )}
                   {values.serviceType === "Photonic Coating" && (
                     <Fragment>
-                      <label>
+                      <Label>
                         Substrate source:
                         <Field name="substrateSource" as="select">
                           <option value="N/A">Please select</option>
@@ -329,7 +328,7 @@ export default function MainForm({ part, setPart }) {
                         </Field>
                         {values.substrateSource === "ANFF supplied – stock" && (
                           <Fragment>
-                            <label>
+                            <Label>
                               <br />
                               In stock:
                               <Field
@@ -349,7 +348,7 @@ export default function MainForm({ part, setPart }) {
                                   Silicon (P-type, &lt;100&gt;) ø150mm x 675µm
                                 </option>
                               </Field>
-                            </label>
+                            </Label>
                           </Fragment>
                         )}
                         {(values.substrateSource === "Customer supplied" ||
@@ -403,20 +402,20 @@ export default function MainForm({ part, setPart }) {
                           <Fragment>
                             <br />
                             <MyTextInput
-                              labelClass="required"
+                              LabelClass="required"
                               validate={validateField}
-                              label="Quantity:"
+                              Label="Quantity:"
                               name="quantity"
                               onChange={handleChange}
                             />
                             <MyTextArea
-                              label="Special instructions:"
+                              Label="Special instructions:"
                               name="specialInstructions"
                               placeholder="Leave the description here"
                               rows={3}
                               onChange={handleChange}
                             />
-                            <label>Upload PDF/PNG File:</label>
+                            <Label>Upload PDF/PNG File:</Label>
                             <input
                               type="file"
                               name="specialInstructionFile"
@@ -424,13 +423,13 @@ export default function MainForm({ part, setPart }) {
                             />
                           </Fragment>
                         )}
-                      </label>
+                      </Label>
                     </Fragment>
                   )}
                   {values.serviceType ===
                     "Integrated Optic Chip, Assembly and Others" && (
                     <Fragment>
-                      <label>
+                      <Label>
                         For any requests or info about integrated optics and
                         chip assembly please feel free to contact the following:
                         <br />
@@ -440,7 +439,7 @@ export default function MainForm({ part, setPart }) {
                         <br />
                         Phone: (02) 612 58574 or 0404 932 099
                         <br />
-                      </label>
+                      </Label>
                       <br />
                     </Fragment>
                   )}
@@ -503,4 +502,13 @@ const ContentWrapper = styled.div`
   max-width: 1500px;
   margin: 0 auto;
   padding: 200px 30px;
+`;
+
+const Label = styled.label`
+  margin: 0px 30px 0px 0px;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 130%;
+  /* text-transform: uppercase; */
+  color: rgba(255, 255, 255, 0.9);
 `;
