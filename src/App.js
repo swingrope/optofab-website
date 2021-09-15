@@ -7,6 +7,8 @@ import Modify from "./features/form/Modify";
 import Track from "./features/form/Track";
 import CustomerInfo from "./features/form/components/CustomerInfo";
 import HomePage from "./Home";
+import ErrorSubmit from "./pages/errorSubmit";
+import SuccessSubmit from "./pages/successSubmit";
 
 function App() {
   const [part, setPart] = useState(1);
@@ -34,6 +36,12 @@ function App() {
         </Route>
         <Route path="/track">
           <Track />
+        </Route>
+        <Route path="/error-submit">
+          <ErrorSubmit />
+        </Route>
+        <Route path="/success-submit">
+          <SuccessSubmit />
         </Route>
       </Switch>
     </Router>
