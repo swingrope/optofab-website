@@ -40,10 +40,14 @@ export default function Track() {
               <FormWrapper>
                 <InputWrapper>
                   <img src="/images/smallicons/chat.svg" />
-                  <MyTextInput label="" name="ordernum" />
+                  <MyTextInput
+                    label=""
+                    name="ordernum"
+                    placeholder="Enter the order number here"
+                  />
                 </InputWrapper>
                 {/* <button type="submit">Submit</button> */}
-                <SubmitButton title="Submit" />
+                <SubmitButton title="TRACK" />
               </FormWrapper>
             </Form>
           </Formik>

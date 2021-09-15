@@ -149,6 +149,7 @@ const ContentWrapper = styled.div`
 const OrderNoWrapper = styled.div`
   display: grid;
   grid-template-columns: 28px auto;
+  align-items: center;
   padding: 10px;
   width: 360px;
   background: linear-gradient(

@@ -28,7 +28,7 @@ export const MyTextInput = ({
 };
 
 const Wrapper = styled.div`
-  margin: 3px 0;
+  margin: 10px 0;
 `;
 
 const Input = styled.input`
