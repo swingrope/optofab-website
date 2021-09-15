@@ -55,7 +55,7 @@ export default function Track() {
 }
 
 const Wrapper = styled.div`
-  background: linear-gradient(115.82deg, #00486f 0%, #eb7776 90%);
+  background: linear-gradient(135deg, #1a2151 10%, #eb7776 90%);
   display: grid;
   place-items: center;
 `;

@@ -75,7 +75,7 @@ export default function Feedback() {
 }
 
 const Wrapper = styled.div`
-  background: linear-gradient(115.82deg, #00486f 0%, #eb7776 93.65%);
+  background: linear-gradient(120deg, #150050 0%, #eb7776 100%);
 `;
 
 const ContentWrapper = styled.div`
