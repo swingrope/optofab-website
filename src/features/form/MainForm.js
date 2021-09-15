@@ -143,7 +143,7 @@ export default function MainForm({ part, setPart }) {
                           <SectionTitle></SectionTitle>
                           <DetailWrapper>
                             <Label className="required">
-                              Blank source:
+                              Blank source: {"  "}
                               <Field
                                 validate={validateField}
                                 name="blankSource"
@@ -157,11 +157,14 @@ export default function MainForm({ part, setPart }) {
                                   Customer supplied
                                 </option>
                               </Field>
+                              <br />
+                              <br />
                               <Material
                                 serviceType="spdt"
                                 handleChange={handleChange}
                                 materialValues={values.material}
                               />
+                              <br />
                               <Geometry
                                 handleChange={handleChange}
                                 geometryValues={values.geometry}
@@ -240,7 +243,7 @@ export default function MainForm({ part, setPart }) {
                           <SectionTitle></SectionTitle>
                           <DetailWrapper>
                             <Label className="required">
-                              Substrate source:
+                              Substrate source: {"  "}
                               <Field
                                 validate={validateField}
                                 name="substrateSource"
@@ -371,7 +374,7 @@ export default function MainForm({ part, setPart }) {
                           <SectionTitle></SectionTitle>
                           <DetailWrapper>
                             <Label>
-                              Substrate source:
+                              Substrate source: {"  "}
                               <Field name="substrateSource" as="select">
                                 <option value="N/A">Please select</option>
                                 <option value="ANFF supplied – stock">
@@ -514,7 +517,7 @@ export default function MainForm({ part, setPart }) {
                             <Label>
                               <NoticeTitle>
                                 For any requests or info about integrated optics
-                                and chip assembly please feel free to contact
+                                and chip assembly, please feel free to contact
                                 the following:
                               </NoticeTitle>
                               <NoticeInfoWrapper>
@@ -696,3 +699,5 @@ const StrongText = styled(BodyIntro)`
   --webkit-background-clip: text;
   color: transparent;
 `;
+
+const OneLineDropdownWrapper = styled.div``;
