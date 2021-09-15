@@ -10,6 +10,8 @@ import { Link } from "react-router-dom";
 import { validateField } from "./Helpers";
 import Layout from "../../components/layout/layout";
 import { H3 } from "../../components/styles/TextStyles";
+import SubmitButton from "../../components/buttons/SubmitButton";
+import Button4AddRemove from "../../components/buttons/Button4AddRemove";
 
 export const formInitialValues = {
   serviceType: "",
@@ -78,120 +80,146 @@ export default function MainForm({ part, setPart }) {
               }) => (
                 <Form>
                   <SwitchServiceType />
-                  <SectionTitle id="service-type">Service Type: </SectionTitle>
-                  <div role="group" aria-labelledby="service-type">
-                    <Label>
-                      <Field
-                        type="radio"
-                        name="serviceType"
-                        value="SPDT Optic"
-                      />
-                      SPDT Optic
-                    </Label>
+                  <SectionWrapper>
+                    <SectionTitle id="service-type">Service Type</SectionTitle>
+                    <DetailWrapper>
+                      <div role="group" aria-labelledby="service-type">
+                        <Label>
+                          <Field
+                            type="radio"
+                            name="serviceType"
+                            value="SPDT Optic"
+                          />
+                          SPDT Optic
+                        </Label>
+                        <Label>
+                          <Field
+                            type="radio"
+                            name="serviceType"
+                            value="Optical Coating"
+                          />
+                          Optical Coating
+                        </Label>
+                        <Label>
+                          <Field
+                            type="radio"
+                            name="serviceType"
+                            value="Photonic Coating"
+                          />
+                          Photonic Coating
+                        </Label>
+                        <Label>
+                          <Field
+                            type="radio"
+                            name="serviceType"
+                            value="Integrated Optic Chip, Assembly and Others"
+                          />
+                          Integrated Optic Chip, Assembly and Others
+                        </Label>
+                      </div>
+                    </DetailWrapper>
+                  </SectionWrapper>
+                  <SectionWrapper>
+                    <SectionTitle></SectionTitle>
+                    <DetailWrapper>
+                      <Label>You picked: {values.serviceType}</Label>
+                    </DetailWrapper>
+                  </SectionWrapper>
 
-                    <Label>
-                      <Field
-                        type="radio"
-                        name="serviceType"
-                        value="Optical Coating"
-                      />
-                      Optical Coating
-                    </Label>
-                    <Label>
-                      <Field
-                        type="radio"
-                        name="serviceType"
-                        value="Photonic Coating"
-                      />
-                      Photonic Coating
-                    </Label>
-                    <Label>
-                      <Field
-                        type="radio"
-                        name="serviceType"
-                        value="Integrated Optic Chip, Assembly and Others"
-                      />
-                      Integrated Optic Chip, Assembly and Others
-                    </Label>
-                  </div>
-                  <div>Picked: {values.serviceType}</div>
                   {values.serviceType === "SPDT Optic" && (
-                    <Fragment>
-                      <Label className="required">
-                        Blank source:
-                        <Field
-                          validate={validateField}
-                          name="blankSource"
-                          as="select"
-                        >
-                          <option value="N/A">Please Select</option>
-                          <option value="ANFF supplied">
-                            ANFF supplied – full custom
-                          </option>
-                          <option value="Customer supplied">
-                            Customer supplied
-                          </option>
-                        </Field>
-                        <Material
-                          serviceType="spdt"
-                          handleChange={handleChange}
-                          materialValues={values.material}
-                        />
-                        <Geometry
-                          handleChange={handleChange}
-                          geometryValues={values.geometry}
-                          blankSource={values.blankSource}
-                          substrateSource={"N/A"}
-                        />
-                        <FieldArray name="surface">
-                          {({ push, pop }) => (
-                            <div>
-                              {values.surface.map((side, index) => (
-                                <Surface
-                                  key={index}
-                                  index={index}
-                                  handleChange={handleChange}
-                                  surfaceValues={values.surface[index]}
-                                  blankSource={values.blankSource}
-                                  substrateSource={"N/A"}
-                                  geometry={values.geometry.geometryType}
-                                />
-                              ))}
-                              <button
-                                type="button"
-                                onClick={() => push(surfaceInitialValues)}
-                              >
-                                Add a side
-                              </button>
-                              <button type="button" onClick={() => pop()}>
-                                Remove last side
-                              </button>
-                            </div>
-                          )}
-                        </FieldArray>
-                        <br />
-                        <MyTextInput
-                          labelClass="required"
-                          validate={validateField}
-                          label="Quantity:"
-                          name="quantity"
-                          onChange={handleChange}
-                        />
-                        <MyTextArea
-                          label="Special instructions:"
-                          name="specialInstructions"
-                          placeholder="Leave the description here"
-                          rows={3}
-                          onChange={handleChange}
-                        />
-                        <Label>Upload PDF/PNG File:</Label>
-                        <input
-                          type="file"
-                          name="specialInstructionFile"
-                          accept=".pdf,.png"
-                        />
-                      </Label>
-                    </Fragment>
+                    <>
+                      <SectionWrapper>
+                        <SectionTitle></SectionTitle>
+                        <DetailWrapper>
+                          <Label className="required">
+                            Blank source:
+                            <Field
+                              validate={validateField}
+                              name="blankSource"
+                              as="select"
+                            >
+                              <option value="N/A">Please Select</option>
+                              <option value="ANFF supplied">
+                                ANFF supplied – full custom
+                              </option>
+                              <option value="Customer supplied">
+                                Customer supplied
+                              </option>
+                            </Field>
+                            <Material
+                              serviceType="spdt"
+                              handleChange={handleChange}
+                              materialValues={values.material}
+                            />
+                            <Geometry
+                              handleChange={handleChange}
+                              geometryValues={values.geometry}
+                              blankSource={values.blankSource}
+                              substrateSource={"N/A"}
+                            />
+                          </Label>
+                        </DetailWrapper>
+                      </SectionWrapper>
+                      <Fragment>
+                        <Label>
+                          <FieldArray name="surface">
+                            {({ push, pop }) => (
+                              <div>
+                                {values.surface.map((side, index) => (
+                                  <Surface
+                                    key={index}
+                                    index={index}
+                                    handleChange={handleChange}
+                                    surfaceValues={values.surface[index]}
+                                    blankSource={values.blankSource}
+                                    substrateSource={"N/A"}
+                                    geometry={values.geometry.geometryType}
+                                  />
+                                ))}
+                                <SectionWrapper>
+                                  <SectionTitle></SectionTitle>
+                                  <DetailWrapper>
+                                    <Button4AddRemove
+                                      title="Add a side"
+                                      onClick={() => push(surfaceInitialValues)}
+                                    />
+                                    <Button4AddRemove
+                                      title="Remove last side"
+                                      onClick={() => pop()}
+                                    />
+                                  </DetailWrapper>
+                                </SectionWrapper>
+                              </div>
+                            )}
+                          </FieldArray>
+                          <SectionWrapper>
+                            <SectionTitle></SectionTitle>
+                            <DetailWrapper>
+                              <MyTextInput
+                                labelClass="required"
+                                validate={validateField}
+                                label="Quantity:"
+                                name="quantity"
+                                onChange={handleChange}
+                              />
+                              <MyTextArea
+                                label="Special instructions:"
+                                name="specialInstructions"
+                                placeholder="Leave the description here"
+                                rows={3}
+                                onChange={handleChange}
+                              />
+                              <Label>Upload PDF/PNG File:</Label>
+                              <input
+                                type="file"
+                                name="specialInstructionFile"
+                                accept=".pdf,.png"
+                              />
+                            </DetailWrapper>
+                          </SectionWrapper>
+                        </Label>
+                      </Fragment>
+                    </>
                   )}
                   {values.serviceType === "Optical Coating" && (
                     <Fragment>
@@ -270,15 +298,19 @@ export default function MainForm({ part, setPart }) {
                                   geometry={values.geometry.geometryType}
                                 />
                               ))}
-                              <button
-                                type="button"
-                                onClick={() => push(surfaceInitialValues)}
-                              >
-                                Add a side
-                              </button>
-                              <button type="button" onClick={() => pop()}>
-                                Remove last side
-                              </button>
+                              <SectionWrapper>
+                                <SectionTitle></SectionTitle>
+                                <DetailWrapper>
+                                  <Button4AddRemove
+                                    title="Add a side"
+                                    onClick={() => push(surfaceInitialValues)}
+                                  />
+                                  <Button4AddRemove
+                                    title="Remove last side"
+                                    onClick={() => pop()}
+                                  />
+                                </DetailWrapper>
+                              </SectionWrapper>
                             </div>
                           )}
                         </FieldArray>
@@ -384,7 +416,7 @@ export default function MainForm({ part, setPart }) {
                                   geometry={values.geometry.geometryType}
                                 />
                               ))}
-                              <button
+                              {/* <button
                                 type="button"
                                 onClick={() => push(surfaceInitialValues)}
                               >
@@ -392,7 +424,20 @@ export default function MainForm({ part, setPart }) {
                               </button>
                               <button type="button" onClick={() => pop()}>
                                 Remove last side
-                              </button>
+                              </button> */}
+                              <SectionWrapper>
+                                <SectionTitle></SectionTitle>
+                                <DetailWrapper>
+                                  <Button4AddRemove
+                                    title="Add a side"
+                                    onClick={() => push(surfaceInitialValues)}
+                                  />
+                                  <Button4AddRemove
+                                    title="Remove last side"
+                                    onClick={() => pop()}
+                                  />
+                                </DetailWrapper>
+                              </SectionWrapper>
                             </div>
                           )}
                         </FieldArray>
@@ -444,12 +489,13 @@ export default function MainForm({ part, setPart }) {
                       <br />
                     </Fragment>
                   )}
+
                   {(values.serviceType === "SPDT Optic" ||
                     values.serviceType === "Optical Coating" ||
                     values.serviceType === "Photonic Coating") && (
                     <Fragment>
                       <div>
-                        <button
+                        <Button4AddRemove
                           onClick={(e) =>
                             handleAddPart(
                               e,
@@ -460,9 +506,8 @@ export default function MainForm({ part, setPart }) {
                             )
                           }
                           className="add"
-                        >
-                          Add another part
-                        </button>
+                          title="Add a part"
+                        />
                         <button
                           onClick={(e) =>
                             handleAddPart(
@@ -514,6 +559,15 @@ const Label = styled.label`
   color: rgba(255, 255, 255, 0.95);
 `;
 
+const SectionWrapper = styled.div`
+  display: grid;
+  grid-template-columns: minmax(210px, 250px) auto;
+`;
+
 const SectionTitle = styled(H3)`
   margin: 10px;
+`;
+
+const DetailWrapper = styled.div`
+  margin: 20px;
 `;
