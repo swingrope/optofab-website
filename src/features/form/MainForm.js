@@ -502,39 +502,49 @@ export default function MainForm({ part, setPart }) {
                       values.serviceType === "Optical Coating" ||
                       values.serviceType === "Photonic Coating") && (
                       <Fragment>
-                        <div>
-                          <Button4AddRemove
-                            onClick={(e) =>
-                              handleAddPart(
-                                e,
-                                values,
-                                resetForm,
-                                setFieldValue,
-                                validateForm
-                              )
-                            }
-                            className="add"
-                            title="Add a part"
-                          />
-                          <button
-                            onClick={(e) =>
-                              handleAddPart(
-                                e,
-                                values,
-                                resetForm,
-                                setFieldValue,
-                                validateForm
-                              )
-                            }
-                          >
-                            <Link
-                              style={{ color: "black", textDecoration: "none" }}
-                              to="/customer"
+                        <SectionWrapper>
+                          <SectionTitle></SectionTitle>
+                          <DetailWrapper>
+                            <Button4AddRemove
+                              onClick={(e) =>
+                                handleAddPart(
+                                  e,
+                                  values,
+                                  resetForm,
+                                  setFieldValue,
+                                  validateForm
+                                )
+                              }
+                              className="add"
+                              title="Add a part"
+                            />
+                          </DetailWrapper>
+                        </SectionWrapper>
+                        <SectionWrapper>
+                          <SectionTitle></SectionTitle>
+                          <NextButtonWrapper>
+                            <NextButton
+                              onClick={(e) =>
+                                handleAddPart(
+                                  e,
+                                  values,
+                                  resetForm,
+                                  setFieldValue,
+                                  validateForm
+                                )
+                              }
                             >
-                              All parts specified - Next Step
-                            </Link>
-                          </button>
-                        </div>
+                              <Link
+                                style={{
+                                  color: "rgba(255,255,255,0.9)",
+                                }}
+                                to="/customer"
+                              >
+                                All parts specified - Next Step
+                              </Link>
+                            </NextButton>
+                          </NextButtonWrapper>
+                        </SectionWrapper>
                       </Fragment>
                     )}
                   </Form>
@@ -588,4 +598,32 @@ const SectionTitle = styled(H3)`
 
 const DetailWrapper = styled.div`
   margin: 20px;
+`;
+
+const NextButton = styled.button`
+  margin: 10px;
+  padding: 12px 24px;
+  width: minmax(200px, 360px);
+  height: 44px;
+
+  background: linear-gradient(270deg, #d90068 0%, rgba(0, 28, 129, 0.9) 100%);
+  box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.15);
+  border-radius: 30px;
+  border: none;
+  & {
+    transition: 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    transition-delay: 0.1s;
+  }
+  :hover {
+    filter: hue-rotate(10deg) brightness(110%) saturate(110%);
+    box-shadow: 0px 30px 60px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transform: scale(1.1);
+  }
+`;
+
+const NextButtonWrapper = styled.div`
+  display: grid;
+  justify-items: right;
+  margin: 0px 30px;
 `;
