@@ -9,7 +9,7 @@ import { MyTextArea } from "./fields/MyTextArea";
 import { Link } from "react-router-dom";
 import { validateField } from "./Helpers";
 import Layout from "../../components/layout/layout";
-import { H3 } from "../../components/styles/TextStyles";
+import { BodyMain, Caption2, H3 } from "../../components/styles/TextStyles";
 import SubmitButton from "../../components/buttons/SubmitButton";
 import Button4AddRemove from "../../components/buttons/Button4AddRemove";
 
@@ -228,67 +228,75 @@ export default function MainForm({ part, setPart }) {
                     )}
                     {values.serviceType === "Optical Coating" && (
                       <Fragment>
-                        <Label className="required">
-                          Substrate source:
-                          <Field
-                            validate={validateField}
-                            name="substrateSource"
-                            as="select"
-                          >
-                            <option value="N/A">Please select</option>
-                            <option value="ANFF supplied – stock">
-                              ANFF supplied – stock
-                            </option>
-                            <option value="Customer supplied">
-                              Customer supplied
-                            </option>
-                            <option value="ANFF supplied – full custom">
-                              ANFF supplied – full custom
-                            </option>
-                          </Field>
-                          {values.substrateSource ===
-                            "ANFF supplied – stock" && (
-                            <Fragment>
-                              <Label>
-                                <br />
-                                In stock:
-                                <Field
-                                  name="stockSize"
-                                  as="select"
-                                  onChange={handleChange}
-                                >
-                                  <option value="N/A">Please Select</option>
-                                  <option value="12.7mm">12.7mm</option>
-                                  <option value="25.4mm">25.4mm</option>
-                                  <option value="50.8mm">50.8mm</option>
-                                </Field>
-                                <Material
-                                  serviceType="optical"
-                                  handleChange={handleChange}
-                                  materialValues={values.material}
-                                  isStock={true}
-                                />
-                              </Label>
-                            </Fragment>
-                          )}
-                          {(values.substrateSource === "Customer supplied" ||
-                            values.substrateSource ===
-                              "ANFF supplied – full custom") && (
-                            <Fragment>
-                              <Material
-                                serviceType="optical"
-                                handleChange={handleChange}
-                                materialValues={values.material}
-                              />
-                              <Geometry
-                                handleChange={handleChange}
-                                geometryValues={values.geometry}
-                                blankSource={"N/A"}
-                                substrateSource={values.substrateSource}
-                                serviceType={values.serviceType}
-                              />
-                            </Fragment>
-                          )}
+                        <SectionWrapper>
+                          <SectionTitle></SectionTitle>
+                          <DetailWrapper>
+                            <Label className="required">
+                              Substrate source:
+                              <Field
+                                validate={validateField}
+                                name="substrateSource"
+                                as="select"
+                              >
+                                <option value="N/A">Please select</option>
+                                <option value="ANFF supplied – stock">
+                                  ANFF supplied – stock
+                                </option>
+                                <option value="Customer supplied">
+                                  Customer supplied
+                                </option>
+                                <option value="ANFF supplied – full custom">
+                                  ANFF supplied – full custom
+                                </option>
+                              </Field>
+                              {values.substrateSource ===
+                                "ANFF supplied – stock" && (
+                                <Fragment>
+                                  <Label>
+                                    <br />
+                                    In stock:
+                                    <Field
+                                      name="stockSize"
+                                      as="select"
+                                      onChange={handleChange}
+                                    >
+                                      <option value="N/A">Please Select</option>
+                                      <option value="12.7mm">12.7mm</option>
+                                      <option value="25.4mm">25.4mm</option>
+                                      <option value="50.8mm">50.8mm</option>
+                                    </Field>
+                                    <Material
+                                      serviceType="optical"
+                                      handleChange={handleChange}
+                                      materialValues={values.material}
+                                      isStock={true}
+                                    />
+                                  </Label>
+                                </Fragment>
+                              )}
+                              {(values.substrateSource ===
+                                "Customer supplied" ||
+                                values.substrateSource ===
+                                  "ANFF supplied – full custom") && (
+                                <Fragment>
+                                  <Material
+                                    serviceType="optical"
+                                    handleChange={handleChange}
+                                    materialValues={values.material}
+                                  />
+                                  <Geometry
+                                    handleChange={handleChange}
+                                    geometryValues={values.geometry}
+                                    blankSource={"N/A"}
+                                    substrateSource={values.substrateSource}
+                                    serviceType={values.serviceType}
+                                  />
+                                </Fragment>
+                              )}
+                            </Label>
+                          </DetailWrapper>
+                        </SectionWrapper>
+                        <Label>
                           <FieldArray name="surface">
                             {({ push, pop }) => (
                               <div>
@@ -351,63 +359,73 @@ export default function MainForm({ part, setPart }) {
                     )}
                     {values.serviceType === "Photonic Coating" && (
                       <Fragment>
+                        <SectionWrapper>
+                          <SectionTitle></SectionTitle>
+                          <DetailWrapper>
+                            <Label>
+                              Substrate source:
+                              <Field name="substrateSource" as="select">
+                                <option value="N/A">Please select</option>
+                                <option value="ANFF supplied – stock">
+                                  ANFF supplied – stock
+                                </option>
+                                <option value="Customer supplied">
+                                  Customer supplied
+                                </option>
+                                <option value="ANFF supplied – full custom">
+                                  ANFF supplied – full custom
+                                </option>
+                              </Field>
+                              {values.substrateSource ===
+                                "ANFF supplied – stock" && (
+                                <Fragment>
+                                  <Label>
+                                    <br />
+                                    In stock:
+                                    <Field
+                                      name="stockSize"
+                                      as="select"
+                                      onChange={handleChange}
+                                    >
+                                      <option value="N/A">Please Select</option>
+                                      <option value="(Silicon (P-type, <100>) ø100mm x 525µm">
+                                        Silicon (P-type, &lt;100&gt;) ø100mm x
+                                        525µm
+                                      </option>
+                                      <option value="5µm TOx on Silicon (P-type, <100>) ø100mm x 525µm">
+                                        5µm TOx on Silicon (P-type, &lt;100&gt;)
+                                        ø100mm x 525µm
+                                      </option>
+                                      <option value="Silicon (P-type, <100>) ø150mm x 675µm">
+                                        Silicon (P-type, &lt;100&gt;) ø150mm x
+                                        675µm
+                                      </option>
+                                    </Field>
+                                  </Label>
+                                </Fragment>
+                              )}
+                              {(values.substrateSource ===
+                                "Customer supplied" ||
+                                values.substrateSource ===
+                                  "ANFF supplied – full custom") && (
+                                <Fragment>
+                                  <Material
+                                    serviceType="photonic"
+                                    handleChange={handleChange}
+                                    materialValues={values.material}
+                                  />
+                                  <Geometry
+                                    handleChange={handleChange}
+                                    geometryValues={values.geometry}
+                                    blankSource={"N/A"}
+                                    substrateSource={values.substrateSource}
+                                  />
+                                </Fragment>
+                              )}
+                            </Label>
+                          </DetailWrapper>
+                        </SectionWrapper>
                         <Label>
-                          Substrate source:
-                          <Field name="substrateSource" as="select">
-                            <option value="N/A">Please select</option>
-                            <option value="ANFF supplied – stock">
-                              ANFF supplied – stock
-                            </option>
-                            <option value="Customer supplied">
-                              Customer supplied
-                            </option>
-                            <option value="ANFF supplied – full custom">
-                              ANFF supplied – full custom
-                            </option>
-                          </Field>
-                          {values.substrateSource ===
-                            "ANFF supplied – stock" && (
-                            <Fragment>
-                              <Label>
-                                <br />
-                                In stock:
-                                <Field
-                                  name="stockSize"
-                                  as="select"
-                                  onChange={handleChange}
-                                >
-                                  <option value="N/A">Please Select</option>
-                                  <option value="(Silicon (P-type, <100>) ø100mm x 525µm">
-                                    Silicon (P-type, &lt;100&gt;) ø100mm x 525µm
-                                  </option>
-                                  <option value="5µm TOx on Silicon (P-type, <100>) ø100mm x 525µm">
-                                    5µm TOx on Silicon (P-type, &lt;100&gt;)
-                                    ø100mm x 525µm
-                                  </option>
-                                  <option value="Silicon (P-type, <100>) ø150mm x 675µm">
-                                    Silicon (P-type, &lt;100&gt;) ø150mm x 675µm
-                                  </option>
-                                </Field>
-                              </Label>
-                            </Fragment>
-                          )}
-                          {(values.substrateSource === "Customer supplied" ||
-                            values.substrateSource ===
-                              "ANFF supplied – full custom") && (
-                            <Fragment>
-                              <Material
-                                serviceType="photonic"
-                                handleChange={handleChange}
-                                materialValues={values.material}
-                              />
-                              <Geometry
-                                handleChange={handleChange}
-                                geometryValues={values.geometry}
-                                blankSource={"N/A"}
-                                substrateSource={values.substrateSource}
-                              />
-                            </Fragment>
-                          )}
                           <FieldArray name="surface">
                             {({ push, pop }) => (
                               <div>
@@ -482,19 +500,32 @@ export default function MainForm({ part, setPart }) {
                     {values.serviceType ===
                       "Integrated Optic Chip, Assembly and Others" && (
                       <Fragment>
-                        <Label>
-                          For any requests or info about integrated optics and
-                          chip assembly please feel free to contact the
-                          following:
-                          <br />
-                          Node Director: A/Prof. Steve Madden
-                          <br />
-                          Email: stephen.madden@anu.edu.au
-                          <br />
-                          Phone: (02) 612 58574 or 0404 932 099
-                          <br />
-                        </Label>
-                        <br />
+                        <SectionWrapper>
+                          <SectionTitle></SectionTitle>
+                          <DetailWrapper>
+                            <Label>
+                              <NoticeTitle>
+                                For any requests or info about integrated optics
+                                and chip assembly please feel free to contact
+                                the following:
+                              </NoticeTitle>
+                              <NoticeInfoWrapper>
+                                <NoticeInfo>
+                                  Node Director: A/Prof.{" "}
+                                  <a href="mailto:stephen.madden@anu.edu.au">
+                                    Steve Madden
+                                  </a>
+                                </NoticeInfo>
+                                <NoticeInfo>
+                                  Email: stephen.madden@anu.edu.au
+                                </NoticeInfo>
+                                <NoticeInfo>
+                                  Phone: (02) 612 58574 or 0404 932 099
+                                </NoticeInfo>
+                              </NoticeInfoWrapper>
+                            </Label>
+                          </DetailWrapper>
+                        </SectionWrapper>
                       </Fragment>
                     )}
 
@@ -627,3 +658,17 @@ const NextButtonWrapper = styled.div`
   justify-items: right;
   margin: 0px 30px;
 `;
+
+const NoticeTitle = styled(Caption2)`
+  color: rgba(0, 0, 0, 0.8);
+`;
+
+const NoticeInfoWrapper = styled.div`
+  display: grid;
+  background: transparent;
+  padding: 50px;
+  gap: 20px;
+  text-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
+`;
+
+const NoticeInfo = styled(BodyMain)``;
