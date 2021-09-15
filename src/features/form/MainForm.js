@@ -9,6 +9,7 @@ import { MyTextArea } from "./fields/MyTextArea";
 import { Link } from "react-router-dom";
 import { validateField } from "./Helpers";
 import Layout from "../../components/layout/layout";
+import { H3 } from "../../components/styles/TextStyles";
 
 export const formInitialValues = {
   serviceType: "",
@@ -77,7 +78,7 @@ export default function MainForm({ part, setPart }) {
               }) => (
                 <Form>
                   <SwitchServiceType />
-                  <h1 id="service-type">Service Type: </h1>
+                  <SectionTitle id="service-type">Service Type: </SectionTitle>
                   <div role="group" aria-Labelledby="service-type">
                     <Label>
                       <Field
@@ -510,5 +511,9 @@ const Label = styled.label`
   font-size: 17px;
   line-height: 130%;
   /* text-transform: uppercase; */
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.95);
+`;
+
+const SectionTitle = styled(H3)`
+  margin: 10px;
 `;
