@@ -602,7 +602,8 @@ export default function MainForm({ part, setPart }) {
 
 const Wrapper = styled.div`
   /* background: linear-gradient(115.82deg, #00486f 0%, #eb7776 93.65%); */
-  background: linear-gradient(135deg, #176ab1 20%, #eb7776 80%);
+  /* background: linear-gradient(135deg, #176ab1 20%, #eb7776 80%); */
+  background: linear-gradient(115.82deg, #150050 0%, #176ab1 93.65%);
 `;
 
 const ContentWrapper = styled.div`
