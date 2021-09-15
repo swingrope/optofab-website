@@ -582,6 +582,8 @@ const SectionWrapper = styled.div`
 
 const SectionTitle = styled(H3)`
   margin: 10px;
+  color: rgba(0, 0, 0, 0.9);
+  text-shadow: 0px 10px 20px rgba(0, 0, 0, 0.4);
 `;
 
 const DetailWrapper = styled.div`
