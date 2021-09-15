@@ -6,6 +6,7 @@ import { MyTextInput } from "./fields/MyTextInput";
 import { postData } from "./Feedback";
 import Layout from "../../components/layout/layout";
 import SubmitButton from "../../components/buttons/SubmitButton";
+import WaveBackgound2 from "../../components/backgrounds/WaveBackground2";
 
 // #BUG1: Submit function
 
@@ -58,6 +59,7 @@ export default function Modify() {
   return (
     <Layout>
       <Wrapper>
+        <WaveBackgound2 />
         <ContentWrapper>
           <Formik
             initialValues={{
@@ -133,9 +135,9 @@ export default function Modify() {
 }
 
 const Wrapper = styled.div`
-  background: linear-gradient(115.82deg, #00486f 0%, #eb7776 93.65%);
-  display: grid;
-  place-items: center;
+  /* background: linear-gradient(115.82deg, #00486f 0%, #eb7776 93.65%); */
+  /* display: grid;
+  place-items: center; */
 `;
 
 const ContentWrapper = styled.div`
