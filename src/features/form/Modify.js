@@ -18,9 +18,9 @@ export default function Modify() {
       file.name.length
     );
     if (
-      fileType != "png" ||
-      fileType != "pdf" ||
-      fileType != "PNG" ||
+      fileType != "png" &&
+      fileType != "pdf" &&
+      fileType != "PNG" &&
       fileType != "PDF"
     ) {
       alert("Please upload PDF or PNG file");
@@ -30,7 +30,6 @@ export default function Modify() {
       formdata.append("modifyFile", file);
       const url =
         "http://localhost:8080/comp8715/optofab-website/src/api/Modification.php";
-      //const url = 'http://localhost:8080/src/api/Modification.php';
       fetch(url, {
         method: "POST",
         body: formdata,
@@ -69,7 +68,6 @@ export default function Modify() {
               values.append("file", this.fileInput.current.files[0]);
               await new Promise((r) => setTimeout(r, 500));
               alert(JSON.stringify(values, null, 2));
-              //postData('http://localhost:8080/src/api/Modification.php', values)
               postData(
                 "http://localhost:8080/comp8715/optofab-website/src/api/Modification.php",
                 values
