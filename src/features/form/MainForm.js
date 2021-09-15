@@ -79,7 +79,7 @@ export default function MainForm({ part, setPart }) {
                 <Form>
                   <SwitchServiceType />
                   <SectionTitle id="service-type">Service Type: </SectionTitle>
-                  <div role="group" aria-Labelledby="service-type">
+                  <div role="group" aria-labelledby="service-type">
                     <Label>
                       <Field
                         type="radio"
@@ -171,14 +171,14 @@ export default function MainForm({ part, setPart }) {
                         </FieldArray>
                         <br />
                         <MyTextInput
-                          LabelClass="required"
+                          labelClass="required"
                           validate={validateField}
-                          Label="Quantity:"
+                          label="Quantity:"
                           name="quantity"
                           onChange={handleChange}
                         />
                         <MyTextArea
-                          Label="Special instructions:"
+                          label="Special instructions:"
                           name="specialInstructions"
                           placeholder="Leave the description here"
                           rows={3}
@@ -289,12 +289,12 @@ export default function MainForm({ part, setPart }) {
                           <Fragment>
                             <br />
                             <MyTextInput
-                              Label="Quantity:"
+                              label="Quantity:"
                               name="quantity"
                               onChange={handleChange}
                             />
                             <MyTextArea
-                              Label="Special instructions:"
+                              label="Special instructions:"
                               name="specialInstructions"
                               placeholder="Leave the description here"
                               rows={3}
@@ -403,14 +403,14 @@ export default function MainForm({ part, setPart }) {
                           <Fragment>
                             <br />
                             <MyTextInput
-                              LabelClass="required"
+                              labelClass="required"
                               validate={validateField}
-                              Label="Quantity:"
+                              label="Quantity:"
                               name="quantity"
                               onChange={handleChange}
                             />
                             <MyTextArea
-                              Label="Special instructions:"
+                              label="Special instructions:"
                               name="specialInstructions"
                               placeholder="Leave the description here"
                               rows={3}

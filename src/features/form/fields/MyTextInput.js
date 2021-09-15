@@ -9,7 +9,7 @@ export const MyTextInput = ({ label, labelClass, br = true, ...props }) => {
       <label className={labelClass}>
         {label}
         {/* <input {...field} {...props} /> */}
-        <Input {...field} {...props} placeholder="Type in order number here" />
+        <Input {...field} {...props} />
 
         {br && <br />}
       </label>
