@@ -9,7 +9,12 @@ import { MyTextArea } from "./fields/MyTextArea";
 import { Link } from "react-router-dom";
 import { validateField } from "./Helpers";
 import Layout from "../../components/layout/layout";
-import { BodyMain, Caption2, H3 } from "../../components/styles/TextStyles";
+import {
+  BodyIntro,
+  BodyMain,
+  Caption2,
+  H3,
+} from "../../components/styles/TextStyles";
 import SubmitButton from "../../components/buttons/SubmitButton";
 import Button4AddRemove from "../../components/buttons/Button4AddRemove";
 
@@ -125,7 +130,10 @@ export default function MainForm({ part, setPart }) {
                     <SectionWrapper>
                       <SectionTitle></SectionTitle>
                       <DetailWrapper>
-                        <Label>You picked: {values.serviceType}</Label>
+                        <PickTextWrapper>
+                          You picked:
+                          <StrongText>{values.serviceType}</StrongText>
+                        </PickTextWrapper>
                       </DetailWrapper>
                     </SectionWrapper>
 
@@ -672,3 +680,19 @@ const NoticeInfoWrapper = styled.div`
 `;
 
 const NoticeInfo = styled(BodyMain)``;
+
+const PickTextWrapper = styled.div`
+  display: grid;
+  grid-template-columns: 100px auto;
+  gap: 20px;
+  align-items: center;
+`;
+
+const StrongText = styled(BodyIntro)`
+  /* color: rgba(255, 0, 0, 0.75);
+  text-shadow: 0px 10px 20 rgba(255, 0, 0, 0.8); */
+  background: linear-gradient(0deg, #1a2151 0%, #be1e69 50%);
+  background-clip: text;
+  --webkit-background-clip: text;
+  color: transparent;
+`;
