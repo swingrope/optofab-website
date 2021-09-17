@@ -1,5 +1,5 @@
 import { Formik, Form } from "formik";
-import React, { useRef } from "react";
+import React, {useRef, useState} from "react";
 import styled from "styled-components";
 import { MyTextArea } from "./fields/MyTextArea";
 import { MyTextInput } from "./fields/MyTextInput";
@@ -7,14 +7,16 @@ import { postData } from "./Feedback";
 import Layout from "../../components/layout/layout";
 import SubmitButton from "../../components/buttons/SubmitButton";
 import WaveBackgound2 from "../../components/backgrounds/WaveBackground2";
+import { createBrowserHistory } from 'history';
 
 // #BUG1: Submit function
 
 export default function Modify() {
+
   function modifyFileUpload(e) {
     e.preventDefault();
     let file = e.target.files[0];
-    var fileType = file.name.substring(
+    let fileType = file.name.substring(
       file.name.indexOf(".") + 1,
       file.name.length
     );
@@ -34,9 +36,9 @@ export default function Modify() {
       fetch(url, {
         method: "POST",
         body: formdata,
-        // headers: {
-        //   "Content-Type": "multipart/form-data",
-        // },
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
       })
         .then((res) => {
           console.log(res.status);
@@ -72,14 +74,20 @@ export default function Modify() {
                 values
               )
                 .then((res) => {
-                  console.log(res.status);
-                  if (res.status == 200)
-                    window.location.href = "Modify_Success.html";
+                  if (res.status === 200) {
+                    //console.log(res.status);
+                    const history = createBrowserHistory();
+                    history.push('success-modify');
+                    window.location.reload();
+                  }
                 })
                 .catch(() => {
-                  window.location.href = "Error.html";
+                  const history = createBrowserHistory();
+                  history.push('error-submit');
+                  window.location.reload();
                 });
             }}
+
           >
             <Form>
               <FormItemWrapper>
