@@ -127,7 +127,7 @@ export default function MainForm({ part, setPart }) {
                         </div>
                       </DetailWrapper>
                     </SectionWrapper>
-                    <SectionWrapper>
+                    {/* <SectionWrapper>
                       <SectionTitle></SectionTitle>
                       <DetailWrapper>
                         <PickTextWrapper>
@@ -135,7 +135,7 @@ export default function MainForm({ part, setPart }) {
                           <StrongText>{values.serviceType}</StrongText>
                         </PickTextWrapper>
                       </DetailWrapper>
-                    </SectionWrapper>
+                    </SectionWrapper> */}
 
                     {values.serviceType === "SPDT Optic" && (
                       <>
