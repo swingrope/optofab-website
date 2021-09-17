@@ -1,5 +1,5 @@
-import { Field } from "formik";
-import React, { Fragment } from "react";
+import { Field, useFormikContext } from "formik";
+import React, { Fragment, useState, useEffect } from "react";
 import { MyTextArea } from "../fields/MyTextArea";
 import { MyTextInput } from "../fields/MyTextInput";
 import { validateField } from "../Helpers";
@@ -25,6 +25,14 @@ export default function Geometry({
   substrateSource,
   serviceType,
 }) {
+
+  const [radius, setRadius] = useState(0);
+  const {values: {geometry: {numberOfSides, sideLength}}} = useFormikContext()
+  useEffect(() => {
+    // temporary calculation
+    setRadius(Number(numberOfSides) * Number(sideLength))
+  }, [numberOfSides, sideLength])
+
   return (
     <div>
       <label className="required">
@@ -78,11 +86,19 @@ export default function Geometry({
             placeholder="enter a float number here"
             onChange={handleChange}
           />
-          <label>
-            Chamfers are assumed to be 45 degrees to the coated or turned face.
-            If other chamfer types are required, please stipulate in the
-            'Additional Specifications' field.
-          </label>
+          {serviceType === 'SPDT Optic' 
+                ?   
+                <p>
+                  Chamfers are assumed to be symmetric between the coated or turned face and neighbouring faces. 
+                  If other chamfer types are required, please stipulate in the 'Additional Specifications' field.
+                </p> 
+                :
+                <p>
+                  Chamfers are assumed to be 45 degrees to the coated or turned face.
+                  If other chamfer types are required, please stipulate in the
+                  'Additional Specifications' field.
+                </p>
+          }
         </Fragment>
       )}
       {geometryValues.geometryType === "rectangle" && (
@@ -121,11 +137,19 @@ export default function Geometry({
             placeholder="enter a float number here"
             onChange={handleChange}
           />
-          <label>
-            Chamfers are assumed to be 45 degrees to the coated or turned face.
-            If other chamfer types are required, please stipulate in the
-            'Additional Specifications' field.
-          </label>
+          {serviceType === 'SPDT Optic' 
+                ?   
+                <p>
+                  Chamfers are assumed to be symmetric between the coated or turned face and neighbouring faces. 
+                  If other chamfer types are required, please stipulate in the 'Additional Specifications' field.
+                </p> 
+                :
+                <p>
+                  Chamfers are assumed to be 45 degrees to the coated or turned face.
+                  If other chamfer types are required, please stipulate in the
+                  'Additional Specifications' field.
+                </p>
+          }
         </Fragment>
       )}
       {geometryValues.geometryType === "regular polygon" && (
@@ -146,6 +170,9 @@ export default function Geometry({
             placeholder="enter a float number here"
             onChange={handleChange}
           />
+          <p>
+            Radius: {radius}
+          </p>
           <MyTextInput
             labelClass="required"
             validate={validateField}
@@ -166,11 +193,19 @@ export default function Geometry({
             placeholder="enter a float number here"
             onChange={handleChange}
           />
-          <label>
-            Chamfers are assumed to be 45 degrees to the coated or turned face.
-            If other chamfer types are required, please stipulate in the
-            'Additional Specifications' field.
-          </label>
+          {serviceType === 'SPDT Optic' 
+                ?   
+                <p>
+                  Chamfers are assumed to be symmetric between the coated or turned face and neighbouring faces. 
+                  If other chamfer types are required, please stipulate in the 'Additional Specifications' field.
+                </p> 
+                :
+                <p>
+                  Chamfers are assumed to be 45 degrees to the coated or turned face.
+                  If other chamfer types are required, please stipulate in the
+                  'Additional Specifications' field.
+                </p>
+          }
         </Fragment>
       )}
       {geometryValues.geometryType === "other" && (
@@ -194,23 +229,35 @@ export default function Geometry({
             cols={80}
             onChange={handleChange}
           />
-          <p>
-            Our standard tolerances on substrates are as follows. If different
-            tolerances are required, let us know in the ‘Tolerances’ field
-            below.
-            <br />
-            Optical substrates:
-            <br />
-            Diameter/Face Dimensions: ±0.15mm
-            <br />
-            Thickness: ±0.15mm
-            <br />
-            Wafers:
-            <br />
-            Diameter: +- 0.1mm
-            <br />
-            Thickness: +- 25um
-          </p>
+          {serviceType === 'SPDT Optic' 
+                ?
+            <p>
+              Our standard tolerances when machining blanks is 0.125mm. 
+              <br/>
+              If tighter tolerances are required, let us know in the 'Tolerances' field below. 
+              <br/>
+              Note that this refers to part geometry not surface or form of diamond turned faces.
+            </p>
+                :
+            <p>
+              Our standard tolerances on substrates are as follows. If different
+              tolerances are required, let us know in the ‘Tolerances’ field
+              below.
+              <br />
+              Optical substrates:
+              <br />
+              Diameter/Face Dimensions: ±0.15mm
+              <br />
+              Thickness: ±0.15mm
+              <br />
+              Wafers:
+              <br />
+              Diameter: +- 0.1mm
+              <br />
+              Thickness: +- 25um
+            </p>
+          }
+
         </Fragment>
       )}
     </div>

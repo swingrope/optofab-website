@@ -170,6 +170,7 @@ export default function MainForm({ part, setPart }) {
                                 geometryValues={values.geometry}
                                 blankSource={values.blankSource}
                                 substrateSource={"N/A"}
+                                serviceType={values.serviceType}
                               />
                             </Label>
                           </DetailWrapper>

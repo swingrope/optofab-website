@@ -12,7 +12,7 @@ export const surfaceInitialValues = {
   descriptionOfFace: "",
   curvature: "",
   surfaceFigure: "",
-  turningAngle: "",
+  turningAngle: 90,
   focalLength: "",
   radiusOfCurvature: "",
   cv: "",
@@ -103,12 +103,12 @@ export default function Surface({
                 onChange={handleChange}
               />
               <MyTextInput
-                label="Surface Roughness (nm rms): "
+                label="Surface Roughness (P-V nm): "
                 name={`surface.${index}.surfaceRoughness`}
                 onChange={handleChange}
               />
               <label>
-                Surface Quality:
+                Surface Quality (Scratch-Dig):
                 <Field
                   as="select"
                   name={`surface.${index}.surfaceQuality`}
@@ -139,6 +139,9 @@ export default function Surface({
           )}
           {surfaceValues.curvature === "parabolic" && (
             <Fragment>
+              <p>
+                Please specify the beam dimension in Description of Face
+              </p>
               <MyTextInput
                 labelClass="required"
                 validate={validateField}
@@ -157,12 +160,12 @@ export default function Surface({
                 onChange={handleChange}
               />
               <MyTextInput
-                label="Surface Roughness (nm rms): "
+                label="Surface Roughness (P-V nm): "
                 name={`surface.${index}.surfaceRoughness`}
                 onChange={handleChange}
               />
               <label>
-                Surface Quality:
+                Surface Quality (Scratch-Dig):
                 <Field
                   as="select"
                   name={`surface.${index}.surfaceQuality`}
@@ -206,12 +209,12 @@ export default function Surface({
                 onChange={handleChange}
               />
               <MyTextInput
-                label="Surface Roughness (nm rms): "
+                label="Surface Roughness (P-V nm): "
                 name={`surface.${index}.surfaceRoughness`}
                 onChange={handleChange}
               />
               <label>
-                Surface Quality:
+                Surface Quality (Scratch-Dig):
                 <Field
                   as="select"
                   name={`surface.${index}.surfaceQuality`}
@@ -309,12 +312,12 @@ export default function Surface({
                 onChange={handleChange}
               />
               <MyTextInput
-                label="Surface Roughness (nm rms): "
+                label="Surface Roughness (P-V nm): "
                 name={`surface.${index}.surfaceRoughness`}
                 onChange={handleChange}
               />
               <label>
-                Surface Quality:
+                Surface Quality (Scratch-Dig):
                 <Field
                   as="select"
                   name={`surface.${index}.surfaceQuality`}
