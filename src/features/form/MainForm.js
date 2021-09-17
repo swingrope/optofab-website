@@ -402,6 +402,8 @@ export default function MainForm({ part, setPart }) {
                                 type="file"
                                 name="specialInstructionFile"
                                 accept=".pdf,.png"
+                                onChange={specialInstructionFileUpload}
+                                ref={specialInstructionRefUpload}
                               />
                             </Fragment>
                           )}
@@ -542,6 +544,8 @@ export default function MainForm({ part, setPart }) {
                                 type="file"
                                 name="specialInstructionFile"
                                 accept=".pdf,.png"
+                                onChange={specialInstructionFileUpload}
+                                ref={specialInstructionRefUpload}
                               />
                             </Fragment>
                           )}
