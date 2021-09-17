@@ -1,12 +1,5 @@
 <?php
-// header("Access-Control-Allow-Origin: http://localhost:3000");
-// header('Access-Control-Allow-Headers: Content-Type');
-// header("Access-Control-Allow-Credential: true");
 
-// // header("Access-Control-Allow-Headers: *");
-// header('Access-Control-Allow-Methods: POST, GET');
-
-// header('Content-Type: application/json');
 require 'phpmailer/PHPMailer.php';
 require 'phpmailer/SMTP.php';
 require 'phpmailer/Exception.php';
@@ -66,6 +59,20 @@ function sendEmail($subject, $msg, $attachments=NULL, $JsonFile=NULL) {
 
     $mail -> smtpClose();
 }
+
+/**
+ * @return the array of attachments path in the uploads folder
+ */
+function attchmentsToArray() {
+    $path = '../uploads';
+    $files = array();
+    foreach(scandir($path) as $file) {
+        if ($file !== '.' && $file !== '..' && $file !== '.gitkeep')$files[] = $path . '/' . $file;
+    }
+    var_dump($files);
+    return $files;
+}
+
 
 /**
  * @return the decoded JSON object received via POST method

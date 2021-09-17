@@ -11,17 +11,11 @@ if ($contentType === "application/json") {
     $subject = "Order: ". $decodedJson['ordernum'] . ' New Modification Request';
     $message = $decodedJson['Modification'];
 
-    sendEmail($subject, $message);
+    $attachments = attchmentsToArray();
+    
 
-// if ($decodedJson["description"] != null) {
-//     $fileName = $decodedJson['description'];
-//     $path = './uploads' . $fileName;
-//     $attachment = array($path);
-//     sendEmail($subject, $message, $attachment);
-// }
-// else {
-//     sendEmail($subject, $message);
-// }
+    sendEmail($subject, $message, $attachments);
+
 }
 
 
