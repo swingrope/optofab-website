@@ -9,6 +9,8 @@ import CustomerInfo from "./features/form/components/CustomerInfo";
 import HomePage from "./Home";
 import ErrorSubmit from "./pages/errorSubmit";
 import SuccessSubmit from "./pages/successSubmit";
+import SuccessModify from "./pages/successModify";
+import SuccessFeedback from "./pages/successFeedback";
 
 function App() {
   const [part, setPart] = useState(1);
@@ -42,6 +44,12 @@ function App() {
         </Route>
         <Route path="/success-submit">
           <SuccessSubmit />
+        </Route>
+        <Route path="/success-modify">
+          <SuccessModify />
+        </Route>
+        <Route path="/success-feedback">
+          <SuccessFeedback />
         </Route>
       </Switch>
     </Router>

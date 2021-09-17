@@ -5,6 +5,7 @@ import Layout from "../../components/layout/layout";
 import SidebarCard from "../../components/cards/SidebarCard";
 import { MyTextArea } from "./fields/MyTextArea";
 import SubmitButton from "../../components/buttons/SubmitButton";
+import {createBrowserHistory} from "history";
 
 export async function postData(url = "", data = {}) {
   const response = await fetch(url, {
@@ -41,7 +42,11 @@ export default function Feedback() {
                 )
                   .then((res) => {
                     console.log(res.status);
-                    //if(res.status==200) window.location.href = 'Feedback_Success.html'
+                    if(res.status==200) {
+                      const history = createBrowserHistory();
+                      history.push('success-feedback');
+                      window.location.reload();
+                    }
                   })
                   .catch(() => {
                     window.location.href = "Error.html";
