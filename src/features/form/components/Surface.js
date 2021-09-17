@@ -1,5 +1,5 @@
 import { Field } from "formik";
-import React, { Fragment, useState } from "react";
+import React, {Fragment, useRef, useState} from "react";
 import styled from "styled-components";
 import { MyTextArea } from "../fields/MyTextArea.js";
 import { MyTextInput } from "../fields/MyTextInput.js";
@@ -42,6 +42,44 @@ export default function Surface({
   const [buttonText, setButtonText] = useState("show more");
   const [hasCoating, setHasCoating] = useState(false);
   const sideNumber = index + 1;
+
+  const curvatureRefUpload = useRef(null);
+
+  function curvatureFileUpload(e) {
+    e.preventDefault();
+    let file = e.target.files[0];
+    let fileType = file.name.substring(
+        file.name.indexOf(".") + 1,
+        file.name.length
+    );
+    if (
+        fileType !== "stp" &&
+        fileType !== "spd" &&
+        fileType !== "zmx"
+    ) {
+      alert("Please upload stp/spd/zmx file");
+      e.target.value = "";
+    } else {
+      const formdata = new FormData();
+      formdata.append("curvatureFile", file);
+      const url =
+          "http://localhost:8080/comp8715/optofab-website/src/api/Attachment.php";
+      fetch(url, {
+        method: "POST",
+        body: formdata,
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+          .then((res) => {
+            console.log(res.status);
+            alert("uploaded successfully");
+          })
+          .catch(() => {
+            alert("upload failed");
+          });
+    }
+  }
 
   const handleExpand = (e) => {
     e.preventDefault();
@@ -349,7 +387,8 @@ export default function Surface({
           {surfaceValues.curvature === "other" && (
             <Fragment>
               <label>Upload Zemax/Winlens File:</label>
-              <input type="file" name="curvatureFile" accept=".zmx" />
+              <input type="file" name="curvatureFile" accept=".zmx,.spd,.stp" onChange={curvatureFileUpload}
+                     ref={curvatureRefUpload} />
               <MyTextInput
                 label="Surface Figure (nm): ±"
                 name={`surface.${index}.surfaceFigure`}

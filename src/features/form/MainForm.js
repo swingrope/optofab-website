@@ -1,5 +1,5 @@
 import { Formik, Form, Field, FieldArray, useFormikContext } from "formik";
-import React, { Fragment, useEffect } from "react";
+import React, {Fragment, useEffect, useRef} from "react";
 import styled from "styled-components";
 import Geometry, { geometryInitialValues } from "./components/Geometry";
 import Material, { materialInitialValues } from "./components/Material";
@@ -61,6 +61,46 @@ export default function MainForm({ part, setPart }) {
       }
     });
   }
+
+  const specialInstructionRefUpload = useRef(null);
+
+  function specialInstructionFileUpload(e) {
+    e.preventDefault();
+    let file = e.target.files[0];
+    let fileType = file.name.substring(
+        file.name.indexOf(".") + 1,
+        file.name.length
+    );
+    if (
+        fileType !== "png" &&
+        fileType !== "pdf" &&
+        fileType !== "PNG" &&
+        fileType !== "PDF"
+    ) {
+      alert("Please upload PDF or PNG file");
+      e.target.value = "";
+    } else {
+      const formdata = new FormData();
+      formdata.append("specialInstructionFile", file);
+      const url =
+          "http://localhost:8080/comp8715/optofab-website/src/api/Attachment.php";
+      fetch(url, {
+        method: "POST",
+        body: formdata,
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+          .then((res) => {
+            console.log(res.status);
+            alert("uploaded successfully");
+          })
+          .catch(() => {
+            alert("upload failed");
+          });
+    }
+  }
+
 
   return (
     <Layout>
@@ -231,6 +271,8 @@ export default function MainForm({ part, setPart }) {
                                   type="file"
                                   name="specialInstructionFile"
                                   accept=".pdf,.png"
+                                  onChange={specialInstructionFileUpload}
+                                  ref={specialInstructionRefUpload}
                                 />
                               </DetailWrapper>
                             </SectionWrapper>

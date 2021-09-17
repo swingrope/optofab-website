@@ -1,5 +1,5 @@
 import { Field } from "formik";
-import React, { Fragment } from "react";
+import React, {Fragment, useRef} from "react";
 import { MyTextInput } from "../fields/MyTextInput";
 import { MyTextArea } from "../fields/MyTextArea";
 import { validateField } from "../Helpers";
@@ -22,6 +22,44 @@ export default function Material({
   materialValues,
   isStock,
 }) {
+  const MTARefUpload = useRef(null);
+
+  function MTAFileUpload(e) {
+    e.preventDefault();
+    let file = e.target.files[0];
+    let fileType = file.name.substring(
+        file.name.indexOf(".") + 1,
+        file.name.length
+    );
+    if (
+        fileType !== "png" &&
+        fileType !== "pdf" &&
+        fileType !== "PNG" &&
+        fileType !== "PDF"
+    ) {
+      alert("Please upload PDF or PNG file");
+      e.target.value = "";
+    } else {
+      const formdata = new FormData();
+      formdata.append("MTAFile", file);
+      const url =
+          "http://localhost:8080/comp8715/optofab-website/src/api/Attachment.php";
+      fetch(url, {
+        method: "POST",
+        body: formdata,
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+          .then((res) => {
+            console.log(res.status);
+            alert("uploaded successfully");
+          })
+          .catch(() => {
+            alert("upload failed");
+          });
+    }
+  }
   return (
     <div>
       <label className="required">
@@ -289,18 +327,32 @@ export default function Material({
       {materialValues.materialType === "other" &&
         (serviceType === "optical" || serviceType === "photonic") &&
         materialValues.materialTransferAgreement === "standard" && (
-          <label className="required">
-            <button>Download</button>
-            Standard MTA
-          </label>
+          <Fragment>
+            <label>please upload pdf files: </label>
+            <input
+                type="file"
+                name="description"
+                accept=".pdf"
+                onChange={MTAFileUpload}
+                ref={MTARefUpload}
+            />
+            <br />
+          </Fragment>
         )}
       {materialValues.materialType === "other" &&
         (serviceType === "optical" || serviceType === "photonic") &&
         materialValues.materialTransferAgreement === "custom" && (
-          <label className="required">
-            <button>Upload</button>
-            Custom MTA (pdf only)
-          </label>
+          <Fragment>
+            <label>please upload pdf files: </label>
+            <input
+                type="file"
+                name="description"
+                accept=".pdf"
+                onChange={MTAFileUpload}
+                ref={MTARefUpload}
+            />
+            <br />
+          </Fragment>
         )}
     </div>
   );

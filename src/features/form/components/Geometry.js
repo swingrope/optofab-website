@@ -1,5 +1,5 @@
 import { Field, useFormikContext } from "formik";
-import React, { Fragment, useState, useEffect } from "react";
+import React, {Fragment, useState, useEffect, useRef} from "react";
 import { MyTextArea } from "../fields/MyTextArea";
 import { MyTextInput } from "../fields/MyTextInput";
 import { validateField } from "../Helpers";
@@ -25,6 +25,44 @@ export default function Geometry({
   substrateSource,
   serviceType,
 }) {
+  const refUpload = useRef(null);
+
+  function geometryFileUpload(e) {
+    e.preventDefault();
+    let file = e.target.files[0];
+    let fileType = file.name.substring(
+        file.name.indexOf(".") + 1,
+        file.name.length
+    );
+    if (
+        fileType !== "dxf" &&
+        fileType !== "stp" &&
+        fileType !== "stl"
+    ) {
+      alert("Please upload dxf/stp/stl file");
+      e.target.value = "";
+    } else {
+      const formdata = new FormData();
+      formdata.append("geometryFile", file);
+      const url =
+          "http://localhost:8080/comp8715/optofab-website/src/api/Attachment.php";
+      fetch(url, {
+        method: "POST",
+        body: formdata,
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+          .then((res) => {
+            console.log(res.status);
+            alert("uploaded successfully");
+          })
+          .catch(() => {
+            alert("upload failed");
+          });
+    }
+  }
+
 
   const [radius, setRadius] = useState(0);
   const {values: {geometry: {numberOfSides, sideLength}}} = useFormikContext()
@@ -210,10 +248,14 @@ export default function Geometry({
       )}
       {geometryValues.geometryType === "other" && (
         <Fragment>
-          <label>
-            <button>Upload file</button>
-            Max 5M PDF / PNG only
-          </label>
+          <label>please upload dxf/stp/stl files: </label>
+          <input
+              type="file"
+              name="description"
+              accept=".dxf,.stp,.stl"
+              onChange={geometryFileUpload}
+              ref={refUpload}
+          />
           <br />
         </Fragment>
       )}
