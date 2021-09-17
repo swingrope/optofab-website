@@ -82,7 +82,9 @@ export default function Modify() {
                   }
                 })
                 .catch(() => {
-                  //window.location.href = "Error.html";
+                  const history = createBrowserHistory();
+                  history.push('error-submit');
+                  window.location.reload();
                 });
             }}
 
