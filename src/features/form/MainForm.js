@@ -81,15 +81,12 @@ export default function MainForm({ part, setPart }) {
       e.target.value = "";
     } else {
       const formdata = new FormData();
-      formdata.append("specialInstructionFile", file);
+      formdata.append("file", file);
       const url =
           "http://localhost:8080/comp8715/optofab-website/src/api/Attachment.php";
       fetch(url, {
         method: "POST",
-        body: formdata,
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
+        body: formdata
       })
           .then((res) => {
             console.log(res.status);

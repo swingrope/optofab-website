@@ -18,7 +18,7 @@ if ($contentType === "application/json") {
         RecursiveIteratorIterator::SELF_FIRST);
     
     // get order info from the json
-    $attachments = array();
+    $attachments =  attchmentsToArray();;
     $attachments[] = "OrderRequest.json";
     $message = "";
 
@@ -53,13 +53,9 @@ if ($contentType === "application/json") {
     echo($message);
 
     // send email
-  if ($attachments != null) {
-    sendEmail('New Order Request', $message, $attachments);
+
     
-    }
-    else {
-        sendEmail('New Order Request', $message);
-    }
+    sendEmail("New Order Request", $message, $attachments);
     
 }
 
