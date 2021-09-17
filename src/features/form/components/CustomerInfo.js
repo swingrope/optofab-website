@@ -1,6 +1,7 @@
 import { Field, Form, Formik } from 'formik'
-import React from 'react'
+import React, { useState } from 'react'
 import { MyTextInput } from '../fields/MyTextInput';
+import ReCAPTCHA from "react-google-recaptcha";
 
 export const customerInfoInitialValues = {
     sameAsAbove: false
@@ -9,6 +10,8 @@ export const customerInfoInitialValues = {
 export default function CustomerInfo({part}) {
 
     const baseURL = 'http://localhost:8080/comp8715/optofab-website/src/api/OrderRequest.php'
+    const [verified, setVerified] = useState(false)
+
     function fillBilling(values, setFieldValue) {
         
         values.sameAsAbove = !values.sameAsAbove
@@ -31,6 +34,10 @@ export default function CustomerInfo({part}) {
     }
 
     function handleSubmitForm(values) {
+
+        if (!verified)
+            return
+
         let data = { customerInfo: values }
     
         for (let i=1; i<part; i++) {
@@ -93,6 +100,11 @@ export default function CustomerInfo({part}) {
                     <MyTextInput name='stateBilling' label='State' onChange={handleChange} />
                     <MyTextInput name='cityBilling' label='City' onChange={handleChange} />
                     <MyTextInput name='postcodeBilling' label='PostCode' onChange={handleChange} />
+
+                    <ReCAPTCHA
+                        sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+                        onChange={() => setVerified(true)}
+                    />
                     <button type='submit' disabled={isSubmitting}>Submit</button>
                 </Form>
             )}
