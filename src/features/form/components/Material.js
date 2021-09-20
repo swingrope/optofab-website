@@ -104,7 +104,6 @@ export default function Material({
               <option value="ø50.8mm x 8mm DSP UVFS">
                 ø50.8mm x 8mm DSP UVFS
               </option>
-              <option value="other">Other</option>
             </Fragment>
           )}
           {serviceType === "photonic" && (
@@ -141,6 +140,9 @@ export default function Material({
                   <option value="radioactive">Radioactive</option>
                   <option value="toxic and radioactive">
                     Toxic and Radioactive
+                  </option>
+                  <option value="non-toxic">
+                    Non-toxic
                   </option>
                 </Fragment>
               </Field>

@@ -52,13 +52,13 @@ export default function Layer({sideIndex, index, handleChange}) {
                 onChange={handleChange}
             />
             <MyTextInput 
-                label='+-' 
-                name={`surface[${sideIndex}].coating.layers[${index}].refractiveIndex`}
+                label='±'
+                name={`surface[${sideIndex}].coating.layers[${index}].tolerance`}
                 onChange={handleChange}
             />
             <MyTextInput 
                 label='Wavelength (nm): ' 
-                name={`surface[${sideIndex}].coating.layers[${index}].refractiveIndex`}
+                name={`surface[${sideIndex}].coating.layers[${index}].wavelength`}
                 onChange={handleChange}
             />
         </div>

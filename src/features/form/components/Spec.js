@@ -54,7 +54,7 @@ export default function Spec({sideIndex, index, handleChange}) {
                 </Field>
             </label>
             <div className="required">
-                Angle of Incidence: &nbsp;&nbsp;&nbsp;
+                Angle of Incidence (degree): &nbsp;&nbsp;&nbsp;
                 <label>min: <Field validate={validateField} name={`surface[${sideIndex}].coating.specs[${index}].AOImin`} onChange={handleChange} /></label>
                 <label>max: <Field validate={validateField} name={`surface[${sideIndex}].coating.specs[${index}].AOImax`} onChange={handleChange} /></label>
             </div>

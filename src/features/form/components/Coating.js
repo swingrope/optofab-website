@@ -69,7 +69,7 @@ export default function Coating({coatingValues, handleChange, index, serviceType
                 <Field as='select' name={`surface[${index}].coating.depositionProcess`} onChange={handleChange}>
                     <option value="N/A">Please select</option>
                     <option value="lowTempLowStress">Low Temperature + Low Stress</option>
-                    <option value="highTempHighStress">High Temperature + High Stress</option>
+                    <option value="highTempLowLoss">High Temperature + Low Loss</option>
                 </Field>
             </label>
         </div>

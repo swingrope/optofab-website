@@ -305,17 +305,7 @@ export default function MainForm({ part, setPart }) {
                                 <Fragment>
                                   <Label>
                                     <br />
-                                    In stock:
-                                    <Field
-                                      name="stockSize"
-                                      as="select"
-                                      onChange={handleChange}
-                                    >
-                                      <option value="N/A">Please Select</option>
-                                      <option value="12.7mm">12.7mm</option>
-                                      <option value="25.4mm">25.4mm</option>
-                                      <option value="50.8mm">50.8mm</option>
-                                    </Field>
+
                                     <Material
                                       serviceType="optical"
                                       handleChange={handleChange}
@@ -629,6 +619,7 @@ export default function MainForm({ part, setPart }) {
                                 All parts specified - Next Step
                               </Link>
                             </NextButton>
+                            <label>Please note that you won’t be able to change the above parameters once you click Next Step.</label>
                           </NextButtonWrapper>
                         </SectionWrapper>
                       </Fragment>
