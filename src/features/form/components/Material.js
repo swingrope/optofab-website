@@ -244,6 +244,9 @@ export default function Material({
                 <option value="toxic and radioactive">
                   Toxic and Radioactive
                 </option>
+                <option value="non-toxic">
+                  Non-toxic
+                </option>
               </Fragment>
             </Field>
           </label>
