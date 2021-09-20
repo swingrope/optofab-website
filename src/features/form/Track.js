@@ -6,8 +6,56 @@ import { MyTextInput } from "./fields/MyTextInput";
 import { postData } from "./Feedback";
 import SubmitButton from "../../components/buttons/SubmitButton";
 import Layout from "../../components/layout/layout";
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import ReactDOM from "react-dom";
 
 // #BUG1: postData error after submitting; need more specific testing here, otherwise can't style the popped up tables afterwards
+let resultData = [];
+async function fetchStatus(url, orderId) {
+  let results = await (await postData(url, orderId)).json()
+  //console.log(results[0]);
+  //let result = [];
+  //results.forEach(resultsData =>{
+    //console.log(resultData);
+    //resultData.push(resultsData);
+  //})
+  createTable(results);
+  //console.log(result);
+}
+function createTable(tableData){
+  const element = (
+      <TableContainer component={Paper}>
+    <Table sx={{ minWidth: 650 }} aria-label="simple table">
+      <TableHead>
+        <TableRow>
+          <TableCell align="left">Part Id</TableCell>
+          <TableCell align="left">Status</TableCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        {
+          tableData.map((data) => (
+                    <TableRow
+                        key={data.name}
+                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                    >
+                      <TableCell align="left">{data.partNumber}</TableCell>
+                      <TableCell align="left">{data.status}</TableCell>
+                    </TableRow>
+                ))}
+      </TableBody>
+    </Table>
+  </TableContainer>
+  );
+  console.log('111');
+  ReactDOM.render(element, document.getElementById('table'));
+}
 
 export default function Track() {
   return (
@@ -20,21 +68,10 @@ export default function Track() {
             }}
             onSubmit={async (values) => {
               await new Promise((r) => setTimeout(r, 500));
-              alert(JSON.stringify(values, null, 2));
+              //alert(JSON.stringify(values, null, 2));
 
-              postData(
-                "http://localhost:8080/comp8715/optofab-website/src/api/Status.php",
-                values
-              )
-                .then((res) => {
-                  console.log(res.status);
-                  if (res.status === 200)
-                    window.location.href = "Status_Success.html";
-                })
-                .catch((e) => {
-                  window.location.href = "Error.html";
-                  console.log(e)
-                });
+              await fetchStatus("http://localhost:8080/comp8715/optofab-website/src/api/Status.php", values)
+              console.log(resultData);
             }}
           >
             <Form>
@@ -52,7 +89,8 @@ export default function Track() {
               </FormWrapper>
             </Form>
           </Formik>
-          <table name="track"></table>
+          <br />
+          <div id='table'></div>
         </ContentWrapper>
       </Wrapper>
     </Layout>
