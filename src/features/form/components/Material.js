@@ -88,7 +88,10 @@ export default function Material({
               <option value="Delrin">Delrin </option>
               <option value="PTFE">PTFE </option>
               {serviceType === "optical" && (
-                <option value="Silica">Silica</option>
+                  <>
+                    <option value="Silica">Silica</option>
+                    <option value="other">Other</option>
+                  </>
               )}
             </Fragment>
           )}
