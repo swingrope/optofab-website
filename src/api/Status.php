@@ -14,7 +14,7 @@ if ($contentType === "application/json") {
     if(! is_array($decoded)) {
         echo '{"partNumber":"error", "status":"error"}'; //fail to get order id from html/js
     } else {
-        $ordernum = $decoded['Order number'];
+        $ordernum = $decoded['ordernum'];
         $jsonFile = file_get_contents('../status.json');
         $jsonIterator = new RecursiveIteratorIterator(
             new RecursiveArrayIterator(json_decode($jsonFile, TRUE)),

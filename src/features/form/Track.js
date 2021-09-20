@@ -27,12 +27,13 @@ export default function Track() {
                 values
               )
                 .then((res) => {
-                  console.log(res.status());
-                  if (res.status == 200)
+                  console.log(res.status);
+                  if (res.status === 200)
                     window.location.href = "Status_Success.html";
                 })
-                .catch(() => {
+                .catch((e) => {
                   window.location.href = "Error.html";
+                  console.log(e)
                 });
             }}
           >
