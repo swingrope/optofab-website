@@ -288,8 +288,8 @@ export default function Material({
                 No
               </label>
             </span>
-            <br />* Please tell us if any of the parts react with liquinox brand
-            detergent, di water, acetone, isopropanol alcohol, ethanol,
+            <br />* Please tell us if any of the parts react with Liquinox brand
+            detergent, DI water, acetone, isopropanol alcohol, ethanol,
             methanol, citranox, ultrasonic agitation. If you wish to have the
             substrate cleaned with a special regimen, please add full details to
             special requirements.
