@@ -1,5 +1,5 @@
 import { Formik, Form, Field, FieldArray, useFormikContext } from "formik";
-import React, {Fragment, useEffect, useRef} from "react";
+import React, { Fragment, useEffect, useRef } from "react";
 import styled from "styled-components";
 import Geometry, { geometryInitialValues } from "./components/Geometry";
 import Material, { materialInitialValues } from "./components/Material";
@@ -68,14 +68,14 @@ export default function MainForm({ part, setPart }) {
     e.preventDefault();
     let file = e.target.files[0];
     let fileType = file.name.substring(
-        file.name.indexOf(".") + 1,
-        file.name.length
+      file.name.indexOf(".") + 1,
+      file.name.length
     );
     if (
-        fileType !== "png" &&
-        fileType !== "pdf" &&
-        fileType !== "PNG" &&
-        fileType !== "PDF"
+      fileType !== "png" &&
+      fileType !== "pdf" &&
+      fileType !== "PNG" &&
+      fileType !== "PDF"
     ) {
       alert("Please upload PDF or PNG file");
       e.target.value = "";
@@ -83,21 +83,20 @@ export default function MainForm({ part, setPart }) {
       const formdata = new FormData();
       formdata.append("file", file);
       const url =
-          "http://localhost:8080/comp8715/optofab-website/src/api/Attachment.php";
+        "http://localhost:8080/comp8715/optofab-website/src/api/Attachment.php";
       fetch(url, {
         method: "POST",
-        body: formdata
+        body: formdata,
       })
-          .then((res) => {
-            console.log(res.status);
-            alert("uploaded successfully");
-          })
-          .catch(() => {
-            alert("upload failed");
-          });
+        .then((res) => {
+          console.log(res.status);
+          alert("uploaded successfully");
+        })
+        .catch(() => {
+          alert("upload failed");
+        });
     }
   }
-
 
   return (
     <Layout>
@@ -164,15 +163,6 @@ export default function MainForm({ part, setPart }) {
                         </div>
                       </DetailWrapper>
                     </SectionWrapper>
-                    {/* <SectionWrapper>
-                      <SectionTitle></SectionTitle>
-                      <DetailWrapper>
-                        <PickTextWrapper>
-                          You picked:
-                          <StrongText>{values.serviceType}</StrongText>
-                        </PickTextWrapper>
-                      </DetailWrapper>
-                    </SectionWrapper> */}
 
                     {values.serviceType === "SPDT Optic" && (
                       <>
@@ -619,7 +609,10 @@ export default function MainForm({ part, setPart }) {
                                 All parts specified - Next Step
                               </Link>
                             </NextButton>
-                            <label>Please note that you won’t be able to change the above parameters once you click Next Step.</label>
+                            <label>
+                              Please note that you won’t be able to change the
+                              above parameters once you click Next Step.
+                            </label>
                           </NextButtonWrapper>
                         </SectionWrapper>
                       </Fragment>
