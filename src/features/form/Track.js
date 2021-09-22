@@ -19,14 +19,7 @@ import ReactDOM from "react-dom";
 let resultData = [];
 async function fetchStatus(url, orderId) {
   let results = await (await postData(url, orderId)).json()
-  //console.log(results[0]);
-  //let result = [];
-  //results.forEach(resultsData =>{
-    //console.log(resultData);
-    //resultData.push(resultsData);
-  //})
   createTable(results);
-  //console.log(result);
 }
 function createTable(tableData){
   const element = (
@@ -69,8 +62,8 @@ export default function Track() {
             onSubmit={async (values) => {
               await new Promise((r) => setTimeout(r, 500));
               //alert(JSON.stringify(values, null, 2));
-
-              await fetchStatus("http://localhost:8080/comp8715/optofab-website/src/api/Status.php", values)
+              await fetchStatus("../../api/Status.php", values)
+              //await fetchStatus("http://localhost:8080/comp8715/optofab-website/src/api/Status.php", values)
               console.log(resultData);
             }}
           >

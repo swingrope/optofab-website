@@ -42,8 +42,8 @@ export default function Material({
     } else {
       const formdata = new FormData();
       formdata.append("file", file);
-      const url =
-          "http://localhost:8080/comp8715/optofab-website/src/api/Attachment.php";
+      const url = "../../api/Attachment.php";
+      //const url = "http://localhost:8080/comp8715/optofab-website/src/api/Attachment.php";
       fetch(url, {
         method: "POST",
         body: formdata

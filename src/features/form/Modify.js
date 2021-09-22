@@ -66,10 +66,8 @@ export default function Modify() {
               Modification: "",
             }}
             onSubmit={async (values) => {
-              postData(
-                "http://localhost:8080/comp8715/optofab-website/src/api/Modification.php",
-                values
-              )
+              //postData("http://localhost:8080/comp8715/optofab-website/src/api/Modification.php", values)
+              postData("../../api/Modification.php", values)
                 .then((res) => {
                   if (res.status === 200) {
                     //console.log(res.status);
