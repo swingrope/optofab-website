@@ -29,6 +29,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "deploy-web": "react-scripts build && scp -i ~/.ssh/techlauncherssh-phi -r ./build/* u7075880@tl20212.cecs.anu.edu.au:/var/www/tl2021/optofab-website/build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
