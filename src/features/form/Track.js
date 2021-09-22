@@ -62,7 +62,7 @@ export default function Track() {
             onSubmit={async (values) => {
               await new Promise((r) => setTimeout(r, 500));
               //alert(JSON.stringify(values, null, 2));
-              await fetchStatus("..//Status.php", values)
+              await fetchStatus("../Status.php", values)
               //await fetchStatus("http://localhost:8080/comp8715/optofab-website/src/api/Status.php", values)
               console.log(resultData);
             }}
