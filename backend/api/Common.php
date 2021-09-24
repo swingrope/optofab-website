@@ -16,7 +16,7 @@ use PHPMailer\PHPMailer\Exception;
  */
 
 function sendEmail($subject, $msg, $attachments=NULL, $JsonFile=NULL) {
-    $credential = file_get_contents('../../credentials.json');
+    $credential = file_get_contents('./api/credentials.json');
     $decoded_credential = json_decode($credential, true);
     $mail = new PHPMailer();
     $mail -> isSMTP();
@@ -64,7 +64,7 @@ function sendEmail($subject, $msg, $attachments=NULL, $JsonFile=NULL) {
  * @return the array of attachments path in the uploads folder
  */
 function attchmentsToArray() {
-    $path = '../uploads';
+    $path = './api/uploads';
     $files = array();
     foreach(scandir($path) as $file) {
         if ($file !== '.' && $file !== '..' && $file !== '.gitkeep')$files[] = $path . '/' . $file;

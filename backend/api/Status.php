@@ -1,21 +1,13 @@
 <?php
-header('Content-Type: application/json');
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Headers: *");
-$orderStatus = array();
-$currentPart = array();
-$contentType = isset($_SERVER["CONTENT_TYPE"]) ?trim($_SERVER["CONTENT_TYPE"]) : '';
-
-if ($contentType === "application/json") {
-    //Receive the RAW post data.
-    $content = trim(file_get_contents("php://input"));
-    $decoded = json_decode($content, true);
-
+function handleSatus($decoded){
+    $orderStatus = array();
+    $currentPart = array();
+    
     if(! is_array($decoded)) {
         echo '{"partNumber":"error", "status":"error"}'; //fail to get order id from html/js
     } else {
         $ordernum = $decoded['ordernum'];
-        $jsonFile = file_get_contents('../status.json');
+        $jsonFile = file_get_contents('./api/status.json');
         $jsonIterator = new RecursiveIteratorIterator(
             new RecursiveArrayIterator(json_decode($jsonFile, TRUE)),
             RecursiveIteratorIterator::SELF_FIRST);
@@ -44,7 +36,6 @@ if ($contentType === "application/json") {
             echo json_encode($orderStatus);
         }
     }
-} else {
-    //if the input data type is not json
-    echo '{"partNumber":"error", "status":"error"}';
 }
+
+

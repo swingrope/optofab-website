@@ -12,7 +12,7 @@ if  (!empty($_FILES['file']['name'])){
     //umask($oldmask);
 
     //move the attachment to newly created folder
-    $targetPath = '../uploads/'.basename($_FILES['file']['name']);
+    $targetPath = './uploads/'.basename($_FILES['file']['name']);
     move_uploaded_file($_FILES['file']["tmp_name"], $targetPath);
     echo($_FILES['file']["tmp_name"]);
     // check if upload is success

@@ -1,17 +1,7 @@
 <?php
-header("Access-Control-Allow-Origin: http://localhost:3000");
-header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');
-header("Access-Control-Allow-Credential: true");
-// // header("Access-Control-Allow-Headers: *");
-header('Access-Control-Allow-Methods: POST, OPTIONS');
-// // header('Content-Type: application/json');
-// Allow from any origin
-require 'Common.php';
+function handleOrderRequest($requestPayload){
+    require 'Common.php';
 
-$contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
-
-if ($contentType === "application/json") {
-    $requestPayload = file_get_contents("php://input");
     file_put_contents("OrderRequest.json", $requestPayload);
     $jsonIterator = new RecursiveIteratorIterator(
         new RecursiveArrayIterator(json_decode($requestPayload, TRUE)),
@@ -57,6 +47,8 @@ if ($contentType === "application/json") {
     
     sendEmail("New Order Request", $message, $attachments);
     
+    
 }
+
 
   
