@@ -11,7 +11,7 @@ header("Access-Control-Allow-Credential: true");
 
 echo($_SERVER['REQUEST_URI']);
 
-if ($_SERVER['REQUEST_URI'] === '/comp8715/optofab-website/backend/api/Feedback') {
+if ($_SERVER['REQUEST_URI'] === '/backend/api/Feedback') {
     
     $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
 
