@@ -5,7 +5,7 @@ import Button4AddRemove from "../../../components/buttons/Button4AddRemove";
 import SwitchButton from "../../../components/buttons/SwitchButton";
 
 import { MyTextArea } from "../fields/MyTextArea";
-import { MyTextInput } from "../fields/MyTextInput";
+import { MyTextInputForm } from "../fields/MyTextInputForm";
 import Layer, { layerInitialValues } from "./Layer";
 import Spec, { specInitialValues } from "./Spec";
 
@@ -91,12 +91,12 @@ export default function Coating({
             )}
           </FieldArray>
         )}
-        <MyTextInput
+        <MyTextInputForm
           label="Coated Area Dimension: "
           name={`surface[${index}].coating.coatedAreaDimension`}
           onChange={handleChange}
         />
-        <MyTextInput
+        <MyTextInputForm
           label="Position: "
           name={`surface[${index}].coating.position`}
           onChange={handleChange}
