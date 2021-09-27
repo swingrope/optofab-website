@@ -1,7 +1,7 @@
 import { Field, useFormikContext } from "formik";
-import React, {Fragment, useState, useEffect, useRef} from "react";
+import React, { Fragment, useState, useEffect, useRef } from "react";
 import { MyTextArea } from "../fields/MyTextArea";
-import { MyTextInput } from "../fields/MyTextInput";
+import { MyTextInputForm } from "../fields/MyTextInputForm";
 import { validateField } from "../Helpers";
 
 export const geometryInitialValues = {
@@ -31,14 +31,10 @@ export default function Geometry({
     e.preventDefault();
     let file = e.target.files[0];
     let fileType = file.name.substring(
-        file.name.indexOf(".") + 1,
-        file.name.length
+      file.name.indexOf(".") + 1,
+      file.name.length
     );
-    if (
-        fileType !== "dxf" &&
-        fileType !== "stp" &&
-        fileType !== "stl"
-    ) {
+    if (fileType !== "dxf" && fileType !== "stp" && fileType !== "stl") {
       alert("Please upload dxf/stp/stl file");
       e.target.value = "";
     } else {
@@ -48,25 +44,28 @@ export default function Geometry({
       //const url = "http://localhost:8080/comp8715/optofab-website/src/api/Attachment.php";
       fetch(url, {
         method: "POST",
-        body: formdata
+        body: formdata,
       })
-          .then((res) => {
-            console.log(res.status);
-            alert("uploaded successfully");
-          })
-          .catch(() => {
-            alert("upload failed");
-          });
+        .then((res) => {
+          console.log(res.status);
+          alert("uploaded successfully");
+        })
+        .catch(() => {
+          alert("upload failed");
+        });
     }
   }
 
-
   const [radius, setRadius] = useState(0);
-  const {values: {geometry: {numberOfSides, sideLength}}} = useFormikContext()
+  const {
+    values: {
+      geometry: { numberOfSides, sideLength },
+    },
+  } = useFormikContext();
   useEffect(() => {
     // temporary calculation
-    setRadius(Number(numberOfSides) * Number(sideLength))
-  }, [numberOfSides, sideLength])
+    setRadius(Number(numberOfSides) * Number(sideLength));
+  }, [numberOfSides, sideLength]);
 
   return (
     <div>
@@ -85,9 +84,10 @@ export default function Geometry({
         </Field>
       </label>
       <br />
+      <br />
       {geometryValues.geometryType === "circular/elliptical" && (
         <Fragment>
-          <MyTextInput
+          <MyTextInputForm
             labelClass="required"
             validate={validateField}
             label="Major Diameter (mm):  "
@@ -95,13 +95,13 @@ export default function Geometry({
             name="geometry.majorDiameter"
             onChange={handleChange}
           />
-          <MyTextInput
+          <MyTextInputForm
             label="Minor Diameter (mm):"
             name="geometry.minorDiameter"
             placeholder="enter a float number here"
             onChange={handleChange}
           />
-          <MyTextInput
+          <MyTextInputForm
             labelClass="required"
             validate={validateField}
             label="Thickness (mm):"
@@ -109,36 +109,36 @@ export default function Geometry({
             placeholder="enter a float number here"
             onChange={handleChange}
           />
-          <MyTextInput
+          <MyTextInputForm
             label="Wedge (arcsecond):"
             name="geometry.wedge"
             placeholder="enter a float number here"
             onChange={handleChange}
           />
-          <MyTextInput
+          <MyTextInputForm
             label="Chamfer width (mm):"
             name="geometry.chamferWidth"
             placeholder="enter a float number here"
             onChange={handleChange}
           />
-          {serviceType === 'SPDT Optic' 
-                ?   
-                <p>
-                  Chamfers are assumed to be symmetric between the coated or turned face and neighbouring faces. 
-                  If other chamfer types are required, please stipulate in the 'Additional Specifications' field.
-                </p> 
-                :
-                <p>
-                  Chamfers are assumed to be 45 degrees to the coated or turned face.
-                  If other chamfer types are required, please stipulate in the
-                  'Additional Specifications' field.
-                </p>
-          }
+          {serviceType === "SPDT Optic" ? (
+            <p>
+              Chamfers are assumed to be symmetric between the coated or turned
+              face and neighbouring faces. If other chamfer types are required,
+              please stipulate in the 'Additional Specifications' field.
+            </p>
+          ) : (
+            <p>
+              Chamfers are assumed to be 45 degrees to the coated or turned
+              face. If other chamfer types are required, please stipulate in the
+              'Additional Specifications' field.
+            </p>
+          )}
         </Fragment>
       )}
       {geometryValues.geometryType === "rectangle" && (
         <Fragment>
-          <MyTextInput
+          <MyTextInputForm
             labelClass="required"
             validate={validateField}
             label="Width (mm):"
@@ -146,13 +146,13 @@ export default function Geometry({
             placeholder="enter a float number here"
             onChange={handleChange}
           />
-          <MyTextInput
+          <MyTextInputForm
             label="Length (mm):"
             name="geometry.length"
             placeholder="enter a float number here"
             onChange={handleChange}
           />
-          <MyTextInput
+          <MyTextInputForm
             labelClass="required"
             validate={validateField}
             label="Thickness (mm):"
@@ -160,36 +160,36 @@ export default function Geometry({
             placeholder="enter a float number here"
             onChange={handleChange}
           />
-          <MyTextInput
+          <MyTextInputForm
             label="Wedge (arcsecond):"
             name="geometry.wedge"
             placeholder="enter a float number here"
             onChange={handleChange}
           />
-          <MyTextInput
+          <MyTextInputForm
             label="Chamfer width (mm):"
             name="geometry.chamferWidth"
             placeholder="enter a float number here"
             onChange={handleChange}
           />
-          {serviceType === 'SPDT Optic' 
-                ?   
-                <p>
-                  Chamfers are assumed to be symmetric between the coated or turned face and neighbouring faces. 
-                  If other chamfer types are required, please stipulate in the 'Additional Specifications' field.
-                </p> 
-                :
-                <p>
-                  Chamfers are assumed to be 45 degrees to the coated or turned face.
-                  If other chamfer types are required, please stipulate in the
-                  'Additional Specifications' field.
-                </p>
-          }
+          {serviceType === "SPDT Optic" ? (
+            <p>
+              Chamfers are assumed to be symmetric between the coated or turned
+              face and neighbouring faces. If other chamfer types are required,
+              please stipulate in the 'Additional Specifications' field.
+            </p>
+          ) : (
+            <p>
+              Chamfers are assumed to be 45 degrees to the coated or turned
+              face. If other chamfer types are required, please stipulate in the
+              'Additional Specifications' field.
+            </p>
+          )}
         </Fragment>
       )}
       {geometryValues.geometryType === "regular polygon" && (
         <Fragment>
-          <MyTextInput
+          <MyTextInputForm
             labelClass="required"
             validate={validateField}
             label="Number of Sides:"
@@ -197,7 +197,7 @@ export default function Geometry({
             placeholder="enter a float number here"
             onChange={handleChange}
           />
-          <MyTextInput
+          <MyTextInputForm
             labelClass="required"
             validate={validateField}
             label="Side Length (mm):"
@@ -205,10 +205,8 @@ export default function Geometry({
             placeholder="enter a float number here"
             onChange={handleChange}
           />
-          <p>
-            Radius: {radius}
-          </p>
-          <MyTextInput
+          <p>Radius: {radius}</p>
+          <MyTextInputForm
             labelClass="required"
             validate={validateField}
             label="Thickness (mm):"
@@ -216,42 +214,42 @@ export default function Geometry({
             placeholder="enter a float number here"
             onChange={handleChange}
           />
-          <MyTextInput
+          <MyTextInputForm
             label="Wedge (arcsecond):"
             name="geometry.wedge"
             placeholder="enter a float number here"
             onChange={handleChange}
           />
-          <MyTextInput
+          <MyTextInputForm
             label="Chamfer width (mm):"
             name="geometry.chamferWidth"
             placeholder="enter a float number here"
             onChange={handleChange}
           />
-          {serviceType === 'SPDT Optic' 
-                ?   
-                <p>
-                  Chamfers are assumed to be symmetric between the coated or turned face and neighbouring faces. 
-                  If other chamfer types are required, please stipulate in the 'Additional Specifications' field.
-                </p> 
-                :
-                <p>
-                  Chamfers are assumed to be 45 degrees to the coated or turned face.
-                  If other chamfer types are required, please stipulate in the
-                  'Additional Specifications' field.
-                </p>
-          }
+          {serviceType === "SPDT Optic" ? (
+            <p>
+              Chamfers are assumed to be symmetric between the coated or turned
+              face and neighbouring faces. If other chamfer types are required,
+              please stipulate in the 'Additional Specifications' field.
+            </p>
+          ) : (
+            <p>
+              Chamfers are assumed to be 45 degrees to the coated or turned
+              face. If other chamfer types are required, please stipulate in the
+              'Additional Specifications' field.
+            </p>
+          )}
         </Fragment>
       )}
       {geometryValues.geometryType === "other" && (
         <Fragment>
           <label>please upload dxf/stp/stl files: </label>
           <input
-              type="file"
-              name="description"
-              accept=".dxf,.stp,.stl"
-              onChange={geometryFileUpload}
-              ref={refUpload}
+            type="file"
+            name="description"
+            accept=".dxf,.stp,.stl"
+            onChange={geometryFileUpload}
+            ref={refUpload}
           />
           <br />
         </Fragment>
@@ -268,16 +266,17 @@ export default function Geometry({
             cols={80}
             onChange={handleChange}
           />
-          {serviceType === 'SPDT Optic' 
-                ?
+          {serviceType === "SPDT Optic" ? (
             <p>
-              Our standard tolerances when machining blanks is 0.125mm. 
-              <br/>
-              If tighter tolerances are required, let us know in the 'Tolerances' field below. 
-              <br/>
-              Note that this refers to part geometry not surface or form of diamond turned faces.
+              Our standard tolerances when machining blanks is 0.125mm.
+              <br />
+              If tighter tolerances are required, let us know in the
+              'Tolerances' field below.
+              <br />
+              Note that this refers to part geometry not surface or form of
+              diamond turned faces.
             </p>
-                :
+          ) : (
             <p>
               Our standard tolerances on substrates are as follows. If different
               tolerances are required, let us know in the ‘Tolerances’ field
@@ -295,8 +294,7 @@ export default function Geometry({
               <br />
               Thickness: +- 25um
             </p>
-          }
-
+          )}
         </Fragment>
       )}
     </div>
