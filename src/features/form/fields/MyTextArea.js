@@ -19,18 +19,22 @@ export const MyTextArea = ({ label, labelClass, ...props }) => {
 };
 
 const InputArea = styled.textarea`
+  display: block;
   font-size: 15px;
   line-height: 130%;
   text-align: left;
   color: rgba(255, 255, 255, 0.8);
   /* background: transparent; */
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
   /* get rid of input border */
   border: 0;
   /* no border highlight when typing */
   outline: none;
-  max-width: 650px;
+  max-width: 750px;
+  width: 95%;
   padding: 6px;
   resize: none;
+  margin: 10px 0;
+  padding: 10px;
 `;
