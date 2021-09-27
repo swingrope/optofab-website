@@ -1,12 +1,13 @@
 import { Field } from "formik";
-import React, {Fragment, useRef, useState} from "react";
+import React, { Fragment, useRef, useState } from "react";
 import styled from "styled-components";
 import { MyTextArea } from "../fields/MyTextArea.js";
 import { MyTextInput } from "../fields/MyTextInput.js";
 import Coating, { coatingInitialValues } from "./Coating.js";
 import { MathComponent } from "mathjax-react";
 import { validateField } from "../Helpers.js";
-import { H3 } from "../../../components/styles/TextStyles";
+import { H3, MediumText } from "../../../components/styles/TextStyles";
+import Button4AddRemove from "../../../components/buttons/Button4AddRemove.js";
 
 export const surfaceInitialValues = {
   descriptionOfFace: "",
@@ -49,14 +50,10 @@ export default function Surface({
     e.preventDefault();
     let file = e.target.files[0];
     let fileType = file.name.substring(
-        file.name.indexOf(".") + 1,
-        file.name.length
+      file.name.indexOf(".") + 1,
+      file.name.length
     );
-    if (
-        fileType !== "stp" &&
-        fileType !== "spd" &&
-        fileType !== "zmx"
-    ) {
+    if (fileType !== "stp" && fileType !== "spd" && fileType !== "zmx") {
       alert("Please upload stp/spd/zmx file");
       e.target.value = "";
     } else {
@@ -66,15 +63,15 @@ export default function Surface({
       //const url = "http://localhost:8080/comp8715/optofab-website/src/api/Attachment.php";
       fetch(url, {
         method: "POST",
-        body: formdata
+        body: formdata,
       })
-          .then((res) => {
-            console.log(res.status);
-            alert("uploaded successfully");
-          })
-          .catch(() => {
-            alert("upload failed");
-          });
+        .then((res) => {
+          console.log(res.status);
+          alert("uploaded successfully");
+        })
+        .catch(() => {
+          alert("upload failed");
+        });
     }
   }
 
@@ -114,7 +111,7 @@ export default function Surface({
           )}
 
           <label className="required">
-            Curvature:
+            {"Curvature: "}
             <Field
               validate={validateField}
               as="select"
@@ -155,7 +152,7 @@ export default function Surface({
                   <option value="10-5">10-5</option>
                 </Field>
               </label>
-              <p>
+              <Description>
                 Surface Figure: Maximum deviation (figure error) of the optical
                 surface from the specified shape across the clear aperture, in
                 units of λ/N, where λ=632.8nm
@@ -169,14 +166,12 @@ export default function Surface({
                 Surface Roughness: Root mean square variation of the optical
                 surface with respect to the specified shape across the clear
                 aperture
-              </p>
+              </Description>
             </Fragment>
           )}
           {surfaceValues.curvature === "parabolic" && (
             <Fragment>
-              <p>
-                Please specify the beam dimension in Description of Face
-              </p>
+              <p>Please specify the beam dimension in Description of Face</p>
               <MyTextInput
                 labelClass="required"
                 validate={validateField}
@@ -212,7 +207,7 @@ export default function Surface({
                   <option value="10-5">10-5</option>
                 </Field>
               </label>
-              <p>
+              <Description>
                 Surface Figure: Maximum deviation (figure error) of the optical
                 surface from the specified shape across the clear aperture, in
                 units of λ/N, where λ=632.8nm
@@ -226,7 +221,7 @@ export default function Surface({
                 Surface Roughness: Root mean square variation of the optical
                 surface with respect to the specified shape across the clear
                 aperture
-              </p>
+              </Description>
             </Fragment>
           )}
           {surfaceValues.curvature === "spherical" && (
@@ -261,7 +256,7 @@ export default function Surface({
                   <option value="10-5">10-5</option>
                 </Field>
               </label>
-              <p>
+              <Description>
                 Surface Figure: Maximum deviation (figure error) of the optical
                 surface from the specified shape across the clear aperture, in
                 units of λ/N, where λ=632.8nm
@@ -275,7 +270,7 @@ export default function Surface({
                 Surface Roughness: Root mean square variation of the optical
                 surface with respect to the specified shape across the clear
                 aperture
-              </p>
+              </Description>
             </Fragment>
           )}
           {surfaceValues.curvature === "aspheric" && (
@@ -364,7 +359,7 @@ export default function Surface({
                   <option value="10-5">10-5</option>
                 </Field>
               </label>
-              <p>
+              <Description>
                 Surface Figure: Maximum deviation (figure error) of the optical
                 surface from the specified shape across the clear aperture, in
                 units of λ/N, where λ=632.8nm
@@ -378,14 +373,19 @@ export default function Surface({
                 Surface Roughness: Root mean square variation of the optical
                 surface with respect to the specified shape across the clear
                 aperture
-              </p>
+              </Description>
             </Fragment>
           )}
           {surfaceValues.curvature === "other" && (
             <Fragment>
               <label>Upload Zemax/Winlens File:</label>
-              <input type="file" name="curvatureFile" accept=".zmx,.spd,.stp" onChange={curvatureFileUpload}
-                     ref={curvatureRefUpload} />
+              <input
+                type="file"
+                name="curvatureFile"
+                accept=".zmx,.spd,.stp"
+                onChange={curvatureFileUpload}
+                ref={curvatureRefUpload}
+              />
               <MyTextInput
                 label="Surface Figure (nm): ±"
                 name={`surface.${index}.surfaceFigure`}
@@ -409,7 +409,7 @@ export default function Surface({
                   <option value="10-5">10-5</option>
                 </Field>
               </label>
-              <p>
+              <Description>
                 Surface Figure: Maximum deviation (figure error) of the optical
                 surface from the specified shape across the clear aperture, in
                 units of λ/N, where λ=632.8nm
@@ -423,13 +423,14 @@ export default function Surface({
                 Surface Roughness: Root mean square variation of the optical
                 surface with respect to the specified shape across the clear
                 aperture
-              </p>
+              </Description>
             </Fragment>
           )}
           <br />
-          <button type="button" onClick={() => setHasCoating(!hasCoating)}>
-            Add Coating
-          </button>
+          <Button4AddRemove
+            title="Add coating"
+            onClick={() => setHasCoating(!hasCoating)}
+          />
           {hasCoating && (
             <Coating
               coatingValues={surfaceValues.coating}
@@ -457,4 +458,12 @@ const SectionTitle = styled(H3)`
 
 const DetailWrapper = styled.div`
   margin: 20px;
+`;
+
+const Description = styled(MediumText)`
+  margin: 20px 0;
+  color: rgba(0, 0, 0, 0.8);
+  background: rgba(255, 255, 255, 0.5);
+  padding: 20px;
+  border-radius: 15px;
 `;
