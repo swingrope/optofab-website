@@ -1,5 +1,8 @@
 import { Field, useFormikContext } from "formik";
 import React, { Fragment, useState, useEffect, useRef } from "react";
+import styled from "styled-components";
+
+import { MediumText, SmallText } from "../../../components/styles/TextStyles";
 import { MyTextArea } from "../fields/MyTextArea";
 import { MyTextInputForm } from "../fields/MyTextInputForm";
 import { validateField } from "../Helpers";
@@ -122,17 +125,17 @@ export default function Geometry({
             onChange={handleChange}
           />
           {serviceType === "SPDT Optic" ? (
-            <p>
+            <Description>
               Chamfers are assumed to be symmetric between the coated or turned
               face and neighbouring faces. If other chamfer types are required,
               please stipulate in the 'Additional Specifications' field.
-            </p>
+            </Description>
           ) : (
-            <p>
+            <Description>
               Chamfers are assumed to be 45 degrees to the coated or turned
               face. If other chamfer types are required, please stipulate in the
               'Additional Specifications' field.
-            </p>
+            </Description>
           )}
         </Fragment>
       )}
@@ -173,17 +176,17 @@ export default function Geometry({
             onChange={handleChange}
           />
           {serviceType === "SPDT Optic" ? (
-            <p>
+            <Description>
               Chamfers are assumed to be symmetric between the coated or turned
               face and neighbouring faces. If other chamfer types are required,
               please stipulate in the 'Additional Specifications' field.
-            </p>
+            </Description>
           ) : (
-            <p>
+            <Description>
               Chamfers are assumed to be 45 degrees to the coated or turned
               face. If other chamfer types are required, please stipulate in the
               'Additional Specifications' field.
-            </p>
+            </Description>
           )}
         </Fragment>
       )}
@@ -227,17 +230,17 @@ export default function Geometry({
             onChange={handleChange}
           />
           {serviceType === "SPDT Optic" ? (
-            <p>
+            <Description>
               Chamfers are assumed to be symmetric between the coated or turned
               face and neighbouring faces. If other chamfer types are required,
               please stipulate in the 'Additional Specifications' field.
-            </p>
+            </Description>
           ) : (
-            <p>
+            <Description>
               Chamfers are assumed to be 45 degrees to the coated or turned
               face. If other chamfer types are required, please stipulate in the
               'Additional Specifications' field.
-            </p>
+            </Description>
           )}
         </Fragment>
       )}
@@ -267,7 +270,7 @@ export default function Geometry({
             onChange={handleChange}
           />
           {serviceType === "SPDT Optic" ? (
-            <p>
+            <Description>
               Our standard tolerances when machining blanks is 0.125mm.
               <br />
               If tighter tolerances are required, let us know in the
@@ -275,9 +278,9 @@ export default function Geometry({
               <br />
               Note that this refers to part geometry not surface or form of
               diamond turned faces.
-            </p>
+            </Description>
           ) : (
-            <p>
+            <Description>
               Our standard tolerances on substrates are as follows. If different
               tolerances are required, let us know in the ‘Tolerances’ field
               below.
@@ -293,10 +296,19 @@ export default function Geometry({
               Diameter: +- 0.1mm
               <br />
               Thickness: +- 25um
-            </p>
+            </Description>
           )}
         </Fragment>
       )}
     </div>
   );
 }
+
+const Description = styled(SmallText)`
+  margin: 5px 0;
+  max-width: 770px;
+  color: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.2);
+  padding: 5px 10px;
+  border-radius: 5px;
+`;
