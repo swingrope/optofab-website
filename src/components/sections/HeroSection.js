@@ -14,7 +14,7 @@ const HeroSection = () => {
         <TextWrapper>
           <Title>
             Welcome to <br />
-            OptoFab Portal Services
+            <LabTitle>OptoFab Portal</LabTitle> Services
           </Title>
           <Description>
             We deliver precision full custom optics, coatings, chips, and
@@ -65,10 +65,24 @@ const TextWrapper = styled.div`
 
 const Title = styled(H1)`
   color: ${themes.dark.text1};
-  background: linear-gradient(94.87deg, #be1e69 0%, #eb7776 53.11%);
+  /* add background blur effects for legibility */
+  /* background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 20px; */
+  /* for gradient title effects */
+  /* background: linear-gradient(94.87deg, #be1e69 0%, #eb7776 53.11%);
   background-clip: text;
   --webkit-background-clip: text;
-  color: transparent;
+  color: transparent; */
 `;
 
-const Description = styled(MediumText)``;
+const Description = styled(MediumText)`
+  background: rgba(255, 255, 255, 0.5);
+  padding: 20px;
+  border-radius: 20px; ;
+`;
+
+const LabTitle = styled(H1)`
+  color: #be1e69;
+  text-shadow: 0px 20px 40px rgba(0, 0, 0, 0.5);
+`;
