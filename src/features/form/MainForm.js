@@ -1,5 +1,5 @@
 import { Formik, Form, Field, FieldArray, useFormikContext } from "formik";
-import React, {Fragment, useEffect, useRef} from "react";
+import React, { Fragment, useEffect, useRef } from "react";
 import styled from "styled-components";
 import Geometry, { geometryInitialValues } from "./components/Geometry";
 import Material, { materialInitialValues } from "./components/Material";
@@ -68,36 +68,34 @@ export default function MainForm({ part, setPart }) {
     e.preventDefault();
     let file = e.target.files[0];
     let fileType = file.name.substring(
-        file.name.indexOf(".") + 1,
-        file.name.length
+      file.name.indexOf(".") + 1,
+      file.name.length
     );
     if (
-        fileType !== "png" &&
-        fileType !== "pdf" &&
-        fileType !== "PNG" &&
-        fileType !== "PDF"
+      fileType !== "png" &&
+      fileType !== "pdf" &&
+      fileType !== "PNG" &&
+      fileType !== "PDF"
     ) {
       alert("Please upload PDF or PNG file");
       e.target.value = "";
     } else {
       const formdata = new FormData();
       formdata.append("file", file);
-      const url =
-          "../api/Attachment.php";
+      const url = "../api/Attachment.php";
       fetch(url, {
         method: "POST",
-        body: formdata
+        body: formdata,
       })
-          .then((res) => {
-            console.log(res.status);
-            alert("uploaded successfully");
-          })
-          .catch(() => {
-            alert("upload failed");
-          });
+        .then((res) => {
+          console.log(res.status);
+          alert("uploaded successfully");
+        })
+        .catch(() => {
+          alert("upload failed");
+        });
     }
   }
-
 
   return (
     <Layout>
@@ -619,7 +617,10 @@ export default function MainForm({ part, setPart }) {
                                 All parts specified - Next Step
                               </Link>
                             </NextButton>
-                            <label>Please note that you won’t be able to change the above parameters once you click Next Step.</label>
+                            <Label>
+                              Please note that you won’t be able to change the
+                              above parameters once you click Next Step.
+                            </Label>
                           </NextButtonWrapper>
                         </SectionWrapper>
                       </Fragment>
@@ -638,7 +639,13 @@ export default function MainForm({ part, setPart }) {
 const Wrapper = styled.div`
   /* background: linear-gradient(115.82deg, #00486f 0%, #eb7776 93.65%); */
   /* background: linear-gradient(135deg, #176ab1 20%, #eb7776 80%); */
-  background: linear-gradient(115.82deg, #150050 0%, #176ab1 93.65%);
+  /* background: linear-gradient(115.82deg, #150050 0%, #176ab1 93.65%); */
+  /* background: linear-gradient(120deg, #150e56 0%, #1597bb 50%); */
+  background: radial-gradient(
+    39.5% 72.2% at 39.83% 56.34%,
+    rgba(0, 35, 123, 0.9) 0%,
+    rgba(235, 119, 118, 0.9) 100%
+  );
 `;
 
 const ContentWrapper = styled.div`
@@ -670,8 +677,8 @@ const SectionWrapper = styled.div`
 
 const SectionTitle = styled(H3)`
   margin: 10px;
-  color: rgba(0, 0, 0, 0.9);
-  text-shadow: 0px 10px 20px rgba(0, 0, 0, 0.4);
+  color: rgba(190, 30, 105, 0.8);
+  text-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
 `;
 
 const DetailWrapper = styled.div`
