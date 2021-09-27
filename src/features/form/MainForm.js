@@ -291,6 +291,7 @@ export default function MainForm({ part, setPart }) {
                                   ANFF supplied – full custom
                                 </option>
                               </Field>
+                              <br />
                               {values.substrateSource ===
                                 "ANFF supplied – stock" && (
                                 <Fragment>
@@ -410,6 +411,7 @@ export default function MainForm({ part, setPart }) {
                                   ANFF supplied – full custom
                                 </option>
                               </Field>
+                              <br />
                               {values.substrateSource ===
                                 "ANFF supplied – stock" && (
                                 <Fragment>

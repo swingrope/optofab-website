@@ -462,8 +462,8 @@ const DetailWrapper = styled.div`
 
 const Description = styled(MediumText)`
   margin: 20px 0;
-  color: rgba(0, 0, 0, 0.8);
-  background: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.2);
   padding: 20px;
   border-radius: 15px;
 `;
