@@ -447,7 +447,7 @@ export default function Surface({
 
 const SectionWrapper = styled.div`
   display: grid;
-  grid-template-columns: minmax(210px, 250px) auto;
+  grid-template-columns: minmax(150px, 20%) auto;
 `;
 
 const SectionTitle = styled(H3)`

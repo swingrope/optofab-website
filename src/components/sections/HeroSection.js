@@ -79,7 +79,7 @@ const Title = styled(H1)`
 const Description = styled(MediumText)`
   background: rgba(255, 255, 255, 0.5);
   padding: 20px;
-  border-radius: 20px; ;
+  border-radius: 20px;
 `;
 
 const LabTitle = styled(H1)`

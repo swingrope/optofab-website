@@ -127,38 +127,40 @@ export default function MainForm({ part, setPart }) {
                       </SectionTitle>
                       <DetailWrapper>
                         <div role="group" aria-labelledby="service-type">
-                          <Label>
-                            <Field
-                              type="radio"
-                              name="serviceType"
-                              value="SPDT Optic"
-                            />
-                            SPDT Optic
-                          </Label>
-                          <Label>
-                            <Field
-                              type="radio"
-                              name="serviceType"
-                              value="Optical Coating"
-                            />
-                            Optical Coating
-                          </Label>
-                          <Label>
-                            <Field
-                              type="radio"
-                              name="serviceType"
-                              value="Photonic Coating"
-                            />
-                            Photonic Coating
-                          </Label>
-                          <Label>
-                            <Field
-                              type="radio"
-                              name="serviceType"
-                              value="Integrated Optic Chip, Assembly and Others"
-                            />
-                            Integrated Optic Chip, Assembly and Others
-                          </Label>
+                          <RadioButtonWrapper>
+                            <Label>
+                              <Field
+                                type="radio"
+                                name="serviceType"
+                                value="SPDT Optic"
+                              />
+                              SPDT Optic
+                            </Label>
+                            <Label>
+                              <Field
+                                type="radio"
+                                name="serviceType"
+                                value="Optical Coating"
+                              />
+                              Optical Coating
+                            </Label>
+                            <Label>
+                              <Field
+                                type="radio"
+                                name="serviceType"
+                                value="Photonic Coating"
+                              />
+                              Photonic Coating
+                            </Label>
+                            <Label>
+                              <Field
+                                type="radio"
+                                name="serviceType"
+                                value="Integrated Optic Chip, Assembly and Others"
+                              />
+                              Integrated Optic Chip, Assembly and Others
+                            </Label>
+                          </RadioButtonWrapper>
                         </div>
                       </DetailWrapper>
                     </SectionWrapper>
@@ -643,6 +645,7 @@ const ContentWrapper = styled.div`
   max-width: 1500px;
   margin: 0 auto;
   padding: 200px 30px;
+  min-height: 800px;
 `;
 
 const BackgroundBlurWrapper = styled.div`
@@ -661,9 +664,18 @@ const Label = styled.label`
   color: rgba(255, 255, 255, 0.95);
 `;
 
+const RadioButtonWrapper = styled.div`
+  display: grid;
+  /* grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); */
+  grid-template-columns:
+    minmax(100px, 1fr) minmax(100px, 1fr)
+    minmax(100px, 1fr)
+    minmax(200px, 2fr);
+`;
+
 const SectionWrapper = styled.div`
   display: grid;
-  grid-template-columns: minmax(210px, 250px) auto;
+  grid-template-columns: minmax(150px, 20%) auto;
 `;
 
 const SectionTitle = styled(H3)`
@@ -701,7 +713,7 @@ const NextButton = styled.button`
 const NextButtonWrapper = styled.div`
   display: grid;
   justify-items: right;
-  margin: 0px 30px;
+  margin: 0px 40px;
 `;
 
 const NoticeTitle = styled(Caption2)`
@@ -710,9 +722,14 @@ const NoticeTitle = styled(Caption2)`
 
 const NoticeInfoWrapper = styled.div`
   display: grid;
-  background: transparent;
-  padding: 50px;
-  gap: 20px;
+  max-width: 600px;
+  margin: 50px 0;
+  background: rgba(255, 255, 255, 0.3);
+  /* padding: 20px; */
+  border-radius: 20px;
+  /* background: transparent; */
+  padding: 30px;
+  gap: 15px;
   text-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
 `;
 
