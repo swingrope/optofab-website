@@ -39,10 +39,10 @@ export default function Header() {
 const Wrapper = styled.div`
   /* absolute to parent (root in this case) */
   position: absolute;
-  top: 50px;
+  top: 30px;
   display: grid;
   /* first 45px is for logo */
-  grid-template-columns: 45px auto;
+  grid-template-columns: 65px auto;
   /* set width to take up whole space */
   width: 100%;
   /* space-between has no left/right (far-ends) space, vs space-around. see css-tricks.com */
@@ -79,8 +79,8 @@ const MenuWrapper = styled.div`
 `;
 
 const Logo = styled.img`
-  width: 44px;
-  height: 61.84px;
+  width: 64px;
+  height: 90px;
   left: 0px;
   top: 0px;
 
