@@ -1,5 +1,5 @@
 import { Field } from "formik";
-import React, { Fragment, useRef, useState } from "react";
+import React, { Fragment, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { MyTextArea } from "../fields/MyTextArea.js";
 import { MyTextInput } from "../fields/MyTextInput.js";
@@ -45,6 +45,12 @@ export default function Surface({
   const sideNumber = index + 1;
 
   const curvatureRefUpload = useRef(null);
+
+  useEffect(() => {
+    if(serviceType === 'Optical Coating' || serviceType === 'Photonic Coating') {
+      setHasCoating(true)
+    }
+  }, [serviceType])
 
   function curvatureFileUpload(e) {
     e.preventDefault();

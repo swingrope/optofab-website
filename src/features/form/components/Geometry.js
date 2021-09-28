@@ -16,7 +16,7 @@ export const geometryInitialValues = {
   chamferWidth: 0,
   width: "",
   length: "",
-  sideLength: "",
+  radius: "",
   dimensionalAccuracy: "",
   numberOfSides: "",
 };
@@ -59,16 +59,17 @@ export default function Geometry({
     }
   }
 
-  const [radius, setRadius] = useState(0);
+  const [sideLength, setSideLength] = useState(0);
   const {
     values: {
-      geometry: { numberOfSides, sideLength },
+      geometry: { radius, numberOfSides },
     },
   } = useFormikContext();
   useEffect(() => {
     // temporary calculation
-    setRadius(Number(numberOfSides) * Number(sideLength));
-  }, [numberOfSides, sideLength]);
+    if (radius && numberOfSides)
+      setSideLength(Number(radius) * 2 * Math.sin(Math.PI / Number(numberOfSides)));
+  }, [numberOfSides, radius]);
 
   return (
     <div>
@@ -203,12 +204,12 @@ export default function Geometry({
           <MyTextInputForm
             labelClass="required"
             validate={validateField}
-            label="Side Length (mm):"
-            name="geometry.sideLength"
+            label="Radius (degree):"
+            name="geometry.radius"
             placeholder="enter a float number here"
             onChange={handleChange}
           />
-          <p>Radius: {radius}</p>
+          <p>side length: {Math.floor(sideLength)} mm</p>
           <MyTextInputForm
             labelClass="required"
             validate={validateField}
@@ -310,5 +311,5 @@ const Description = styled(SmallText)`
   color: rgba(255, 255, 255, 0.95);
   background: rgba(255, 255, 255, 0.2);
   padding: 5px 10px;
-  border-radius: 5px;
+  border-numberOfSides: 5px;
 `;
