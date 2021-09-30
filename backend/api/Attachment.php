@@ -1,4 +1,5 @@
 <?php
+// This file is archived as the implementation of handling attachment has been moved to index.php
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: *");
 

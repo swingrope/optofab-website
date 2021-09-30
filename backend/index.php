@@ -1,16 +1,15 @@
 <?php
+// index.php acts like a controller for different api endpoints 
 
-// require('./api/Feedback.php');
-
-// echo('hello');
-
+// headers for response
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
 header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');
 header("Access-Control-Allow-Credential: true");
 
-echo($_SERVER['REQUEST_URI']);
+// echo($_SERVER['REQUEST_URI']); // for debug
 
+// api/Feedback: handle feedback page request
 if ($_SERVER['REQUEST_URI'] === '/backend/api/Feedback') {
     
     $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
@@ -26,7 +25,7 @@ if ($_SERVER['REQUEST_URI'] === '/backend/api/Feedback') {
     }
  }
 
-
+// api/Attachment: handle upload attachment function
 if ($_SERVER['REQUEST_URI'] === '/comp8715/optofab-website/backend/api/Attachment') {
     if  (!empty($_FILES['file']['name'])){
         $nameArray = explode('.', $_FILES['file']['name']);
@@ -44,6 +43,7 @@ if ($_SERVER['REQUEST_URI'] === '/comp8715/optofab-website/backend/api/Attachmen
       }
  }
 
+ // api/Modification: handle request from the modification page
  if ($_SERVER['REQUEST_URI'] === '/comp8715/optofab-website/backend/api/Modification') {
     $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
 
@@ -57,6 +57,7 @@ if ($_SERVER['REQUEST_URI'] === '/comp8715/optofab-website/backend/api/Attachmen
     }
  }
 
+ // api/OrderRequest: handle the submission of order request
  if ($_SERVER['REQUEST_URI'] === '/comp8715/optofab-website/backend/api/OrderRequest') {
     $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
 
@@ -68,6 +69,7 @@ if ($_SERVER['REQUEST_URI'] === '/comp8715/optofab-website/backend/api/Attachmen
     }
  }
 
+ // api/Status: handle the status page request
  if ($_SERVER['REQUEST_URI'] === '/comp8715/optofab-website/backend/api/Satus') {
     $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
 

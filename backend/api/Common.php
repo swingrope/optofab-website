@@ -10,6 +10,9 @@ use PHPMailer\PHPMailer\Exception;
 
 
 /**
+ * This function sends email with given subject, body message, attachment paths, json file path.
+ * The sender email address and password are stored in the credentials.json file.
+ * For more detailed documentation, look up PhpMailer
  * @param string $subject: the subject of the email
  * @param string $subject: the main body of the email
  * @param string array or NULL $attachments: the attachments path
@@ -61,6 +64,7 @@ function sendEmail($subject, $msg, $attachments=NULL, $JsonFile=NULL) {
 }
 
 /**
+ * This function retrieves all file paths currently in the uploads folder
  * @return the array of attachments path in the uploads folder
  */
 function attchmentsToArray() {
@@ -75,6 +79,7 @@ function attchmentsToArray() {
 
 
 /**
+ * This function decode the JSON object received
  * @return the decoded JSON object received via POST method
  */
 function handlePostJson() {

@@ -1,4 +1,7 @@
 <?php
+// This function takes in information from the order request page and 
+// parse the information into email message, check for any uploaded attachments
+// then send the email to ANFF OptoFab
 function handleOrderRequest($requestPayload){
     require 'Common.php';
 
@@ -7,11 +10,11 @@ function handleOrderRequest($requestPayload){
         new RecursiveArrayIterator(json_decode($requestPayload, TRUE)),
         RecursiveIteratorIterator::SELF_FIRST);
     
-    // get order info from the json
-    $attachments =  attchmentsToArray();;
+    $attachments =  attchmentsToArray(); // get potential attachments
     $attachments[] = "OrderRequest.json";
     $message = "";
-
+    
+    // append key value pair in JSON to the email message body
     foreach ($jsonIterator as $key => $val) {
         if (is_array($val)){
             $message.=$key;

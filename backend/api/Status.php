@@ -1,4 +1,7 @@
 <?php
+// This function takes in information from the status page and 
+// seach for the status.json file for matching order number
+// then return the order status if found
 function handleSatus($decoded){
     $orderStatus = array();
     $currentPart = array();
