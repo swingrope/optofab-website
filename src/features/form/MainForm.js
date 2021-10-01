@@ -30,6 +30,10 @@ export const formInitialValues = {
   specialInstructions: "",
 };
 
+/**
+ * When switching service types, the filled information is discarded.
+ * 
+ */
 const SwitchServiceType = () => {
   const { values, setValues } = useFormikContext();
 
@@ -41,6 +45,9 @@ const SwitchServiceType = () => {
   return null;
 };
 
+/**
+ * Set default values for minor diameter as required
+ */
 const setDefaultValues = (setFieldValue, values) => {
   if (values.geometry.minorDiameter === "") {
     setFieldValue("geometry.minorDiameter", values.geometry.MajorDiameter);
@@ -48,9 +55,12 @@ const setDefaultValues = (setFieldValue, values) => {
 };
 
 export default function MainForm({ part, setPart }) {
+
+  /**
+   * When adding a part, validate the form, save it to local storage, then reset everything back to empty
+   */
   function handleAddPart(e, values, resetForm, setFieldValue, validateForm) {
     e.preventDefault();
-
     validateForm().then((errors) => {
       console.log(errors);
       if (Object.keys(errors).length === 0) {
@@ -64,6 +74,9 @@ export default function MainForm({ part, setPart }) {
 
   const specialInstructionRefUpload = useRef(null);
 
+  /**
+   * handle file types when uploading
+   */
   function specialInstructionFileUpload(e) {
     e.preventDefault();
     let file = e.target.files[0];

@@ -1,3 +1,7 @@
+/**
+ * Helper methods used in form
+ */
+
 export const flattenObject = (obj) => {
     const flattened = {}
   

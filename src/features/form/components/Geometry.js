@@ -59,6 +59,9 @@ export default function Geometry({
     }
   }
 
+  /**
+   * Calculate number of sides by side length and radius
+   */
   const [sideLength, setSideLength] = useState(0);
   const {
     values: {

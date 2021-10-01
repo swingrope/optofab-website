@@ -21,6 +21,10 @@ async function fetchStatus(url, orderId) {
   let results = await (await postData(url, orderId)).json()
   createTable(results);
 }
+
+/**
+ * create the table dynamically
+ */
 function createTable(tableData){
   const element = (
       <TableContainer component={Paper}>
