@@ -87,10 +87,6 @@ export default function Surface({
     !expand ? setButtonText("show less") : setButtonText("show more");
   };
 
-  const handleUpload = (e) => {
-    e.preventDefault();
-  };
-
   return (
     <div>
       <SectionWrapper>
