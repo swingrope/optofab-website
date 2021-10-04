@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Geometry, { geometryInitialValues } from "./components/Geometry";
 import Material, { materialInitialValues } from "./components/Material";
 import Surface, { surfaceInitialValues } from "./components/Surface";
-import { MyTextInput } from "./fields/MyTextInput";
+import { MyTextInputForm } from "./fields/MyTextInputForm";
 import { MyTextArea } from "./fields/MyTextArea";
 import { Link } from "react-router-dom";
 import { validateField } from "./Helpers";
@@ -32,7 +32,7 @@ export const formInitialValues = {
 
 /**
  * When switching service types, the filled information is discarded.
- * 
+ *
  */
 const SwitchServiceType = () => {
   const { values, setValues } = useFormikContext();
@@ -55,7 +55,6 @@ const setDefaultValues = (setFieldValue, values) => {
 };
 
 export default function MainForm({ part, setPart }) {
-
   /**
    * When adding a part, validate the form, save it to local storage, then reset everything back to empty
    */
@@ -253,7 +252,7 @@ export default function MainForm({ part, setPart }) {
                             <SectionWrapper>
                               <SectionTitle></SectionTitle>
                               <DetailWrapper>
-                                <MyTextInput
+                                <MyTextInputForm
                                   labelClass="required"
                                   validate={validateField}
                                   label="Quantity:"
@@ -380,7 +379,7 @@ export default function MainForm({ part, setPart }) {
                               "ANFF supplied – full custom") && (
                             <Fragment>
                               <br />
-                              <MyTextInput
+                              <MyTextInputForm
                                 label="Quantity:"
                                 name="quantity"
                                 onChange={handleChange}
@@ -521,7 +520,7 @@ export default function MainForm({ part, setPart }) {
                               "ANFF supplied – full custom") && (
                             <Fragment>
                               <br />
-                              <MyTextInput
+                              <MyTextInputForm
                                 labelClass="required"
                                 validate={validateField}
                                 label="Quantity:"
