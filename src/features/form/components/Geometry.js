@@ -71,7 +71,9 @@ export default function Geometry({
   useEffect(() => {
     // temporary calculation
     if (radius && numberOfSides)
-      setSideLength(Number(radius) * 2 * Math.sin(Math.PI / Number(numberOfSides)));
+      setSideLength(
+        Number(radius) * 2 * Math.sin(Math.PI / Number(numberOfSides))
+      );
   }, [numberOfSides, radius]);
 
   return (
