@@ -659,7 +659,7 @@ const ContentWrapper = styled.div`
   max-width: 1500px;
   margin: 0 auto;
   padding: 200px 30px;
-  min-height: 800px;
+  min-height: 1080px;
 `;
 
 const BackgroundBlurWrapper = styled.div`
