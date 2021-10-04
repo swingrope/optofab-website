@@ -7,7 +7,7 @@ header('Content-Type: application/json');
 header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');
 header("Access-Control-Allow-Credential: true");
 
-// echo($_SERVER['REQUEST_URI']); // for debug
+echo($_SERVER['REQUEST_URI']); // for debug
 
 // api/Feedback: handle feedback page request
 if ($_SERVER['REQUEST_URI'] === '/backend/api/Feedback') {
