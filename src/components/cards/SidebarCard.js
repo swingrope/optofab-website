@@ -36,11 +36,12 @@ const TextWrapper = styled.div`
 `;
 
 const Title = styled(H3)`
-  color: ${themes.dark.text1};
-  background: linear-gradient(94.87deg, #be1e69 0%, #eb7776 53.11%);
+  color: ${themes.light.primary};
+  /* get rid of linear gradient effect for text title for now*/
+  /* background: linear-gradient(94.87deg, #be1e69 0%, #eb7776 53.11%);
   background-clip: text;
   --webkit-background-clip: text;
-  color: transparent;
+  color: transparent; */
   height: 80px;
 `;
 

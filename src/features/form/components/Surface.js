@@ -2,11 +2,11 @@ import { Field } from "formik";
 import React, { Fragment, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { MyTextArea } from "../fields/MyTextArea.js";
-import { MyTextInput } from "../fields/MyTextInput.js";
+import { MyTextInputForm } from "../fields/MyTextInputForm.js";
 import Coating, { coatingInitialValues } from "./Coating.js";
 import { MathComponent } from "mathjax-react";
 import { validateField } from "../Helpers.js";
-import { H3, MediumText } from "../../../components/styles/TextStyles";
+import { H3, SmallText } from "../../../components/styles/TextStyles";
 import Button4AddRemove from "../../../components/buttons/Button4AddRemove.js";
 
 export const surfaceInitialValues = {
@@ -47,10 +47,13 @@ export default function Surface({
   const curvatureRefUpload = useRef(null);
 
   useEffect(() => {
-    if(serviceType === 'Optical Coating' || serviceType === 'Photonic Coating') {
-      setHasCoating(true)
+    if (
+      serviceType === "Optical Coating" ||
+      serviceType === "Photonic Coating"
+    ) {
+      setHasCoating(true);
     }
-  }, [serviceType])
+  }, [serviceType]);
 
   function curvatureFileUpload(e) {
     e.preventDefault();
@@ -131,12 +134,12 @@ export default function Surface({
           <br />
           {surfaceValues.curvature === "flat" && (
             <Fragment>
-              <MyTextInput
+              <MyTextInputForm
                 label="Surface Figure (nm): ±"
                 name={`surface.${index}.surfaceFigure`}
                 onChange={handleChange}
               />
-              <MyTextInput
+              <MyTextInputForm
                 label="Surface Roughness (P-V nm): "
                 name={`surface.${index}.surfaceRoughness`}
                 onChange={handleChange}
@@ -174,24 +177,24 @@ export default function Surface({
           {surfaceValues.curvature === "parabolic" && (
             <Fragment>
               <p>Please specify the beam dimension in Description of Face</p>
-              <MyTextInput
+              <MyTextInputForm
                 labelClass="required"
                 validate={validateField}
                 label="Focal Length (mm): "
                 name={`surface.${index}.focalLength`}
                 onChange={handleChange}
               />
-              <MyTextInput
+              <MyTextInputForm
                 label="Turning Angle (degree): "
                 name={`surface.${index}.turningAngle`}
                 onChange={handleChange}
               />
-              <MyTextInput
+              <MyTextInputForm
                 label="Surface Figure (nm): ±"
                 name={`surface.${index}.surfaceFigure`}
                 onChange={handleChange}
               />
-              <MyTextInput
+              <MyTextInputForm
                 label="Surface Roughness (P-V nm): "
                 name={`surface.${index}.surfaceRoughness`}
                 onChange={handleChange}
@@ -228,19 +231,19 @@ export default function Surface({
           )}
           {surfaceValues.curvature === "spherical" && (
             <Fragment>
-              <MyTextInput
+              <MyTextInputForm
                 labelClass="required"
                 validate={validateField}
                 label="Radius of Curvature(mm): "
                 name={`surface.${index}.radiusOfCurvature`}
                 onChange={handleChange}
               />
-              <MyTextInput
+              <MyTextInputForm
                 label="Surface Figure (nm): ±"
                 name={`surface.${index}.surfaceFigure`}
                 onChange={handleChange}
               />
-              <MyTextInput
+              <MyTextInputForm
                 label="Surface Roughness (P-V nm): "
                 name={`surface.${index}.surfaceRoughness`}
                 onChange={handleChange}
@@ -281,26 +284,26 @@ export default function Surface({
               <MathComponent
                 tex={String.raw`Z=f(x)=\frac{C_{v}x^2}{1+\sqrt{1-(1+k)C_{v}^2x^2}}+A_{01}x+A_{02}x^2+\cdots`}
               />
-              <MyTextInput
+              <MyTextInputForm
                 labelClass="required"
                 validate={validateField}
                 label="Cv: "
                 name={`surface.${index}.cv`}
                 onChange={handleChange}
               />
-              <MyTextInput
+              <MyTextInputForm
                 labelClass="required"
                 validate={validateField}
                 label="k: "
                 name={`surface.${index}.k`}
                 onChange={handleChange}
               />
-              <MyTextInput
+              <MyTextInputForm
                 label="A1: "
                 name={`surface.${index}.a1`}
                 onChange={handleChange}
               />
-              <MyTextInput
+              <MyTextInputForm
                 labelClass="required"
                 validate={validateField}
                 label="A2: "
@@ -311,39 +314,39 @@ export default function Surface({
               <br />
               {expand && (
                 <Fragment>
-                  <MyTextInput
+                  <MyTextInputForm
                     label="A4: "
                     name={`surface.${index}.a4`}
                     onChange={handleChange}
                   />
-                  <MyTextInput
+                  <MyTextInputForm
                     label="A6: "
                     name={`surface.${index}.a6`}
                     onChange={handleChange}
                   />
-                  <MyTextInput
+                  <MyTextInputForm
                     label="A8: "
                     name={`surface.${index}.a8`}
                     onChange={handleChange}
                   />
-                  <MyTextInput
+                  <MyTextInputForm
                     label="A10: "
                     name={`surface.${index}.a10`}
                     onChange={handleChange}
                   />
-                  <MyTextInput
+                  <MyTextInputForm
                     label="A12: "
                     name={`surface.${index}.a12`}
                     onChange={handleChange}
                   />
                 </Fragment>
               )}
-              <MyTextInput
+              <MyTextInputForm
                 label="Surface Figure (nm): ±"
                 name={`surface.${index}.surfaceFigure`}
                 onChange={handleChange}
               />
-              <MyTextInput
+              <MyTextInputForm
                 label="Surface Roughness (P-V nm): "
                 name={`surface.${index}.surfaceRoughness`}
                 onChange={handleChange}
@@ -388,12 +391,12 @@ export default function Surface({
                 onChange={curvatureFileUpload}
                 ref={curvatureRefUpload}
               />
-              <MyTextInput
+              <MyTextInputForm
                 label="Surface Figure (nm): ±"
                 name={`surface.${index}.surfaceFigure`}
                 onChange={handleChange}
               />
-              <MyTextInput
+              <MyTextInputForm
                 label="Surface Roughness (nm rms): "
                 name={`surface.${index}.surfaceRoughness`}
                 onChange={handleChange}
@@ -462,10 +465,10 @@ const DetailWrapper = styled.div`
   margin: 20px;
 `;
 
-const Description = styled(MediumText)`
+const Description = styled(SmallText)`
   margin: 20px 0;
   color: rgba(255, 255, 255, 0.9);
-  background: rgba(255, 255, 255, 0.2);
+  /* background: rgba(255, 255, 255, 0.2); */
   padding: 20px;
   border-radius: 15px;
 `;
