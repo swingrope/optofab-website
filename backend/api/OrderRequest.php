@@ -13,6 +13,7 @@ function handleOrderRequest($requestPayload){
     $attachments =  attchmentsToArray(); // get potential attachments
     $attachments[] = "OrderRequest.json";
     $message = "";
+    $client_email = "";
     
     // append key value pair in JSON to the email message body
     foreach ($jsonIterator as $key => $val) {
@@ -39,6 +40,8 @@ function handleOrderRequest($requestPayload){
             $message.= " : ";
             $message.=$val;
             $message.= "\n";
+            if ($key === 'email') $client_email = $val;
+            echo($client_email);
         }
     }
 
@@ -49,6 +52,7 @@ function handleOrderRequest($requestPayload){
 
     
     sendEmail("New Order Request", $message, $attachments);
+    sendEmail("ANFF OptoFab Order Confirmation", "Your order has been received!");
     
     
 }
