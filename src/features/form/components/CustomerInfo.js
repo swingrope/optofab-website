@@ -96,7 +96,7 @@ export default function CustomerInfo({ part }) {
                   />
                   <MyTextInputSim
                     name="phoneNumber"
-                    label="Company Name"
+                    label="Phone Number"
                     onChange={handleChange}
                   />
 
