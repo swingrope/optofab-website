@@ -13,7 +13,7 @@ function handleOrderRequest($requestPayload){
     $attachments =  attchmentsToArray(); // get potential attachments
     $attachments[] = "OrderRequest.json";
     $message = "";
-    $client_email = "";
+    $client_email = ""; // send confirmation email to customer
     
     // append key value pair in JSON to the email message body
     foreach ($jsonIterator as $key => $val) {
