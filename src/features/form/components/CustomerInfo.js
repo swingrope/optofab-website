@@ -6,6 +6,9 @@ import ReCAPTCHA from "react-google-recaptcha";
 import Layout from "../../../components/layout/layout";
 import { MyTextInputSim } from "../fields/MyTextInputSim";
 import { Caption2, H1, H3 } from "../../../components/styles/TextStyles";
+import {postData} from "../Feedback";
+import { createBrowserHistory } from "history";
+
 
 export const customerInfoInitialValues = {
   sameAsAbove: false,
@@ -49,13 +52,28 @@ export default function CustomerInfo({ part }) {
 
     console.log(data);
     // next is ajax request
-    fetch(baseURL, {
+    /*fetch(baseURL, {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
       },
-    });
+    });*/
+    postData(baseURL, values)
+        .then((res) => {
+          if (res.status === 200) {
+            //console.log(res.status);
+            const history = createBrowserHistory();
+            history.push("success-submit");
+            window.location.reload();
+          }
+        })
+        .catch(() => {
+          const history = createBrowserHistory();
+          history.push("error-submit");
+          window.location.reload();
+        });
+
   }
 
   return (
