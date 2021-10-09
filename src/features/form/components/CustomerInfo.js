@@ -50,7 +50,6 @@ export default function CustomerInfo({ part }) {
       data[itemName] = JSON.parse(item);
     }
 
-    console.log(data);
     // next is ajax request
     /*fetch(baseURL, {
       method: "POST",
@@ -59,7 +58,7 @@ export default function CustomerInfo({ part }) {
         "Content-Type": "application/json",
       },
     });*/
-    postData(baseURL, values)
+    postData(baseURL, data)
         .then((res) => {
           if (res.status === 200) {
             //console.log(res.status);
