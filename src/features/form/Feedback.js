@@ -37,7 +37,7 @@ export default function Feedback() {
                 await new Promise((r) => setTimeout(r, 500));
                 alert(JSON.stringify(values, null, 2));
                 //postData("http://localhost:8080/comp8715/optofab-website/src/api/Feedback.php", values)
-                postData("https://tl20212.cecs.anu.edu.au/api/Feedback", values)
+                postData("http://localhost:8080/comp8715/optofab-website/backend/api/Feedback", values)
                   // .then((res) => {
                   //   console.log(res.status);
                   //   if(res.status==200) {

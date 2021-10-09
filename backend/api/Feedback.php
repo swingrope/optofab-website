@@ -7,6 +7,7 @@ function handleFeedBack($decodedJson){
     require 'Common.php';
 
     $message = $decodedJson['feedback']; // need to match the key with front end
+    // echo($message);
     if ($message == null) {
         echo json_encode(array('error' => 'The feedback is empty'));
     } else { 
