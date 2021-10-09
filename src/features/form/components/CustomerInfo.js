@@ -14,9 +14,9 @@ export const customerInfoInitialValues = {
 export default function CustomerInfo({ part }) {
   const baseURL =
     "http://localhost:8080/comp8715/optofab-website/backend/api/OrderRequest";
-  //const baseURL = 'http://localhost:8080/comp8715/optofab-website/src/api/OrderRequest.php'
   const [verified, setVerified] = useState(false);
-
+  
+  // fill billing information with shipping information
   function fillBilling(values, setFieldValue) {
     values.sameAsAbove = !values.sameAsAbove;
 

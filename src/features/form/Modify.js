@@ -31,7 +31,7 @@ export default function Modify() {
       const formdata = new FormData();
       formdata.append("file", file);
       const url =
-        "http://localhost:8080/comp8715/optofab-website/src/api/Attachment.php";
+        "http://localhost:8080/comp8715/optofab-website/backend/api/Attachment";
       fetch(url, {
         method: "POST",
         body: formdata,
@@ -65,8 +65,7 @@ export default function Modify() {
               Modification: "",
             }}
             onSubmit={async (values) => {
-              //postData("http://localhost:8080/comp8715/optofab-website/src/api/Modification.php", values)
-              postData("../../api/Modification.php", values)
+              postData("http://localhost:8080/comp8715/optofab-website/backend/api/Modification", values)
                 .then((res) => {
                   if (res.status === 200) {
                     //console.log(res.status);
