@@ -2,7 +2,7 @@ import { Field, Form, Formik } from "formik";
 import React, { useState } from "react";
 import styled from "styled-components";
 import ReCAPTCHA from "react-google-recaptcha";
-
+import { v4 as uuid } from 'uuid';
 import Layout from "../../../components/layout/layout";
 import { MyTextInputSim } from "../fields/MyTextInputSim";
 import { Caption2, H1, H3 } from "../../../components/styles/TextStyles";
@@ -39,7 +39,7 @@ export default function CustomerInfo({ part }) {
   function handleSubmitForm(values) {
     if (!verified) return;
 
-    let data = { customerInfo: values };
+    let data = { orderNum: uuid(), customerInfo: values };
 
     for (let i = 1; i < part; i++) {
       let itemName = `part${i}`;
