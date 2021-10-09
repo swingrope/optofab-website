@@ -10,7 +10,7 @@ function handleModification($decodedJson){
 
     $attachments = attchmentsToArray();
     
-    sendEmail($subject, $message, $attachments);
+    sendEmail($subject, $message, "anffoptofab.autotest@gmail.com", $attachments);
 
 }
 

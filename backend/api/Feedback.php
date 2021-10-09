@@ -11,7 +11,7 @@ function handleFeedBack($decodedJson){
         echo json_encode(array('error' => 'The feedback is empty'));
     } else { 
         echo json_encode(array('success' => 'The feedback has been received'));
-        sendEmail('Feedback', $message); // may add order id with it
+        sendEmail('Feedback', $message, "anffoptofab.autotest@gmail.com"); // may add order id with it
     }
 
     

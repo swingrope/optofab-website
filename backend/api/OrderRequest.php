@@ -14,6 +14,7 @@ function handleOrderRequest($requestPayload){
     $attachments[] = "OrderRequest.json";
     $message = "";
     $client_email = ""; // send confirmation email to customer
+    $orderNum = ""; // get uuid order number from request payload
     
     // append key value pair in JSON to the email message body
     foreach ($jsonIterator as $key => $val) {
@@ -41,7 +42,8 @@ function handleOrderRequest($requestPayload){
             $message.=$val;
             $message.= "\n";
             if ($key === 'email') $client_email = $val;
-            echo($client_email);
+            if ($key === 'orderNum') $orderNum = $val;
+            // echo($client_email);
         }
     }
 
@@ -51,8 +53,8 @@ function handleOrderRequest($requestPayload){
     // send email
 
     
-    sendEmail("New Order Request", $message, $attachments);
-    sendEmail("ANFF OptoFab Order Confirmation", "Your order has been received!");
+    sendEmail("New Order Request: ". $orderNum, $message, "anffoptofab.autotest@gmail.com", $attachments);
+    sendEmail("ANFF OptoFab Order Confirmation", "Your order has been received!", $client_email);
     
     
 }

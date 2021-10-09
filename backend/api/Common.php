@@ -18,7 +18,7 @@ use PHPMailer\PHPMailer\Exception;
  * @param string array or NULL $attachments: the attachments path
  */
 
-function sendEmail($subject, $msg, $attachments=NULL, $JsonFile=NULL) {
+function sendEmail($subject, $msg, $receiver, $attachments=NULL, $JsonFile=NULL) {
     $credential = file_get_contents('./api/credentials.json');
     $decoded_credential = json_decode($credential, true);
     $mail = new PHPMailer();
@@ -38,7 +38,7 @@ function sendEmail($subject, $msg, $attachments=NULL, $JsonFile=NULL) {
     }
     
     $mail -> setFrom($decoded_credential["EMAIL"]); // put correct email address
-    $mail -> addAddress($decoded_credential["EMAIL"]); // put correct email address
+    $mail -> addAddress($receiver); // put correct email address
 
     // delete the temporary attachment folder 
     if ($mail -> Send()){
