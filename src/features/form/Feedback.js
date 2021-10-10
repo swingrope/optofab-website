@@ -40,19 +40,19 @@ export default function Feedback() {
                 alert(JSON.stringify(values, null, 2));
                 //postData("http://localhost:8080/comp8715/optofab-website/src/api/Feedback.php", values)
                 postData("http://localhost:8080/comp8715/optofab-website/backend/api/Feedback", values)
-                  // .then((res) => {
-                  //   console.log(res.status);
-                  //   if(res.status==200) {
-                  //     const history = createBrowserHistory();
-                  //     history.push('success-feedback');
-                  //     window.location.reload();
-                  //   }
-                  // })
-                  // .catch(() => {
-                  //   const history = createBrowserHistory();
-                  //   history.push('error-submit');
-                  //   window.location.reload();
-                  // });
+                   .then((res) => {
+                     //console.log(res.status);
+                     if(res.status==200) {
+                       const history = createBrowserHistory();
+                       history.push('success-feedback');
+                       window.location.reload();
+                     }
+                   })
+                   .catch(() => {
+                     const history = createBrowserHistory();
+                     history.push('error-submit');
+                     window.location.reload();
+                   });
               }}
             >
               <Form>
