@@ -6,6 +6,7 @@ import SidebarCard from "../../components/cards/SidebarCard";
 import { MyTextArea } from "./fields/MyTextArea";
 import SubmitButton from "../../components/buttons/SubmitButton";
 import {createBrowserHistory} from "history";
+import {MyTextInput} from "./fields/MyTextInput";
 
 export async function postData(url = "", data = {}) {
   const response = await fetch(url, {
@@ -31,6 +32,7 @@ export default function Feedback() {
           <FeedbackWrapper>
             <Formik
               initialValues={{
+                ordernum:"",
                 feedback: "",
               }}
               onSubmit={async (values) => {
@@ -54,6 +56,17 @@ export default function Feedback() {
               }}
             >
               <Form>
+                <FormItemWrapper>
+                <OrderNoWrapper>
+                  <img src="/images/smallicons/billing.svg" />
+                  <MyTextInput
+                      //   label="Order number:"
+                      label=""
+                      name="ordernum"
+                      id="ordernum"
+                      placeholder="Order number"
+                  />
+                </OrderNoWrapper>
                 <TextareaWrapper>
                   <img src="/images/smallicons/chat.svg" />
                   <MyTextArea
@@ -70,6 +83,7 @@ export default function Feedback() {
                 <SubmitInfoWrapper>
                   <SubmitButton value="Submit" title="Submit" />
                 </SubmitInfoWrapper>
+                </FormItemWrapper>
               </Form>
             </Formik>
           </FeedbackWrapper>
@@ -97,6 +111,26 @@ const LeftSidebarWrapper = styled.div`
   /* position: absolute; */
   /* left: 70px;
   top: 166px; */
+`;
+
+const OrderNoWrapper = styled.div`
+  display: grid;
+  grid-template-columns: 28px auto;
+  align-items: center;
+  padding: 10px;
+  width: 360px;
+  background: linear-gradient(
+    180deg,
+    rgba(99, 106, 150, 0.4) 0%,
+    rgba(182, 186, 214, 0.25) 100%
+  );
+  border: 0.5px solid rgba(255, 255, 255, 0.3);
+  box-sizing: border-box;
+  /* drop shadow combo 1 */
+  box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(40px);
+  /* Note: backdrop-filter has minimal browser support */
+  border-radius: 30px;
 `;
 
 const FeedbackWrapper = styled.div`
@@ -130,6 +164,11 @@ const TextareaWrapper = styled.div`
   backdrop-filter: blur(40px);
   /* Note: backdrop-filter has minimal browser support */
   border-radius: 20px;
+`;
+const FormItemWrapper = styled.div`
+  display: grid;
+  gap: 30px;
+  justify-items: center;
 `;
 
 const SubmitInfoWrapper = styled.div`

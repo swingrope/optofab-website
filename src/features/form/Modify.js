@@ -100,7 +100,7 @@ export default function Modify() {
                     label=""
                     id="Modification"
                     name="Modification"
-                    placeholder="Please type in modifications here"
+                    placeholder="Please describe what kind of modification you want to make. Disclaimer: This may affect cost, lead times and queue positions."
                     rows={12}
                     cols={100}
                   />
