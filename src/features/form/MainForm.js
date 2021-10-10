@@ -94,7 +94,7 @@ export default function MainForm({ part, setPart }) {
     } else {
       const formdata = new FormData();
       formdata.append("file", file);
-      const url = "../api/Attachment.php";
+      const url = "http://localhost:8080/comp8715/optofab-website/backend/api/Attachment";
       fetch(url, {
         method: "POST",
         body: formdata,

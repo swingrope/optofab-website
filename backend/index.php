@@ -28,13 +28,14 @@ if ($_SERVER['REQUEST_URI'] === '/comp8715/optofab-website/backend/api/Feedback'
 
 // api/Attachment: handle upload attachment function
 if ($_SERVER['REQUEST_URI'] === '/comp8715/optofab-website/backend/api/Attachment') {
+
     if  (!empty($_FILES['file']['name'])){
-        $nameArray = explode('.', $_FILES['file']['name']);
-    
         //move the attachment to newly created folder
         $targetPath = './api/uploads/'.basename($_FILES['file']['name']);
+        // echo($_FILES['file']["name"]);
+        // print_r($_FILES);
         move_uploaded_file($_FILES['file']["tmp_name"], $targetPath);
-        echo($_FILES['file']["tmp_name"]);
+        
         // check if upload is success
         if (file_exists($targetPath)) {
           echo json_encode(array('success' => 'The file has successfully uploaded.'));
