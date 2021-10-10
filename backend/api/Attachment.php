@@ -3,6 +3,7 @@
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: *");
 
+echo($_FILES['file']["tmp_name"]);
 
 if  (!empty($_FILES['file']['name'])){
     //$oldmask = umask(0);
@@ -13,7 +14,8 @@ if  (!empty($_FILES['file']['name'])){
     //umask($oldmask);
 
     //move the attachment to newly created folder
-    $targetPath = './uploads/'.basename($_FILES['file']['name']);
+    $targetPath = './api/uploads/'.basename($_FILES['file']['name']);
+    echo($targetPath);
     move_uploaded_file($_FILES['file']["tmp_name"], $targetPath);
     echo($_FILES['file']["tmp_name"]);
     // check if upload is success
