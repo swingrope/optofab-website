@@ -65,7 +65,10 @@ export default function Modify() {
               Modification: "",
             }}
             onSubmit={async (values) => {
-              postData("http://localhost:8080/comp8715/optofab-website/backend/api/Modification", values)
+              postData(
+                "http://localhost:8080/comp8715/optofab-website/backend/api/Modification",
+                values
+              )
                 .then((res) => {
                   if (res.status === 200) {
                     //console.log(res.status);
@@ -147,7 +150,7 @@ const OrderNoWrapper = styled.div`
   display: grid;
   grid-template-columns: 28px auto;
   align-items: center;
-  padding: 10px;
+  padding: 0 10px;
   width: 360px;
   background: linear-gradient(
     180deg,
