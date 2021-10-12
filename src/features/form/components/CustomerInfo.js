@@ -42,7 +42,7 @@ export default function CustomerInfo({ part }) {
   function handleSubmitForm(values) {
     if (!verified) return;
 
-    let data = { orderNum: uuid(), customerInfo: values };
+    let data = { orderNum: uuid().splice(0, 6), customerInfo: values };
 
     for (let i = 1; i < part; i++) {
       let itemName = `part${i}`;
