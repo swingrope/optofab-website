@@ -5,8 +5,8 @@ import Layout from "../../components/layout/layout";
 import SidebarCard from "../../components/cards/SidebarCard";
 import { MyTextArea } from "./fields/MyTextArea";
 import SubmitButton from "../../components/buttons/SubmitButton";
-import {createBrowserHistory} from "history";
-import {MyTextInput} from "./fields/MyTextInput";
+import { createBrowserHistory } from "history";
+import { MyTextInput } from "./fields/MyTextInput";
 
 export async function postData(url = "", data = {}) {
   const response = await fetch(url, {
@@ -32,58 +32,61 @@ export default function Feedback() {
           <FeedbackWrapper>
             <Formik
               initialValues={{
-                ordernum:"",
+                ordernum: "",
                 feedback: "",
               }}
               onSubmit={async (values) => {
                 await new Promise((r) => setTimeout(r, 500));
                 alert(JSON.stringify(values, null, 2));
                 //postData("http://localhost:8080/comp8715/optofab-website/src/api/Feedback.php", values)
-                postData("http://localhost:8080/comp8715/optofab-website/backend/api/Feedback", values)
-                   .then((res) => {
-                     //console.log(res.status);
-                     if(res.status==200) {
-                       const history = createBrowserHistory();
-                       history.push('success-feedback');
-                       window.location.reload();
-                     }
-                   })
-                   .catch(() => {
-                     const history = createBrowserHistory();
-                     history.push('error-submit');
-                     window.location.reload();
-                   });
+                postData(
+                  "http://localhost:8080/comp8715/optofab-website/backend/api/Feedback",
+                  values
+                )
+                  .then((res) => {
+                    //console.log(res.status);
+                    if (res.status == 200) {
+                      const history = createBrowserHistory();
+                      history.push("success-feedback");
+                      window.location.reload();
+                    }
+                  })
+                  .catch(() => {
+                    const history = createBrowserHistory();
+                    history.push("error-submit");
+                    window.location.reload();
+                  });
               }}
             >
               <Form>
                 <FormItemWrapper>
-                <OrderNoWrapper>
-                  <img src="/images/smallicons/billing.svg" />
-                  <MyTextInput
+                  <OrderNoWrapper>
+                    <img src="/images/smallicons/billing.svg" />
+                    <MyTextInput
                       //   label="Order number:"
                       label=""
                       name="ordernum"
                       id="ordernum"
                       placeholder="Order number"
-                  />
-                </OrderNoWrapper>
-                <TextareaWrapper>
-                  <img src="/images/smallicons/chat.svg" />
-                  <MyTextArea
-                    //   label="Please send us any feedback:"
-                    label=""
-                    id="feedback-editor"
-                    name="feedback"
-                    placeholder="Please type in here"
-                    rows={26}
-                    cols={60}
-                  />
-                </TextareaWrapper>
-                {/* <button type="submit" value="Submit">Submit</button> */}
+                    />
+                  </OrderNoWrapper>
+                  <TextareaWrapper>
+                    <img src="/images/smallicons/chat.svg" />
+                    <MyTextArea
+                      //   label="Please send us any feedback:"
+                      label=""
+                      id="feedback-editor"
+                      name="feedback"
+                      placeholder="Please type in here"
+                      rows={16}
+                      cols={60}
+                    />
+                  </TextareaWrapper>
+                  {/* <button type="submit" value="Submit">Submit</button> */}
+                </FormItemWrapper>
                 <SubmitInfoWrapper>
                   <SubmitButton value="Submit" title="Submit" />
                 </SubmitInfoWrapper>
-                </FormItemWrapper>
               </Form>
             </Formik>
           </FeedbackWrapper>
@@ -102,9 +105,9 @@ const ContentWrapper = styled.div`
   display: grid;
   grid-template-columns: 480px auto;
   max-width: 1234px;
-  height: 1080px;
+  /* height: 1080px; */
   margin: 0 auto;
-  padding: 200px 30px;
+  padding: 150px 30px 60px 30px;
 `;
 
 const LeftSidebarWrapper = styled.div`
@@ -117,7 +120,7 @@ const OrderNoWrapper = styled.div`
   display: grid;
   grid-template-columns: 28px auto;
   align-items: center;
-  padding: 10px;
+  padding: 0 10px;
   width: 360px;
   background: linear-gradient(
     180deg,
@@ -138,7 +141,7 @@ const FeedbackWrapper = styled.div`
   /* place-items: center; */
   gap: 30px;
   max-width: 800px;
-  height: 768px;
+  max-height: 768px;
   padding: 40px;
   background: rgba(255, 255, 255, 0.2);
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
@@ -165,6 +168,7 @@ const TextareaWrapper = styled.div`
   /* Note: backdrop-filter has minimal browser support */
   border-radius: 20px;
 `;
+
 const FormItemWrapper = styled.div`
   display: grid;
   gap: 30px;

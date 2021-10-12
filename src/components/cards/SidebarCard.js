@@ -21,7 +21,7 @@ export default SidebarCard;
 const Wrapper = styled.div`
   display: grid;
   width: 480px;
-  height: 768px;
+  min-height: 680px;
   background: #d8ddef;
   border-radius: 20px 0px 0px 20px;
   gap: 30px;
