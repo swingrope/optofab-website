@@ -45,13 +45,13 @@ export default function Feedback() {
                 )
                   .then((res) => {
                     //console.log(res.status);
-                    if (res.status == 200) {
+                    if (res.status == 200) { //submit success -> jump to success page
                       const history = createBrowserHistory();
                       history.push("success-feedback");
                       window.location.reload();
                     }
                   })
-                  .catch(() => {
+                  .catch(() => { //submit fail -> jump to error page
                     const history = createBrowserHistory();
                     history.push("error-submit");
                     window.location.reload();

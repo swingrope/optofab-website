@@ -12,7 +12,7 @@ import { createBrowserHistory } from "history";
 // #BUG1: Submit function
 
 export default function Modify() {
-  function modifyFileUpload(e) {
+  function modifyFileUpload(e) { //check file type
     e.preventDefault();
     let file = e.target.files[0];
     let fileType = file.name.substring(

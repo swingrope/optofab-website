@@ -280,6 +280,7 @@ export default function MainForm({ part, setPart }) {
                         </Fragment>
                       </>
                     )}
+                    {/*optical coating*/}
                     {values.serviceType === "Optical Coating" && (
                       <Fragment>
                         <SectionWrapper>
@@ -404,6 +405,7 @@ export default function MainForm({ part, setPart }) {
                         </Label>
                       </Fragment>
                     )}
+                    {/*photonic coating*/}
                     {values.serviceType === "Photonic Coating" && (
                       <Fragment>
                         <SectionWrapper>

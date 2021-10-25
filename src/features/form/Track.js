@@ -31,7 +31,7 @@ function createTable(tableData) {
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell align="left">Part Id</TableCell>
+            <TableCell align="left">Part Id</TableCell>{/*table header*/}
             <TableCell align="left">Status</TableCell>
           </TableRow>
         </TableHead>
@@ -49,7 +49,8 @@ function createTable(tableData) {
       </Table>
     </TableContainer>
   );
-  console.log("111");
+  //console.log("111");
+  //render table after submitting
   ReactDOM.render(element, document.getElementById("table"));
 }
 
