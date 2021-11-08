@@ -108,14 +108,14 @@ export default function Modify() {
                     cols={100}
                   />
                 </DescriptionWrapper>
-                <input
+                {/* <input
                   type="file"
                   name="description"
                   accept="image/png,application/pdf"
                   onChange={modifyFileUpload}
                   ref={refUpload}
                   hidden
-                />
+                /> */}
                 <UploadButtonWrapper>
                   {/* <UploadButton
                     type="button"
