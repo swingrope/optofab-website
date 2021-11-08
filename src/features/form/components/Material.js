@@ -334,13 +334,14 @@ export default function Material({
         materialValues.materialTransferAgreement === "standard" && (
           <Fragment>
             <label>please upload pdf files: </label>
-            <input
+            {/* <input
                 type="file"
                 name="description"
                 accept=".pdf"
                 onChange={MTAFileUpload}
                 ref={MTARefUpload}
-            />
+            /> */}
+            <div>please upload to xxxxxxx@xxx.com</div>
             <br />
           </Fragment>
         )}
@@ -349,13 +350,14 @@ export default function Material({
         materialValues.materialTransferAgreement === "custom" && (
           <Fragment>
             <label>please upload pdf files: </label>
-            <input
+            {/* <input
                 type="file"
                 name="description"
                 accept=".pdf"
                 onChange={MTAFileUpload}
                 ref={MTARefUpload}
-            />
+            /> */}
+            <div>please upload to xxxxxxx@xxx.com</div>
             <br />
           </Fragment>
         )}

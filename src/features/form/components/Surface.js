@@ -384,13 +384,14 @@ export default function Surface({
           {surfaceValues.curvature === "other" && (
             <Fragment>
               <label>Upload Zemax/Winlens File:</label>
-              <input
+              {/* <input
                 type="file"
                 name="curvatureFile"
                 accept=".zmx,.spd,.stp"
                 onChange={curvatureFileUpload}
                 ref={curvatureRefUpload}
-              />
+              /> */}
+              <div>please upload to xxxxxxx@xxx.com</div>
               <MyTextInputForm
                 label="Surface Figure (nm): ±"
                 name={`surface.${index}.surfaceFigure`}

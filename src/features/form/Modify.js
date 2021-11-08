@@ -117,11 +117,11 @@ export default function Modify() {
                   hidden
                 />
                 <UploadButtonWrapper>
-                  <UploadButton
+                  {/* <UploadButton
                     type="button"
                     onClick={handleClick}
                     value="Upload files (png, pdf)"
-                  />
+                  /> */}
                   {/* <button type="submit">Submit</button> */}
                   <SubmitButton title="Submit" />
                 </UploadButtonWrapper>

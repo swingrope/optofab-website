@@ -267,13 +267,14 @@ export default function MainForm({ part, setPart }) {
                                   onChange={handleChange}
                                 />
                                 <Label>Upload PDF/PNG File:</Label>
-                                <input
+                                {/* <input
                                   type="file"
                                   name="specialInstructionFile"
                                   accept=".pdf,.png"
                                   onChange={specialInstructionFileUpload}
                                   ref={specialInstructionRefUpload}
-                                />
+                                /> */}
+                                <div>please upload to xxxxxxx@xxx.com</div>
                               </DetailWrapper>
                             </SectionWrapper>
                           </Label>
@@ -393,13 +394,14 @@ export default function MainForm({ part, setPart }) {
                                 onChange={handleChange}
                               />
                               <Label>Upload PDF/PNG File:</Label>
-                              <input
+                              {/* <input
                                 type="file"
                                 name="specialInstructionFile"
                                 accept=".pdf,.png"
                                 onChange={specialInstructionFileUpload}
                                 ref={specialInstructionRefUpload}
-                              />
+                              /> */}
+                              <div>please upload to xxxxxxx@xxx.com</div>
                             </Fragment>
                           )}
                         </Label>
@@ -537,13 +539,14 @@ export default function MainForm({ part, setPart }) {
                                 onChange={handleChange}
                               />
                               <Label>Upload PDF/PNG File:</Label>
-                              <input
+                              {/* <input
                                 type="file"
                                 name="specialInstructionFile"
                                 accept=".pdf,.png"
                                 onChange={specialInstructionFileUpload}
                                 ref={specialInstructionRefUpload}
-                              />
+                              /> */}
+                              <div>please upload to xxxxxxx@xxx.com</div>
                             </Fragment>
                           )}
                         </Label>

@@ -253,13 +253,14 @@ export default function Geometry({
       {geometryValues.geometryType === "other" && (
         <Fragment>
           <label>please upload dxf/stp/stl files: </label>
-          <input
+          {/* <input
             type="file"
             name="description"
             accept=".dxf,.stp,.stl"
             onChange={geometryFileUpload}
             ref={refUpload}
-          />
+          /> */}
+          <div>please upload to xxxxxxx@xxx.com</div>
           <br />
         </Fragment>
       )}
